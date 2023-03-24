@@ -1,0 +1,411 @@
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+public class Main extends Application implements Initializable {
+
+	// FXML references for building the scene in SceneBuilder
+	@FXML
+	Text t = new Text(String.format("Pretzels: ,%f", pretzels));
+	@FXML
+	Text cp = new Text(String.format("CPS: ,%.1f", cps));
+	@FXML
+	Text stats = new Text(String.format(
+			"Pretzels(s) in bank: %,.0f%n"
+			+ "Total Pretzels Baked: %,.0f%n"
+			+ "CPS: %,.1f%n"
+			+ "Click Value: %.0f%n"
+			+ "Buildings: %d%n"
+			+ "Upgrades: %d%n", pretzels,
+			totalPretzels, cps, clickValue, buildings, upgrades));
+	@FXML
+	ImageView i;
+	@FXML
+	Button clickerButton;
+	@FXML
+	Button grandmaButton;
+	@FXML
+	Button farmButton;
+	@FXML
+	Button clickerUpgrade1;
+	@FXML
+	Button clickerUpgrade2;
+	@FXML
+	Button grandmaUpgrade1;
+	@FXML
+	Button grandmaUpgrade2;
+	@FXML
+	Button muteButton;
+	
+	// Sounds for the game
+	MediaPlayer pretzelClickSound = new MediaPlayer(new Media(getClass().getResource("ClickSound.mp3").toString()));
+	MediaPlayer buttonClickSound = new MediaPlayer(new Media(getClass().getResource("clickDown.mp3").toString()));
+
+	// Player info
+	public static boolean leftWasClicked = false;
+	public static double pretzels = 1000000;
+	public static double totalPretzels = 0;
+	public static double cps = 0;
+	public static double clickValue = 1;
+	public static int buildings = 0;
+	public static int upgrades = 0;
+
+	// Clicker info
+	public static double clickerCPS = 0.1;
+	public static double clickerCost = 15.0;
+	public static final double CLICKER_BASE_COST = 15.0;
+	public static int numClickers = 0;
+	public static double myClickerCPS = 0.0;
+	// Clicker upgrade info
+	public static double clickerUpgrade1Cost = 100;
+	public static double clickerUpgrade2Cost = 500;
+
+	// Grandma info
+	public static double grandmaCPS = 1;
+	public static double grandmaCost = 100;
+	public static final int GRANDMA_BASE_COST = 100;
+	public static int numGrandmas = 0;
+	public static double myGrandmaCPS = 0;
+	// Grandma upgrade info
+	public static double grandmaUpgrade1Cost = 1000;
+	public static double grandmaUpgrade2Cost = 5000;
+
+	// Farm info
+	public static double farmCPS = 8;
+	public static double farmCost = 1100;
+	public static final int FARM_BASE_COST = 1100;
+	public static int numFarms = 0;
+	public static double myFarmCPS = 0;
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		
+		Parent p = FXMLLoader.load(getClass().getResource("MyFXML.fxml"));
+
+		Scene root = new Scene(p);
+		primaryStage.setScene(root);
+		primaryStage.setTitle("Pretzel Clicker");
+		primaryStage.getIcons().add(new Image("PretzelImage.png"));
+		primaryStage.setResizable(false);
+		primaryStage.show();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+		// Clicking the cookie
+		i.setOnMousePressed((e) -> {
+			// Check to see if the click was a left click
+			if (e.isPrimaryButtonDown()) {
+
+				// Make sure only one click is being registered
+				if (!leftWasClicked) {
+					pretzelClickSound.stop();
+					pretzelClickSound.play();					
+
+										
+					pretzels += clickValue;
+					totalPretzels += clickValue;
+					i.setScaleX(i.getScaleX() + 0.1);
+					i.setScaleY(i.getScaleY() + 0.1);
+					updatePretzels();
+
+					// Used for when you release the mouse, tells the method that
+					// it was the left mouse that was clicked
+					leftWasClicked = true;
+				}
+			}
+		});
+
+		// Releasing click on the cookie
+		i.setOnMouseReleased((e) -> {
+			// Check to see if it was the left mouse that was released
+			if (leftWasClicked) {
+
+				i.setScaleX(i.getScaleX() - 0.1);
+				i.setScaleY(i.getScaleY() - 0.1);
+				leftWasClicked = false;
+			}
+
+		});
+
+		// Buying a clicker
+		clickerButton.setOnAction((e) -> {
+			if (pretzels >= clickerCost) {
+				playButtonClick();
+				pretzels -= clickerCost;
+				updatePretzels();
+
+				myClickerCPS += clickerCPS;
+				updateCPS();
+
+				numClickers++;
+				buildings++;
+				clickerCost = (double) Math.round(CLICKER_BASE_COST * Math.pow(1.15, numClickers));
+				clickerButton.setText(String.format("%d Clickers%nCost: %,.0f", numClickers, clickerCost));
+			}
+		});
+
+		// Buying a grandma
+		grandmaButton.setOnAction((e) -> {
+			if (pretzels >= grandmaCost) {
+				playButtonClick();
+				pretzels -= grandmaCost;
+				updatePretzels();
+
+				myGrandmaCPS += grandmaCPS;
+				updateCPS();
+
+				numGrandmas++;
+				buildings++;
+				grandmaCost = Math.round(GRANDMA_BASE_COST * Math.pow(1.15, numGrandmas));
+				grandmaButton.setText(String.format("%d Grandmas%nCost: %,.0f", numGrandmas, grandmaCost));
+			}
+		});
+
+		// Buying a farm
+		farmButton.setOnAction((e) -> {
+			if (pretzels >= farmCost) {
+				playButtonClick();
+				pretzels -= farmCost;
+				updatePretzels();
+
+				myFarmCPS += farmCPS;
+				updateCPS();
+
+				numFarms++;
+				buildings++;
+				farmCost = Math.round(FARM_BASE_COST * Math.pow(1.15, numFarms));
+				farmButton.setText(String.format("%d Farms%nCost: %,.0f", numFarms, farmCost));
+			}
+		});
+
+		// Tool-tip for first clicker upgrade
+		makeToolTip(clickerUpgrade1, String.format(
+				"This upgrade doubles your current cps generated by %nyour clickers and your clicks by 2.%nCost: 100 Cookies"));
+
+		// Buying clicker upgrade 1
+		clickerUpgrade1.setOnAction((e) -> {
+			if (pretzels >= clickerUpgrade1Cost) {
+				playButtonClick();
+				pretzels -= clickerUpgrade1Cost;
+				// Get the upgrade from the purchase
+				myClickerCPS *= 2;
+				clickerCPS *= 2;
+				clickValue *= 2;
+				upgrades++;
+				updateCPS();
+
+				// Animation to make the button disappear
+				disappearAnimation(clickerUpgrade1);
+			}
+		});
+
+		// Tool-tip for second clicker upgrade
+		makeToolTip(clickerUpgrade2, String.format(
+				"This upgrade doubles your current cps generated by %n"
+				+ "your clickers and your clicks by 2.%nCost: 500 Cookies"));
+
+		// Buying clicker upgrade 2
+		clickerUpgrade2.setOnAction((e) -> {
+			if (pretzels >= clickerUpgrade2Cost) {
+				playButtonClick();
+				pretzels -= clickerUpgrade2Cost;
+				// Get the upgrade from the purchase
+				myClickerCPS *= 2;
+				clickerCPS *= 2;
+				clickValue *= 2;
+				upgrades++;
+				updateCPS();
+
+				// Animation to make the button disappear
+				disappearAnimation(clickerUpgrade2);
+
+			}
+		});
+
+		// Tool-tip for first grandma upgrade
+		makeToolTip(grandmaUpgrade1, String.format(
+				"This upgrade doubles your current cps generated by %n"
+				+ "your grandmas by 2.%nCost: 1000 Cookies"));
+
+		// Buying grandma upgrade 1
+		grandmaUpgrade1.setOnAction((e) -> {
+			if (pretzels >= grandmaUpgrade1Cost) {
+				playButtonClick();
+				pretzels -= grandmaUpgrade1Cost;
+				// Get the upgrade from the purchase
+				myGrandmaCPS *= 2;
+				grandmaCPS *= 2;
+				upgrades++;
+				updateCPS();
+
+				// Animation to make the button disappear
+				disappearAnimation(grandmaUpgrade1);
+
+			}
+		});
+		
+		// Mute or unmute the game volume
+		pretzelClickSound.setVolume(0.25); // Initial volume for the pretzel click sound
+		muteButton.setOnAction(e -> {
+			if(pretzelClickSound.getVolume() == 0.0) {
+				muteButton.setText("Mute");
+				pretzelClickSound.setVolume(0.25);
+				buttonClickSound.setVolume(1);
+
+			} else {
+				muteButton.setText("Unmute");
+				pretzelClickSound.setVolume(0);
+				buttonClickSound.setVolume(0);
+
+			}
+		});
+
+		// Running a time-line to add cookies every 0.01 seconds
+		// base on the current cps, using 0.01 seconds to make the cookies
+		// go up smoothly over time, and then updates the stats with any changes that
+		// happened since the last update
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), e -> {
+			pretzels += cps / 100;
+			totalPretzels += cps / 100;
+			updatePretzels();
+			updateStats();
+			
+		}));
+
+		// Have the time-line run indefinitely and start it
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.play();
+
+	}
+
+	private void playButtonClick() {
+		buttonClickSound.stop();
+		buttonClickSound.play();
+	}
+
+	/**
+	 * Method for updating the text field for the cps. This method requests the
+	 * focus for the text field that has the cps and updates with the new cps
+	 */
+	public void updateCPS() {
+		cp.requestFocus();
+		cps = myClickerCPS + myGrandmaCPS + myFarmCPS;
+		cp.setText(String.format("CPS: %,.1f", cps));
+	}
+
+	/**
+	 * Method for updating the text field for the stats. This method requests the
+	 * focus for the text field that has the stats and updates with the new stats
+	 */
+	public void updateStats() {
+		stats.requestFocus();
+		stats.setText(String.format(
+				"Pretzel(s) in bank: %,.0f%n"
+				+ "Total Pretzels Baked: %,.0f%n"
+				+ "CPS: %,.1f%n"
+				+ "Click Value: %.0f%n"
+				+ "Buildings: %d%n"
+				+ "Upgrades: %d%n", pretzels,
+				totalPretzels, cps, clickValue, buildings, upgrades));
+	}
+
+	/**
+	 * Method for updating the text field for the pretzels. This method requests the
+	 * focus for the text field that has the number of pretzels, and updates with the
+	 * new number of pretzels. If the number of pretzels is >= 1 billion, the number
+	 * of pretzels will be shortened to just xxx.xx format followed by the magnitude
+	 * of the pretzels (example: 32.79 Trillion).
+	 */
+	public void updatePretzels() {
+		t.requestFocus();
+		if (pretzels >= 1000000000000000000.0) {
+			t.setText(String.format("Pretzels: %,.2f %nQuintillion", pretzels / 1000000000000000000.0));
+		} else if (pretzels >= 1000000000000000.0) {
+			t.setText(String.format("Pretzels: %,.2f %nQuadrillion", pretzels / 1000000000000000.0));
+		} else if (pretzels >= 1000000000000.0) {
+			t.setText(String.format("Pretzels: %,.2f %nTrillion", pretzels / 1000000000000.0));
+		} else if (pretzels >= 1000000000.0) {
+			t.setText(String.format("Pretzels: %,.2f %nBillion", pretzels / 1000000000.0));
+		} else
+			t.setText(String.format("Pretzels: %,.0f", pretzels));
+	}
+
+	/**
+	 * Method for making a button disappear this method takes in a Button object and
+	 * uses the FadeTransition class in JavaFX to make the button disappear
+	 * 
+	 * @param button
+	 */
+	public void disappearAnimation(Button button) {
+		// Animation to make the button disappear
+		FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), button);
+		fadeTransition.setToValue(0);
+		fadeTransition.play();
+		// Get rid of the button once the animation is over
+		fadeTransition.setOnFinished(event -> {
+			button.setManaged(false);
+		});
+	}
+
+	/**
+	 * Method for creating a Tool Tip for a button this method takes in a button and
+	 * a string you would like to put into the tool tip, and puts the tool tip onto
+	 * the button
+	 * 
+	 * @param button
+	 * @param s
+	 */
+	public void makeToolTip(Button button, String s) {
+		final Tooltip toolTip = new Tooltip();
+		toolTip.setText(s);
+		button.setTooltip(toolTip);
+	}
+
+	/**
+	 * Method for buying a building which does not work :(
+	 * 
+	 * @param button
+	 * @param cost
+	 * @param baseCost
+	 * @param selfCPS
+	 * @param buildingCPS
+	 * @param numBuildings
+	 * @param s
+	 */
+	public static void buyBuilding(Button button, double cost, double baseCost, double selfCPS, double buildingCPS,
+			int numBuildings, String s) {
+
+		pretzels -= cost;
+		selfCPS += buildingCPS;
+
+		numBuildings++;
+		cost = (double) Math.round(baseCost * Math.pow(1.15, numBuildings));
+		button.setText(s);
+
+	}
+
+}
