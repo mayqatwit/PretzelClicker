@@ -34,6 +34,8 @@ public class Main extends Application implements Initializable {
 	Button clickerButton = Clicker.getGraphic();
 	@FXML
 	ImageView pretzelImage;
+	@FXML
+	Text playerStats = new Text(Player.getStats());
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 	
@@ -106,6 +108,7 @@ public class Main extends Application implements Initializable {
 			Player.updateTotalPretzels(Player.getPPS() / 100);
 			updatePretzels();
 			updateCPS();
+			playerStats.setText(Player.getStats());
 		}));
 
 		// Have the time-line run indefinitely and start it
