@@ -1,5 +1,8 @@
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -36,16 +39,18 @@ public class Main extends Application implements Initializable {
 	ImageView pretzelImage;
 	@FXML
 	Text playerStats = new Text(Player.getStats());
+	@FXML
+	Button saveButton;
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
-	
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) throws Exception {		
+		loadSave(new Scanner(new File("Save")));
 
 		Parent p = FXMLLoader.load(getClass().getResource("PretzelClickerFXML.fxml"));
 
@@ -55,6 +60,12 @@ public class Main extends Application implements Initializable {
 		primaryStage.getIcons().add(new Image("PretzelImage.png"));
 		primaryStage.setResizable(false);
 		primaryStage.show();
+	}
+
+	private void loadSave(Scanner s) {
+		String line = s.nextLine();
+		Player.updatePretzels(Double.parseDouble(line));
+		
 	}
 
 	@Override
@@ -110,6 +121,10 @@ public class Main extends Application implements Initializable {
 			updateCPS();
 			playerStats.setText(Player.getStats());
 		}));
+		
+		saveButton.setOnAction(e -> {
+			
+		});
 
 		// Have the time-line run indefinitely and start it
 		timeline.setCycleCount(Animation.INDEFINITE);

@@ -1,6 +1,7 @@
 /**
  * Concrete class for Player. This class keeps track of all player information,
- * such as pretzels, click value, and pretzels-per-second (PPS). 
+ * such as pretzels, click value, and pretzels-per-second (PPS).
+ * 
  * @author Quentyn May
  *
  */
@@ -10,10 +11,9 @@ public class Player {
 	private static double totalPretzels = 0;
 	private static double clickValue = 1;
 	private static int buildings = 0;
-	private static int upgrades = 0;	
+	private static int upgrades = 0;
 	private static double PPS = 0;
 
-	
 	public static void buyBuilding(Object o) {
 		o = (Building) o;
 	}
@@ -43,7 +43,7 @@ public class Player {
 	}
 
 	public static void updatePretzels(double s) {
-		Player.pretzels =  Player.getPretzels() + s;
+		Player.pretzels = Player.getPretzels() + s;
 	}
 
 	public static void updateTotalPretzels(double s) {
@@ -53,7 +53,7 @@ public class Player {
 	public static void updatePPS(double s) {
 		PPS += s;
 	}
-	
+
 	public static void setPPS(double s) {
 		PPS = s;
 	}
@@ -69,13 +69,13 @@ public class Player {
 	public static void updateUpgrades(int s) {
 		upgrades += s;
 	}
-	
+
 	public static String getStats() {
 		return String.format(
 				"Pretzels(s) in bank: %,.0f%nTotal Pretzels Baked: %,.0f%n"
-				+ "PPS: %,.1f%nClick Value: %.0f%nBuildings: %d%nUpgrades: %d%n", 
-				Player.getPretzels(), Player.getTotalPretzels(), Player.getPPS(), 
-				Player.getClickValue(), Player.getBuildings(), Player.getUpgrades());
+						+ "PPS: %,.1f%nClick Value: %.0f%nBuildings: %d%nUpgrades: %d%n",
+				Player.getPretzels(), Player.getTotalPretzels(), Player.getPPS(), Player.getClickValue(),
+				Player.getBuildings(), Player.getUpgrades());
 	}
 
 }

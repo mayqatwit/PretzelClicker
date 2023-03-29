@@ -1,8 +1,8 @@
 import javafx.scene.control.Button;
 
 /**
- * Concrete Clicker class. This class is used to keep track of all Clicker stats, and
- * allows for buying and upgrading clickers.
+ * Concrete Clicker class. This class is used to keep track of all Clicker
+ * stats, and allows for buying and upgrading clickers.
  * 
  * @author Quentyn May
  *
@@ -16,13 +16,13 @@ public class Clicker implements Buildable {
 	private static double myClickerPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Clickers%nCost: %,.0f", numClickers, cost));
 	private static int upgrades = 0;
-	
-    public Clicker() {
-    	buyBuilding();
-    }
+
+	public Clicker() {
+		buyBuilding();
+	}
 
 	@Override
-	public void buyBuilding() {		
+	public void buyBuilding() {
 		Player.updatePretzels(-Clicker.getCost());
 
 		Clicker.setNumClickers(1);
@@ -37,7 +37,7 @@ public class Clicker implements Buildable {
 
 	@Override
 	public void upgrade() {
-		
+
 	}
 
 	public static double getPPS() {
