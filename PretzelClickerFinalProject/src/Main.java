@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -123,7 +125,11 @@ public class Main extends Application implements Initializable {
 		}));
 		
 		saveButton.setOnAction(e -> {
-			
+			try {
+				PrintWriter writeSave = new PrintWriter(new File("Save"));
+				writeSave.print(Player.getPretzels());
+				writeSave.close();
+			} catch (FileNotFoundException e1) {}
 		});
 
 		// Have the time-line run indefinitely and start it
