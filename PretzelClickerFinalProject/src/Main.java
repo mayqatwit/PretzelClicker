@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -51,7 +50,7 @@ public class Main extends Application implements Initializable {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {		
+	public void start(Stage primaryStage) throws Exception {
 		loadSave(new Scanner(new File("Save")));
 
 		Parent p = FXMLLoader.load(getClass().getResource("PretzelClickerFXML.fxml"));
@@ -62,12 +61,25 @@ public class Main extends Application implements Initializable {
 		primaryStage.getIcons().add(new Image("PretzelImage.png"));
 		primaryStage.setResizable(false);
 		primaryStage.show();
+		clickerButton.requestFocus();
+		clickerButton.setText(
+				String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
 	}
 
 	private void loadSave(Scanner s) {
-		String line = s.nextLine();
-		Player.updatePretzels(Double.parseDouble(line));
+		Player.updatePretzels(Double.parseDouble(s.nextLine()));
+		Player.updateTotalPretzels(Double.parseDouble(s.nextLine()));
+		Player.setClickValue(Double.parseDouble(s.nextLine()));
+		Player.updateBuildings((int) Double.parseDouble(s.nextLine()));
+		Player.updateUpgrades((int) Double.parseDouble(s.nextLine()));
+		Player.updatePPS(Double.parseDouble(s.nextLine()));
+		Clicker.setPPS(Double.parseDouble(s.nextLine()));
+		Clicker.setCost(Double.parseDouble(s.nextLine()));
+		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
+		Clicker.setMyClickerPPS(Double.parseDouble(s.nextLine()));
 		
+		Clicker.setUpgrades((int) Double.parseDouble(s.nextLine()));
+
 	}
 
 	@Override
@@ -123,13 +135,18 @@ public class Main extends Application implements Initializable {
 			updateCPS();
 			playerStats.setText(Player.getStats());
 		}));
-		
+
 		saveButton.setOnAction(e -> {
 			try {
 				PrintWriter writeSave = new PrintWriter(new File("Save"));
-				writeSave.print(Player.getPretzels());
+				writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
+						Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(), Player.getUpgrades(),
+						Player.getPPS(), Clicker.getPPS(), Clicker.getCost(), Clicker.getNumClickers(),
+						Clicker.getMyClickerPPS(), Clicker.getUpgrades()));
+
 				writeSave.close();
-			} catch (FileNotFoundException e1) {}
+			} catch (FileNotFoundException e1) {
+			}
 		});
 
 		// Have the time-line run indefinitely and start it

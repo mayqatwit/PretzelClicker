@@ -83,5 +83,9 @@ public class Clicker implements Buildable {
 	public static int getUpgrades() {
 		return upgrades;
 	}
+	
+	public static void setUpgrades(int i) {
+		upgrades = i;
+	}
 
 }

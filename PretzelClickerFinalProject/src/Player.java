@@ -57,6 +57,10 @@ public class Player {
 	public static void setPPS(double s) {
 		PPS = s;
 	}
+	
+	public static void setClickValue(double s) {
+		clickValue = s;
+	}
 
 	public static void updateClickValue(double s) {
 		clickValue += s;
