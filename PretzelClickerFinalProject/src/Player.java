@@ -14,48 +14,68 @@ public class Player {
 	private static int upgrades = 0;
 	private static double PPS = 0;
 
-	public static void buyBuilding(Object o) {
-		o = (Building) o;
-	}
-
+	/**
+	 * 
+	 * @return pretzels
+	 */
 	public static double getPretzels() {
 		return pretzels;
 	}
+	
+	/**
+	 * Sets pretzels to s, overriding what pretzels originally was
+	 * @param s
+	 */
+	public static void setPretzels(double s) {
+		pretzels = s;
+	}
 
+	/**
+	 * Adds s to current pretzels
+	 * @param s
+	 */
+	public static void updatePretzels(double s) {
+		Player.pretzels = Player.getPretzels() + s;
+	}
+
+	/**
+	 * 
+	 * @return totalPretzels
+	 */
 	public static double getTotalPretzels() {
 		return totalPretzels;
+	}
+	
+	/**
+	 * Sets totalPretzels to s, overriding what totalPretzels originally was
+	 * @param s
+	 */
+	public static void setTotalPretzels(double s) {
+		totalPretzels = s;
+	}
+	
+	/**
+	 * Adds s to current totalPretzels
+	 * @param s
+	 */
+	public static void updateTotalPretzels(double s) {
+		totalPretzels += s;
 	}
 
 	public static double getPPS() {
 		return PPS;
 	}
-
-	public static double getClickValue() {
-		return clickValue;
-	}
-
-	public static int getBuildings() {
-		return buildings;
-	}
-
-	public static int getUpgrades() {
-		return upgrades;
-	}
-
-	public static void updatePretzels(double s) {
-		Player.pretzels = Player.getPretzels() + s;
-	}
-
-	public static void updateTotalPretzels(double s) {
-		totalPretzels += s;
+	
+	public static void setPPS(double s) {
+		PPS = s;
 	}
 
 	public static void updatePPS(double s) {
 		PPS += s;
 	}
 
-	public static void setPPS(double s) {
-		PPS = s;
+	public static double getClickValue() {
+		return clickValue;
 	}
 	
 	public static void setClickValue(double s) {
@@ -66,10 +86,26 @@ public class Player {
 		clickValue += s;
 	}
 
+	public static int getBuildings() {
+		return buildings;
+	}
+	
+	public static void setBuildings(int i) {
+		buildings = i;
+	}
+
 	public static void updateBuildings(int s) {
 		buildings += s;
 	}
 
+	public static int getUpgrades() {
+		return upgrades;
+	}
+	
+	public static void setUpgrades(int i ) {
+		upgrades = i;
+	}
+	
 	public static void updateUpgrades(int s) {
 		upgrades += s;
 	}

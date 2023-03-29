@@ -25,10 +25,10 @@ public class Clicker implements Buildable {
 	public void buyBuilding() {
 		Player.updatePretzels(-Clicker.getCost());
 
-		Clicker.setNumClickers(1);
+		Clicker.updateNumClickers(1);
 		Player.updateBuildings(1);
 
-		Clicker.setMyClickerPPS(Clicker.getPPS());
+		Clicker.updateMyClickerPPS(Clicker.getPPS());
 		Player.updatePPS(Clicker.getPPS());
 
 		Clicker.setCost((double) Math.round(BASE_COST * Math.pow(1.15, numClickers)));
@@ -61,6 +61,10 @@ public class Clicker implements Buildable {
 	}
 
 	public static void setNumClickers(int num) {
+		Clicker.numClickers = num;
+	}
+	
+	public static void updateNumClickers(int num) {
 		Clicker.numClickers += num;
 	}
 
@@ -69,6 +73,10 @@ public class Clicker implements Buildable {
 	}
 
 	public static void setMyClickerPPS(double d) {
+		Clicker.myClickerPPS = d;
+	}
+	
+	public static void updateMyClickerPPS(double d) {
 		Clicker.myClickerPPS += d;
 	}
 
@@ -86,6 +94,10 @@ public class Clicker implements Buildable {
 	
 	public static void setUpgrades(int i) {
 		upgrades = i;
+	}
+	
+	public static void updateUpgrades(int i) {
+		upgrades += i;
 	}
 
 }

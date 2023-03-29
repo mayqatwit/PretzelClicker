@@ -42,6 +42,8 @@ public class Main extends Application implements Initializable {
 	Text playerStats = new Text(Player.getStats());
 	@FXML
 	Button saveButton;
+	@FXML
+	Button resetButton;
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 
@@ -72,12 +74,12 @@ public class Main extends Application implements Initializable {
 	 * @param s
 	 */
 	private void loadSave(Scanner s) {
-		Player.updatePretzels(Double.parseDouble(s.nextLine()));
-		Player.updateTotalPretzels(Double.parseDouble(s.nextLine()));
+		Player.setPretzels(Double.parseDouble(s.nextLine()));
+		Player.setTotalPretzels(Double.parseDouble(s.nextLine()));
 		Player.setClickValue(Double.parseDouble(s.nextLine()));
-		Player.updateBuildings((int) Double.parseDouble(s.nextLine()));
-		Player.updateUpgrades((int) Double.parseDouble(s.nextLine()));
-		Player.updatePPS(Double.parseDouble(s.nextLine()));
+		Player.setBuildings((int) Double.parseDouble(s.nextLine()));
+		Player.setUpgrades((int) Double.parseDouble(s.nextLine()));
+		Player.setPPS(Double.parseDouble(s.nextLine()));
 		Clicker.setPPS(Double.parseDouble(s.nextLine()));
 		Clicker.setCost(Double.parseDouble(s.nextLine()));
 		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
@@ -141,21 +143,33 @@ public class Main extends Application implements Initializable {
 		}));
 
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
+			saveGame();
+		});
+		
+		resetButton.setOnAction(e ->{
 			try {
-				PrintWriter writeSave = new PrintWriter(new File("Save"));
-				writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
-						Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(), Player.getUpgrades(),
-						Player.getPPS(), Clicker.getPPS(), Clicker.getCost(), Clicker.getNumClickers(),
-						Clicker.getMyClickerPPS(), Clicker.getUpgrades()));
- 
-				writeSave.close();
-			} catch (FileNotFoundException e1) {
-			}
+				loadSave(new Scanner(new File("BlankSave")));
+				saveGame();
+			} catch (FileNotFoundException e1) {}
 		});
 
 		// Have the time-line run indefinitely and start it
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
+	}
+
+	private void saveGame() {
+		try {
+			PrintWriter writeSave = new PrintWriter(new File("Save"));
+			writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
+					Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(), Player.getUpgrades(),
+					Player.getPPS(), Clicker.getPPS(), Clicker.getCost(), Clicker.getNumClickers(),
+					Clicker.getMyClickerPPS(), Clicker.getUpgrades()));
+
+			writeSave.close();
+		} catch (FileNotFoundException e1) {
+		}
+		
 	}
 
 	public void updatePretzels() {
