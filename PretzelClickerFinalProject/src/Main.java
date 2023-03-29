@@ -67,7 +67,7 @@ public class Main extends Application implements Initializable {
 	/**
 	 * This method is used for loading the save when you open the game. It takes in
 	 * as scanner that reads from a save file, and sets all saved stats to all
-	 * applicable stats, such as player pretzels and player PPS.
+	 * applicable stats, such as player pretzels and player PPS..
 	 * 
 	 * @param s
 	 */
