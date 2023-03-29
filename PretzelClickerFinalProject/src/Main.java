@@ -83,8 +83,7 @@ public class Main extends Application implements Initializable {
 		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
 		Clicker.setMyClickerPPS(Double.parseDouble(s.nextLine()));
 		Clicker.setUpgrades((int) Double.parseDouble(s.nextLine()));
-		clickerButton.requestFocus();
-		clickerButton.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+		
 	}
 
 	@Override
