@@ -61,11 +61,16 @@ public class Main extends Application implements Initializable {
 		primaryStage.getIcons().add(new Image("PretzelImage.png"));
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		clickerButton.requestFocus();
-		clickerButton.setText(
-				String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+
 	}
 
+	/**
+	 * This method is used for loading the save when you open the game. It takes in
+	 * as scanner that reads from a save file, and sets all saved stats to all
+	 * applicable stats, such as player pretzels and player PPS.
+	 * 
+	 * @param s
+	 */
 	private void loadSave(Scanner s) {
 		Player.updatePretzels(Double.parseDouble(s.nextLine()));
 		Player.updateTotalPretzels(Double.parseDouble(s.nextLine()));
@@ -77,9 +82,9 @@ public class Main extends Application implements Initializable {
 		Clicker.setCost(Double.parseDouble(s.nextLine()));
 		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
 		Clicker.setMyClickerPPS(Double.parseDouble(s.nextLine()));
-		
 		Clicker.setUpgrades((int) Double.parseDouble(s.nextLine()));
-
+		clickerButton.requestFocus();
+		clickerButton.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
 	}
 
 	@Override
@@ -136,14 +141,14 @@ public class Main extends Application implements Initializable {
 			playerStats.setText(Player.getStats());
 		}));
 
-		saveButton.setOnAction(e -> {
+		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			try {
 				PrintWriter writeSave = new PrintWriter(new File("Save"));
-				writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
+				writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
 						Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(), Player.getUpgrades(),
 						Player.getPPS(), Clicker.getPPS(), Clicker.getCost(), Clicker.getNumClickers(),
 						Clicker.getMyClickerPPS(), Clicker.getUpgrades()));
-
+ 
 				writeSave.close();
 			} catch (FileNotFoundException e1) {
 			}
