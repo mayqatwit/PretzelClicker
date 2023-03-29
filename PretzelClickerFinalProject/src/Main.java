@@ -66,30 +66,23 @@ public class Main extends Application implements Initializable {
 
 	}
 
-	/**
-	 * This method is used for loading the save when you open the game. It takes in
-	 * as scanner that reads from a save file, and sets all saved stats to all
-	 * applicable stats, such as player pretzels and player PPS..
-	 * 
-	 * @param s
-	 */
-	private void loadSave(Scanner s) {
-		Player.setPretzels(Double.parseDouble(s.nextLine()));
-		Player.setTotalPretzels(Double.parseDouble(s.nextLine()));
-		Player.setClickValue(Double.parseDouble(s.nextLine()));
-		Player.setBuildings((int) Double.parseDouble(s.nextLine()));
-		Player.setUpgrades((int) Double.parseDouble(s.nextLine()));
-		Player.setPPS(Double.parseDouble(s.nextLine()));
-		Clicker.setPPS(Double.parseDouble(s.nextLine()));
-		Clicker.setCost(Double.parseDouble(s.nextLine()));
-		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
-		Clicker.setMyClickerPPS(Double.parseDouble(s.nextLine()));
-		Clicker.setUpgrades((int) Double.parseDouble(s.nextLine()));
-		
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		// Running a time-line to add pretzels every 0.01 seconds
+		// base on the current PPS, using 0.01 seconds to make the pretzels
+		// go up smoothly over time
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), e -> {
+			Player.updatePretzels(Player.getPPS() / 100);
+			Player.updateTotalPretzels(Player.getPPS() / 100);
+			updatePretzels();
+			updateCPS();
+			playerStats.setText(Player.getStats());
+		}));
+		
+		// Have the time-line run indefinitely and start it
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.play();
 
 		pretzelImage.setOnMousePressed((e) -> { // Clicking the cookie
 
@@ -131,33 +124,46 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
-		// Running a time-line to add pretzels every 0.01 seconds
-		// base on the current PPS, using 0.01 seconds to make the pretzels
-		// go up smoothly over time
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), e -> {
-			Player.updatePretzels(Player.getPPS() / 100);
-			Player.updateTotalPretzels(Player.getPPS() / 100);
-			updatePretzels();
-			updateCPS();
-			playerStats.setText(Player.getStats());
-		}));
-
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			saveGame();
 		});
 		
-		resetButton.setOnAction(e ->{
+		resetButton.setOnAction(e ->{ // Sets stats to BlankSave and saves the game
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
 			} catch (FileNotFoundException e1) {}
 		});
 
-		// Have the time-line run indefinitely and start it
-		timeline.setCycleCount(Animation.INDEFINITE);
-		timeline.play();
-	}
 
+	}
+	
+	/**
+	 * This method is used for loading the save when you open the game. It takes in
+	 * as scanner that reads from a save file, and sets all saved stats to all
+	 * applicable stats, such as player pretzels and player PPS.
+	 * 
+	 * @param Scanner s
+	 */
+	private void loadSave(Scanner s) {
+		Player.setPretzels(Double.parseDouble(s.nextLine()));
+		Player.setTotalPretzels(Double.parseDouble(s.nextLine()));
+		Player.setClickValue(Double.parseDouble(s.nextLine()));
+		Player.setBuildings((int) Double.parseDouble(s.nextLine()));
+		Player.setUpgrades((int) Double.parseDouble(s.nextLine()));
+		Player.setPPS(Double.parseDouble(s.nextLine()));
+		Clicker.setPPS(Double.parseDouble(s.nextLine()));
+		Clicker.setCost(Double.parseDouble(s.nextLine()));
+		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
+		Clicker.setMyClickerPPS(Double.parseDouble(s.nextLine()));
+		Clicker.setUpgrades((int) Double.parseDouble(s.nextLine()));
+		
+	}
+	
+	/**
+	 * This method creates a PrinterWriter and writes all current game stats
+	 * to a file called "Save"
+	 */
 	private void saveGame() {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
@@ -172,6 +178,13 @@ public class Main extends Application implements Initializable {
 		
 	}
 
+	/**
+	 * Method for updating the text field for the pretzels. This method requests the
+	 * focus for the text field that has the number of pretzels, and updates with the
+	 * new number of pretzels. If the number of pretzels is >= 1 billion, the number
+	 * of pretzels will be shortened to just xxx.xx format followed by the magnitude
+	 * of the pretzels (example: 32.79 Trillion).
+	 */
 	public void updatePretzels() {
 		pretzelText.requestFocus();
 		if (Player.getPretzels() >= 1000000000000000000.0) {
@@ -188,6 +201,10 @@ public class Main extends Application implements Initializable {
 			pretzelText.setText(String.format("Pretzels: %,.0f", Player.getPretzels()));
 	}
 
+	/**
+	 * Method for updating the text field for the PPS. This method requests the
+	 * focus for the text field that has the PPS and updates with the new PPS
+	 */
 	public void updateCPS() {
 		PPSText.requestFocus();
 		Player.setPPS(Clicker.getMyClickerPPS());

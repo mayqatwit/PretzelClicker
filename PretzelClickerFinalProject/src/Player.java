@@ -62,6 +62,10 @@ public class Player {
 		totalPretzels += s;
 	}
 
+	/**
+	 * 
+	 * @return PPS
+	 */
 	public static double getPPS() {
 		return PPS;
 	}
@@ -74,6 +78,10 @@ public class Player {
 		PPS += s;
 	}
 
+	/**
+	 * 
+	 * @return clickValue
+	 */
 	public static double getClickValue() {
 		return clickValue;
 	}
@@ -86,6 +94,10 @@ public class Player {
 		clickValue += s;
 	}
 
+	/**
+	 * 
+	 * @return buildings
+	 */
 	public static int getBuildings() {
 		return buildings;
 	}
@@ -98,6 +110,10 @@ public class Player {
 		buildings += s;
 	}
 
+	/**
+	 * 
+	 * @return upgrades
+	 */
 	public static int getUpgrades() {
 		return upgrades;
 	}

@@ -26,7 +26,7 @@
                   <Insets />
                </VBox.margin>
             </Text>
-            <Text fx:id="PPSText" strokeType="OUTSIDE" strokeWidth="0.0" text="CPS: 0.0" textAlignment="CENTER" translateY="40.0" wrappingWidth="450.64333415031433">
+            <Text fx:id="PPSText" strokeType="OUTSIDE" strokeWidth="0.0" text="PPS: 0.0" textAlignment="CENTER" translateY="40.0" wrappingWidth="450.64333415031433">
                <font>
                   <Font name="Kristen ITC" size="28.0" />
                </font>
