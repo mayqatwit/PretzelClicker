@@ -56,6 +56,9 @@ public class Main extends Application implements Initializable {
 	boolean mute = false; 
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
+	
+	public Clip music = playSound("BackgroundMusic.wav");
+
 
 	public static void main(String[] args) {
 		launch(args);
@@ -79,9 +82,11 @@ public class Main extends Application implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		playSound("BackgroundMusic.wav");
+		music.start();
 		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.5), e -> {
-			playSound("BackgroundMusic.wav");
+			if(music != null)
+				if(!mute)
+					music.start();
 		}));
 		musicTime.setCycleCount(Animation.INDEFINITE);
 		musicTime.play();
@@ -113,8 +118,10 @@ public class Main extends Application implements Initializable {
 					pretzelImage.setScaleY(pretzelImage.getScaleY() + 0.1);
 					updatePretzels();
 
-					playSound("ClickSound.wav");
-
+					Clip click = playSound("ClickSound.wav");
+					if(click != null)
+						click.start();
+					
 					// Used for when you release the mouse, tells the method that
 					// it was the left mouse that was clicked
 					leftWasClicked = true;
@@ -146,30 +153,36 @@ public class Main extends Application implements Initializable {
 			if (mute) {
 				mute = false;
 				muteButton.setText("Mute");
+				music.start();
 			} else {
 				mute = true;
 				muteButton.setText("Unmute");
+				music.stop();
 			}
 		});
 
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			saveGame();
 			saveButton.setText("Saved!");
-			playSound("clickDown.wav");
+			Clip click = playSound("clickDown.wav");
+			if (click != null)
+				click.start();
 		});
 
 		resetButton.setOnAction(e -> { // Sets stats to BlankSave and saves the game
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
-				playSound("clickDown.wav");
+				Clip click = playSound("clickDown.wav");
+				if (click != null)
+					click.start();
 			} catch (FileNotFoundException e1) {
 			}
 		});
 
 	}
 
-	private void playSound(String string) {
+	private Clip playSound(String string) {
 		if (!mute) {
 			try {
 
@@ -180,13 +193,14 @@ public class Main extends Application implements Initializable {
 				Clip clip = AudioSystem.getClip();
 				// Open audio clip and load samples from the audio input stream.
 				clip.open(audioIn);
-				clip.start();
-
+				
+				return clip;
 			} catch (UnsupportedAudioFileException f) {
 			} catch (IOException g) {
 			} catch (LineUnavailableException h) {
 			}
 		}
+		return null;
 	}
 
 	/**
