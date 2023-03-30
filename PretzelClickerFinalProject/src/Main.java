@@ -26,8 +26,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -59,7 +57,7 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button muteButton;
 
-	boolean mute = false;
+	boolean mute = false; 
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 
