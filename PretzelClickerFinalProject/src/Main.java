@@ -1,9 +1,19 @@
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,6 +26,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -68,7 +80,7 @@ public class Main extends Application implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		// Running a time-line to add pretzels every 0.01 seconds
 		// base on the current PPS, using 0.01 seconds to make the pretzels
 		// go up smoothly over time
@@ -79,7 +91,7 @@ public class Main extends Application implements Initializable {
 			updateCPS();
 			playerStats.setText(Player.getStats());
 		}));
-		
+
 		// Have the time-line run indefinitely and start it
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
@@ -97,6 +109,21 @@ public class Main extends Application implements Initializable {
 					pretzelImage.setScaleX(pretzelImage.getScaleX() + 0.1);
 					pretzelImage.setScaleY(pretzelImage.getScaleY() + 0.1);
 					updatePretzels();
+					try {
+
+						// Open an audio input stream.
+						URL url = this.getClass().getClassLoader().getResource("ClickSound.wav");
+						AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+						// Get a sound clip resource.
+						Clip clip = AudioSystem.getClip();
+						// Open audio clip and load samples from the audio input stream.
+						clip.open(audioIn);
+						clip.start();
+
+					} catch (UnsupportedAudioFileException f) {
+					} catch (IOException g) {
+					} catch (LineUnavailableException h) {
+					}
 
 					// Used for when you release the mouse, tells the method that
 					// it was the left mouse that was clicked
@@ -126,18 +153,20 @@ public class Main extends Application implements Initializable {
 
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			saveGame();
+			saveButton.setText("Saved!");
+
 		});
-		
-		resetButton.setOnAction(e ->{ // Sets stats to BlankSave and saves the game
+
+		resetButton.setOnAction(e -> { // Sets stats to BlankSave and saves the game
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
-			} catch (FileNotFoundException e1) {}
+			} catch (FileNotFoundException e1) {
+			}
 		});
 
-
 	}
-	
+
 	/**
 	 * This method is used for loading the save when you open the game. It takes in
 	 * as scanner that reads from a save file, and sets all saved stats to all
@@ -157,12 +186,12 @@ public class Main extends Application implements Initializable {
 		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
 		Clicker.setMyClickerPPS(Double.parseDouble(s.nextLine()));
 		Clicker.setUpgrades((int) Double.parseDouble(s.nextLine()));
-		
+
 	}
-	
+
 	/**
-	 * This method creates a PrinterWriter and writes all current game stats
-	 * to a file called "Save"
+	 * This method creates a PrinterWriter and writes all current game stats to a
+	 * file called "Save"
 	 */
 	private void saveGame() {
 		try {
@@ -175,15 +204,15 @@ public class Main extends Application implements Initializable {
 			writeSave.close();
 		} catch (FileNotFoundException e1) {
 		}
-		
+
 	}
 
 	/**
 	 * Method for updating the text field for the pretzels. This method requests the
-	 * focus for the text field that has the number of pretzels, and updates with the
-	 * new number of pretzels. If the number of pretzels is >= 1 billion, the number
-	 * of pretzels will be shortened to just xxx.xx format followed by the magnitude
-	 * of the pretzels (example: 32.79 Trillion).
+	 * focus for the text field that has the number of pretzels, and updates with
+	 * the new number of pretzels. If the number of pretzels is >= 1 billion, the
+	 * number of pretzels will be shortened to just xxx.xx format followed by the
+	 * magnitude of the pretzels (example: 32.79 Trillion).
 	 */
 	public void updatePretzels() {
 		pretzelText.requestFocus();
