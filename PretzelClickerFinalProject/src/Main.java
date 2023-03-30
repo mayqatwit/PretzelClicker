@@ -99,7 +99,7 @@ public class Main extends Application implements Initializable {
 			Player.updatePretzels(Player.getPPS() / 10);
 			Player.updateTotalPretzels(Player.getPPS() / 10);
 			updatePretzels();
-			updateCPS();
+			updatePPS();
 			playerStats.setText(Player.getStats());
 			clickerButton
 					.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
@@ -281,7 +281,7 @@ public class Main extends Application implements Initializable {
 	 * Method for updating the text field for the PPS. This method requests the
 	 * focus for the text field that has the PPS and updates with the new PPS
 	 */
-	public void updateCPS() {
+	public void updatePPS() {
 		PPSText.requestFocus();
 		Player.setPPS(Clicker.getMyClickerPPS());
 		PPSText.setText(String.format("CPS: %,.1f", Player.getPPS()));
