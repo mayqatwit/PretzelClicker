@@ -86,6 +86,7 @@ public class Main extends Application implements Initializable {
 		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.5), e -> {
 			if(music != null)
 				if(!mute)
+					music = playSound("BackgroundMusic.wav");
 					music.start();
 		}));
 		musicTime.setCycleCount(Animation.INDEFINITE);
@@ -145,7 +146,9 @@ public class Main extends Application implements Initializable {
 				clickerButton.requestFocus();
 				clickerButton.setText(
 						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
-				playSound("clickDown.wav");
+				Clip click = playSound("clickDown.wav");
+				if (click != null)
+					click.start();
 			}
 		});
 
