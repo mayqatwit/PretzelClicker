@@ -95,9 +95,9 @@ public class Main extends Application implements Initializable {
 		// Running a time-line to add pretzels every 0.01 seconds
 		// base on the current PPS, using 0.01 seconds to make the pretzels
 		// go up smoothly over time
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), e -> {
-			Player.updatePretzels(Player.getPPS() / 100);
-			Player.updateTotalPretzels(Player.getPPS() / 100);
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
+			Player.updatePretzels(Player.getPPS() / 10);
+			Player.updateTotalPretzels(Player.getPPS() / 10);
 			updatePretzels();
 			updateCPS();
 			playerStats.setText(Player.getStats());
