@@ -53,12 +53,11 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button muteButton;
 
-	boolean mute = false; 
+	boolean mute = false;
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
-	
-	public Clip music = playSound("BackgroundMusic.wav");
 
+	public Clip music = playSound("BackgroundMusic.wav");
 
 	public static void main(String[] args) {
 		launch(args);
@@ -81,14 +80,14 @@ public class Main extends Application implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		// Loop the music, only if the sounds are not muted 
+
+		// Loop the music, only if the sounds are not muted
 		music.start();
 		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.5), e -> {
-			if(music != null)
-				if(!mute)
+			if (music != null)
+				if (!mute)
 					music = playSound("BackgroundMusic.wav");
-					music.start();
+			music.start();
 		}));
 		musicTime.setCycleCount(Animation.INDEFINITE);
 		musicTime.play();
@@ -102,7 +101,8 @@ public class Main extends Application implements Initializable {
 			updatePretzels();
 			updateCPS();
 			playerStats.setText(Player.getStats());
-			clickerButton.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+			clickerButton
+					.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
 		}));
 
 		// Have the time-line run indefinitely and start it
@@ -122,9 +122,9 @@ public class Main extends Application implements Initializable {
 					updatePretzels();
 
 					Clip click = playSound("ClickSound.wav");
-					if(click != null)
+					if (click != null)
 						click.start();
-					
+
 					// Used for when you release the mouse, tells the method that
 					// it was the left mouse that was clicked
 					leftWasClicked = true;
@@ -198,7 +198,7 @@ public class Main extends Application implements Initializable {
 				Clip clip = AudioSystem.getClip();
 				// Open audio clip and load samples from the audio input stream.
 				clip.open(audioIn);
-				
+
 				return clip;
 			} catch (UnsupportedAudioFileException f) {
 			} catch (IOException g) {
