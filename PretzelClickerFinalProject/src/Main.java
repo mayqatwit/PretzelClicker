@@ -1,5 +1,3 @@
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,13 +5,11 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
