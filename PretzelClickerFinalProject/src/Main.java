@@ -82,6 +82,7 @@ public class Main extends Application implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		// Loop the music, only if the sounds are not muted 
 		music.start();
 		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.5), e -> {
 			if(music != null)
@@ -101,6 +102,7 @@ public class Main extends Application implements Initializable {
 			updatePretzels();
 			updateCPS();
 			playerStats.setText(Player.getStats());
+			clickerButton.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
 		}));
 
 		// Have the time-line run indefinitely and start it
