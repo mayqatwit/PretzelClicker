@@ -101,29 +101,14 @@ public class Main extends Application implements Initializable {
 			if (e.isPrimaryButtonDown()) { // Check to see if the click was a left click
 
 				if (!leftWasClicked) { // Make sure only one click is being registered
-					// pretzelClickSound.stop();
-					// pretzelClickSound.play();
 
 					Player.updatePretzels(Player.getClickValue());
 					Player.updateTotalPretzels(Player.getClickValue());
 					pretzelImage.setScaleX(pretzelImage.getScaleX() + 0.1);
 					pretzelImage.setScaleY(pretzelImage.getScaleY() + 0.1);
 					updatePretzels();
-					try {
 
-						// Open an audio input stream.
-						URL url = this.getClass().getClassLoader().getResource("ClickSound.wav");
-						AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-						// Get a sound clip resource.
-						Clip clip = AudioSystem.getClip();
-						// Open audio clip and load samples from the audio input stream.
-						clip.open(audioIn);
-						clip.start();
-
-					} catch (UnsupportedAudioFileException f) {
-					} catch (IOException g) {
-					} catch (LineUnavailableException h) {
-					}
+					playSound("ClickSound.wav");
 
 					// Used for when you release the mouse, tells the method that
 					// it was the left mouse that was clicked
@@ -148,22 +133,43 @@ public class Main extends Application implements Initializable {
 				clickerButton.requestFocus();
 				clickerButton.setText(
 						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+				playSound("clickDown.wav");
 			}
 		});
 
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			saveGame();
 			saveButton.setText("Saved!");
-
+			playSound("clickDown.wav");
 		});
 
 		resetButton.setOnAction(e -> { // Sets stats to BlankSave and saves the game
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
+				playSound("clickDown.wav");
 			} catch (FileNotFoundException e1) {
 			}
 		});
+
+	}
+
+	private void playSound(String string) {
+		try {
+
+			// Open an audio input stream.
+			URL url = this.getClass().getClassLoader().getResource(string);
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+			// Get a sound clip resource.
+			Clip clip = AudioSystem.getClip();
+			// Open audio clip and load samples from the audio input stream.
+			clip.open(audioIn);
+			clip.start();
+
+		} catch (UnsupportedAudioFileException f) {
+		} catch (IOException g) {
+		} catch (LineUnavailableException h) {
+		}
 
 	}
 
