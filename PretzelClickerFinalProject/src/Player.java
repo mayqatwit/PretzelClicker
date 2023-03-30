@@ -23,7 +23,7 @@ public class Player {
 	}
 	
 	/**
-	 * Sets pretzels to s, overriding what pretzels originally was
+	 * Sets pretzels to s
 	 * @param s
 	 */
 	public static void setPretzels(double s) {
@@ -47,7 +47,7 @@ public class Player {
 	}
 	
 	/**
-	 * Sets totalPretzels to s, overriding what totalPretzels originally was
+	 * Sets totalPretzels equal to s
 	 * @param s
 	 */
 	public static void setTotalPretzels(double s) {
@@ -70,10 +70,18 @@ public class Player {
 		return PPS;
 	}
 	
+	/**
+	 * Sets PPS equal to s
+	 * @param s
+	 */
 	public static void setPPS(double s) {
 		PPS = s;
 	}
 
+	/**
+	 * Adds s to PPS
+	 * @param s
+	 */
 	public static void updatePPS(double s) {
 		PPS += s;
 	}
@@ -86,10 +94,18 @@ public class Player {
 		return clickValue;
 	}
 	
+	/**
+	 * Sets clickValue equal to s
+	 * @param s
+	 */
 	public static void setClickValue(double s) {
 		clickValue = s;
 	}
 
+	/**
+	 * Adds s to clickValue 
+	 * @param s
+	 */
 	public static void updateClickValue(double s) {
 		clickValue += s;
 	}
@@ -102,10 +118,18 @@ public class Player {
 		return buildings;
 	}
 	
+	/**
+	 * Sets buildings equal to i
+	 * @param i
+	 */
 	public static void setBuildings(int i) {
 		buildings = i;
 	}
-
+	
+	/**
+	 * Adds s to buildings
+	 * @param s
+	 */
 	public static void updateBuildings(int s) {
 		buildings += s;
 	}
@@ -118,14 +142,26 @@ public class Player {
 		return upgrades;
 	}
 	
+	/**
+	 * Sets upgrades equal to i
+	 * @param i
+	 */
 	public static void setUpgrades(int i ) {
 		upgrades = i;
 	}
 	
+	/**
+	 * Adds s to upgrades
+	 * @param s
+	 */
 	public static void updateUpgrades(int s) {
 		upgrades += s;
 	}
-
+	
+	/**
+	 * 
+	 * @return stats
+	 */
 	public static String getStats() {
 		return String.format(
 				"Pretzels(s) in bank: %,.0f%nTotal Pretzels Baked: %,.0f%n"

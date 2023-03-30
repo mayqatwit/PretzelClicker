@@ -187,6 +187,12 @@ public class Main extends Application implements Initializable {
 
 	}
 
+	/**
+	 * This method takes in a string that contains theh path to a .WAV file and
+	 * converts it to a Clip object that can be played. 
+	 * @param string
+	 * @return Clip clip
+	 */
 	private Clip playSound(String string) {
 		if (!mute) {
 			try {
