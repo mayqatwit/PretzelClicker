@@ -78,6 +78,13 @@ public class Main extends Application implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		playSound("BackgroundMusic.wav");
+		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.5), e -> {
+			playSound("BackgroundMusic.wav");
+		}));
+		musicTime.setCycleCount(Animation.INDEFINITE);
+		musicTime.play();
 
 		// Running a time-line to add pretzels every 0.01 seconds
 		// base on the current PPS, using 0.01 seconds to make the pretzels
