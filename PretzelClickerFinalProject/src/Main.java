@@ -114,7 +114,7 @@ public class Main extends Application implements Initializable {
 			if (e.isPrimaryButtonDown()) { // Check to see if the click was a left click
 
 				if (!leftWasClicked) { // Make sure only one click is being registered
-
+					
 					Player.updatePretzels(Player.getClickValue());
 					Player.updateTotalPretzels(Player.getClickValue());
 					pretzelImage.setScaleX(pretzelImage.getScaleX() + 0.1);
