@@ -56,6 +56,10 @@ public class Main extends Application implements Initializable {
 	Button saveButton;
 	@FXML
 	Button resetButton;
+	@FXML
+	Button muteButton;
+
+	boolean mute = false;
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 
@@ -137,6 +141,16 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		muteButton.setOnAction(e -> {
+			if (mute) {
+				mute = false;
+				muteButton.setText("Mute");
+			} else {
+				mute = true;
+				muteButton.setText("Unmute");
+			}
+		});
+
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			saveGame();
 			saveButton.setText("Saved!");
@@ -155,22 +169,23 @@ public class Main extends Application implements Initializable {
 	}
 
 	private void playSound(String string) {
-		try {
+		if (!mute) {
+			try {
 
-			// Open an audio input stream.
-			URL url = this.getClass().getClassLoader().getResource(string);
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-			// Get a sound clip resource.
-			Clip clip = AudioSystem.getClip();
-			// Open audio clip and load samples from the audio input stream.
-			clip.open(audioIn);
-			clip.start();
+				// Open an audio input stream.
+				URL url = this.getClass().getClassLoader().getResource(string);
+				AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+				// Get a sound clip resource.
+				Clip clip = AudioSystem.getClip();
+				// Open audio clip and load samples from the audio input stream.
+				clip.open(audioIn);
+				clip.start();
 
-		} catch (UnsupportedAudioFileException f) {
-		} catch (IOException g) {
-		} catch (LineUnavailableException h) {
+			} catch (UnsupportedAudioFileException f) {
+			} catch (IOException g) {
+			} catch (LineUnavailableException h) {
+			}
 		}
-
 	}
 
 	/**
