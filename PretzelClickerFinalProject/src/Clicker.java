@@ -18,10 +18,17 @@ public class Clicker implements Buildable {
 	private static int upgrades = 0;
 	private static int[] upgradeCosts = {100,500,1500,5000};
 
-	public Clicker() {
+	/**
+	 * Constructor called to buy a new clicker
+	 */
+	public Clicker() { 
 		buyBuilding();
 	}
 	
+	/**
+	 * Constructor called to upgrade your clickers and player's click value
+	 * @param i
+	 */
 	public Clicker(int i) {
 		upgrade();
 	}
