@@ -134,9 +134,8 @@ public class Main extends Application implements Initializable {
 				}
 			}
 		});
-		
+
 		makeToolTip(upgradeClicker1, String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
-		
 		upgradeClicker1.setOnAction(e -> {
 			if(Player.getPretzels() >= Clicker.getUpgradeCost()) {
 				Player.updatePretzels(-Clicker.getUpgradeCost());
@@ -158,7 +157,6 @@ public class Main extends Application implements Initializable {
 				new Clicker();
 
 				updatePretzels();
-				clickerButton.requestFocus();
 				clickerButton.setText(
 						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
 				Clip click = playSound("clickDown.wav");
@@ -275,7 +273,6 @@ public class Main extends Application implements Initializable {
 	 * magnitude of the pretzels (example: 32.79 Trillion).
 	 */
 	public void updatePretzels() {
-		pretzelText.requestFocus();
 		if (Player.getPretzels() >= 1000000000000000000.0) {
 			pretzelText.setText(
 					String.format("Pretzels: %,.2f %nQuintillion", Player.getPretzels() / 1000000000000000000.0));
@@ -295,13 +292,12 @@ public class Main extends Application implements Initializable {
 	 * focus for the text field that has the PPS and updates with the new PPS
 	 */
 	public void updatePPS() {
-		PPSText.requestFocus();
 		Player.setPPS(Clicker.getMyClickerPPS());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
 	}
 
 	/**
-	 * Method for creating a Tool Tip for a button this method takes in a button and
+	 * Method for creating a Tool Tip for a button. This method takes in a button and
 	 * a string you would like to put into the tool tip, and puts the tool tip onto
 	 * the button
 	 * 
