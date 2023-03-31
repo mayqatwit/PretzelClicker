@@ -185,6 +185,13 @@ public class Main extends Application implements Initializable {
 				click.start();
 		});
 
+		resetButton.setOnMouseEntered(e -> {
+			resetButton.setStyle("-fx-background-color: #FF0000;");
+		});
+		resetButton.setOnMouseExited(e -> {
+			resetButton.setStyle("-fx-background-color: #d0d0d0;");
+		});
+		
 		resetButton.setOnAction(e -> { // Sets stats to BlankSave and saves the game
 			try {
 				loadSave(new Scanner(new File("BlankSave")));

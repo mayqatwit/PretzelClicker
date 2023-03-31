@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -38,10 +39,22 @@
                <image>
                   <Image url="@PretzelImage.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <Button fx:id="muteButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Mute" translateX="15.0" translateY="260.0" />
-            <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Save" translateX="100.0" translateY="234.0" />
-            <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="51.0" prefWidth="134.0" text="Reset Save &#10;THIS IS PERMANENT" textAlignment="CENTER" textFill="RED" translateX="300.0" translateY="183.0" underline="true" />
+            <Button fx:id="muteButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Mute" translateX="15.0" translateY="260.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Save" translateX="100.0" translateY="234.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="51.0" prefWidth="134.0" text="Reset Save &#10;THIS IS PERMANENT" textAlignment="CENTER" translateX="300.0" translateY="183.0" underline="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </VBox>
    </left>
@@ -54,22 +67,58 @@
                      <children>
                         <TilePane layoutX="-1.0" layoutY="-3.0" prefHeight="205.0" prefWidth="250.0">
                            <children>
-                              <Button fx:id="upgradeClicker1" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Clickers&#10;" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Grandpas" />
+                              <Button fx:id="upgradeClicker1" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Clickers&#10;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Grandpas">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
                               <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Farms&#10;">
                                  <rotationAxis>
                                     <Point3D />
                                  </rotationAxis>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Mines" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Factories&#10;" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Labratories&#10;" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Spare&#10;Button" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Mines">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Factories&#10;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Labratories&#10;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Spare&#10;Button">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
                            </children>
                         </TilePane>
                      </children></AnchorPane>
@@ -93,6 +142,9 @@
                            <font>
                               <Font name="Kristen ITC" size="12.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Button fx:id="clickerButton" alignment="BOTTOM_LEFT" layoutX="-2.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="270.0" text="0 Clickers &#10;Cost: 15">
                            <graphic>
@@ -105,6 +157,9 @@
                            <font>
                               <Font name="Kristen ITC" size="12.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="124.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Farms,&#10;Cost: 1100">
                            <graphic>
@@ -117,6 +172,9 @@
                            <font>
                               <Font name="Kristen ITC" size="12.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                   </AnchorPane>
