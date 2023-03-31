@@ -60,7 +60,7 @@ public class Main extends Application implements Initializable {
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 
-	public Clip music = playSound("BackgroundMusic.wav");
+	Clip music = playSound("BackgroundMusic.wav");
 
 	public static void main(String[] args) {
 		launch(args);
