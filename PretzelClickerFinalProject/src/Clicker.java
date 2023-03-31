@@ -21,6 +21,10 @@ public class Clicker implements Buildable {
 	public Clicker() {
 		buyBuilding();
 	}
+	
+	public Clicker(int i) {
+		upgrade();
+	}
 
 	@Override
 	public void buyBuilding() {
@@ -40,6 +44,7 @@ public class Clicker implements Buildable {
 	public void upgrade() {
 		Clicker.updateUpgrades(1);
 		Clicker.setMyClickerPPS(Clicker.getMyClickerPPS() * 2);
+		Clicker.setPPS(Clicker.getPPS() *2);
 		Player.setClickValue(Player.getClickValue()*2);
 	}
 

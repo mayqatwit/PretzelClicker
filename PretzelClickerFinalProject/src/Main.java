@@ -52,6 +52,8 @@ public class Main extends Application implements Initializable {
 	Button resetButton;
 	@FXML
 	Button muteButton;
+	@FXML 
+	Button upgradeClicker1;
 
 	boolean mute = false;
 
@@ -131,6 +133,13 @@ public class Main extends Application implements Initializable {
 				}
 			}
 		});
+		
+		upgradeClicker1.setOnAction(e -> {
+			if(Player.getPretzels() >= Clicker.getUpgradeCost()) {
+				Player.updatePretzels(-Clicker.getUpgradeCost());
+				new Clicker(1);
+			}
+		});
 
 		pretzelImage.setOnMouseReleased((e) -> { // Releasing click on the cookie
 			if (leftWasClicked) { // Check to see if it was the left mouse that was released
@@ -188,7 +197,7 @@ public class Main extends Application implements Initializable {
 	}
 
 	/**
-	 * This method takes in a string that contains theh path to a .WAV file and
+	 * This method takes in a string that contains the path to a .WAV file and
 	 * converts it to a Clip object that can be played. 
 	 * @param string
 	 * @return Clip clip
