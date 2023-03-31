@@ -16,7 +16,7 @@ public class Clicker implements Buildable {
 	private static double myClickerPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Clickers%nCost: %,.0f", numClickers, cost));
 	private static int upgrades = 0;
-	private static int[] upgradeCosts = {100,500,2000,10000};
+	private static int[] upgradeCosts = {100,500,10000,50000};
 
 	/**
 	 * Constructor called to buy a new clicker
