@@ -16,7 +16,7 @@ public class Clicker implements Buildable {
 	private static double myClickerPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Clickers%nCost: %,.0f", numClickers, cost));
 	private static int upgrades = 0;
-	private static int[] upgradeCosts = {100,500,1500,5000};
+	private static int[] upgradeCosts = {100,500,2000,10000};
 
 	/**
 	 * Constructor called to buy a new clicker
@@ -51,8 +51,8 @@ public class Clicker implements Buildable {
 	public void upgrade() {
 		Clicker.updateUpgrades(1);
 		Clicker.setMyClickerPPS(Clicker.getMyClickerPPS() * 2);
-		Clicker.setPPS(Clicker.getPPS() *2);
-		Player.setClickValue(Player.getClickValue()*2);
+		Clicker.setPPS(Clicker.getPPS() * 2);
+		Player.setClickValue(Player.getClickValue() * 2);
 	}
 
 	public static double getPPS() {

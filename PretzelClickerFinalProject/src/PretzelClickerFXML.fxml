@@ -54,16 +54,16 @@
                      <children>
                         <TilePane layoutX="-1.0" layoutY="-3.0" prefHeight="205.0" prefWidth="250.0">
                            <children>
-                              <Button fx:id="upgradeClicker1" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Clicker&#10;Upgrade 1" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Clicker&#10;Upgrade 2" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Grandma&#10;Upgrade 1&#10;">
+                              <Button fx:id="upgradeClicker1" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Clickers&#10;" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Grandpas" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Farms&#10;">
                                  <rotationAxis>
                                     <Point3D />
                                  </rotationAxis>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Grandma&#10;Upgrade 2" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Farm&#10;Upgrade 1&#10;" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Farm&#10;Upgrade 2" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Mines" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Factories&#10;" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Labratories&#10;" />
                               <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3" />
                               <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Button 3" />
                               <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Spare&#10;Button" />

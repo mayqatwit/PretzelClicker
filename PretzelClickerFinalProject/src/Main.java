@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -82,9 +83,9 @@ public class Main extends Application implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
-		// Loop the music, only if the sounds are not muted
 		music.start();
+		
+		// Loop the music, only if the sounds are not muted
 		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.35), e -> {
 			if (music != null)
 				if (!mute)
@@ -134,10 +135,13 @@ public class Main extends Application implements Initializable {
 			}
 		});
 		
+		makeToolTip(upgradeClicker1, String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
+		
 		upgradeClicker1.setOnAction(e -> {
 			if(Player.getPretzels() >= Clicker.getUpgradeCost()) {
 				Player.updatePretzels(-Clicker.getUpgradeCost());
 				new Clicker(1);
+				makeToolTip(upgradeClicker1, String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
 			}
 		});
 
@@ -294,5 +298,19 @@ public class Main extends Application implements Initializable {
 		PPSText.requestFocus();
 		Player.setPPS(Clicker.getMyClickerPPS());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
+	}
+
+	/**
+	 * Method for creating a Tool Tip for a button this method takes in a button and
+	 * a string you would like to put into the tool tip, and puts the tool tip onto
+	 * the button
+	 * 
+	 * @param button
+	 * @param s
+	 */
+	public void makeToolTip(Button button, String s) {
+		final Tooltip toolTip = new Tooltip();
+		toolTip.setText(s);
+		button.setTooltip(toolTip);
 	}
 }
