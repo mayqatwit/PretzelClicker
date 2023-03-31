@@ -185,10 +185,10 @@ public class Main extends Application implements Initializable {
 				click.start();
 		});
 
-		resetButton.setOnMouseEntered(e -> {
+		resetButton.setOnMouseEntered(e -> { // Make the background red if the mouse hovers over
 			resetButton.setStyle("-fx-background-color: #FF0000;");
 		});
-		resetButton.setOnMouseExited(e -> {
+		resetButton.setOnMouseExited(e -> { // Set it back to default color
 			resetButton.setStyle("-fx-background-color: #d0d0d0;");
 		});
 		
