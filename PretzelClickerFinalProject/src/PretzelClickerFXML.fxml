@@ -17,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1017.0" style="-fx-background-color: &quot;0199d0&quot;;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Text fx:id="pretzelText" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Pretzels: 0" textAlignment="CENTER" translateY="50.0" wrappingWidth="450.04335856437683">
                <font>

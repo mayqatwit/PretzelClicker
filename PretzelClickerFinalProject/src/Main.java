@@ -23,6 +23,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -55,6 +61,8 @@ public class Main extends Application implements Initializable {
 	Button muteButton;
 	@FXML 
 	Button upgradeClicker1;
+	@FXML
+	VBox vbox;
 
 	boolean mute = false;
 
@@ -84,6 +92,12 @@ public class Main extends Application implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		music.start();
+		
+		BackgroundImage myBI= new BackgroundImage(new Image("background.jpg",445,662,false,true),
+		        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+		          BackgroundSize.DEFAULT);
+		//then you set to your node
+		vbox.setBackground(new Background(myBI));
 		
 		// Loop the music, only if the sounds are not muted
 		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.35), e -> {
@@ -139,6 +153,9 @@ public class Main extends Application implements Initializable {
 		upgradeClicker1.setOnAction(e -> {
 			if(Player.getPretzels() >= Clicker.getUpgradeCost()) {
 				Player.updatePretzels(-Clicker.getUpgradeCost());
+				Clip click = playSound("clickDown.wav");
+				if (click != null)
+					click.start();
 				new Clicker(1);
 				makeToolTip(upgradeClicker1, String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
 			}
