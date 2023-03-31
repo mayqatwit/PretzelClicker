@@ -83,7 +83,7 @@ public class Main extends Application implements Initializable {
 
 		// Loop the music, only if the sounds are not muted
 		music.start();
-		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.5), e -> {
+		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.35), e -> {
 			if (music != null)
 				if (!mute)
 					music = playSound("BackgroundMusic.wav");
@@ -284,6 +284,6 @@ public class Main extends Application implements Initializable {
 	public void updatePPS() {
 		PPSText.requestFocus();
 		Player.setPPS(Clicker.getMyClickerPPS());
-		PPSText.setText(String.format("CPS: %,.1f", Player.getPPS()));
+		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
 	}
 }
