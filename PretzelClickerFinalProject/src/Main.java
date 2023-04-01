@@ -69,6 +69,7 @@ public class Main extends Application implements Initializable {
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 
 	Clip music = playSound("BackgroundMusic.wav");
+	
 
 	public static void main(String[] args) {
 		launch(args);
@@ -91,13 +92,12 @@ public class Main extends Application implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		music.start();
-		
-		BackgroundImage myBI= new BackgroundImage(new Image("background.jpg",445,662,false,true),
+
+		vbox.setBackground(new Background(new BackgroundImage(new Image("background.jpg",445,662,false,true),
 		        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-		          BackgroundSize.DEFAULT);
-		//then you set to your node
-		vbox.setBackground(new Background(myBI));
+		          BackgroundSize.DEFAULT)));
+		
+		music.start();
 		
 		// Loop the music, only if the sounds are not muted
 		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.35), e -> {

@@ -53,6 +53,7 @@ public class Clicker implements Buildable {
 		Clicker.setMyClickerPPS(Clicker.getMyClickerPPS() * 2);
 		Clicker.setPPS(Clicker.getPPS() * 2);
 		Player.setClickValue(Player.getClickValue() * 2);
+		Player.updateUpgrades(1);
 	}
 
 	public static double getPPS() {
