@@ -51,7 +51,7 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button clickerButton = Clicker.getGraphic();
 	@FXML
-	Button FarmButton = Farm.getGraphic();
+	Button farmButton = Farm.getGraphic();
 	@FXML
 	ImageView pretzelImage;
 	@FXML
@@ -190,6 +190,19 @@ public class Main extends Application implements Initializable {
 		});
 
 		clickerButton.setOnAction(e -> { // Buying a clicker
+			if (Player.getPretzels() >= Clicker.getCost()) {
+				new Clicker();
+
+				updatePretzels();
+				clickerButton.setText(
+						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+				Clip click = playSound("ButtonClick.wav");
+				if (click != null)
+					click.start();
+			}
+		});
+		
+		farmButton.setOnAction(e -> { // Buying a clicker
 			if (Player.getPretzels() >= Clicker.getCost()) {
 				new Clicker();
 
