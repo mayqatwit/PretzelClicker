@@ -136,7 +136,7 @@
                <children>
                   <AnchorPane layoutX="13.0" minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="259.0" style="-fx-background-color: &quot;2F63D3&quot;;">
                      <children>
-                        <Button alignment="BOTTOM_LEFT" layoutY="77.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="262.0" text="0 Grandpas,&#10;Cost: 100">
+                        <Button fx:id="grandpaButton" alignment="BOTTOM_LEFT" layoutY="77.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="262.0" text="0 Grandpas,&#10;Cost: 100">
                            <graphic>
                               <ImageView fitHeight="73.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

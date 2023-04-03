@@ -2,9 +2,9 @@ import javafx.scene.control.Button;
 
 public class Grandpa implements Buildable {
 
-	private static double PPS = 8;
-	private static double cost = 1100.0;
-	private static final double BASE_COST = 1100.0;
+	private static double PPS = 1;
+	private static double cost = 100.0;
+	private static final double BASE_COST = 100.0;
 	private static int numGrandpas = 0;
 	private static double myGrandpaPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Grandpas%nCost: %,.0f", numGrandpas, cost));
@@ -14,7 +14,7 @@ public class Grandpa implements Buildable {
 	public Grandpa() {
 		buyBuilding();
 	}
-		//iugliyfukyv,jh
+
 	public Grandpa(int i) {
 		upgrade();
 	}

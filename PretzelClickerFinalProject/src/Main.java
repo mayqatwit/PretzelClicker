@@ -51,6 +51,8 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button clickerButton = Clicker.getGraphic();
 	@FXML
+	Button grandpaButton;
+	@FXML
 	Button farmButton;
 	@FXML
 	ImageView pretzelImage;
@@ -152,6 +154,8 @@ public class Main extends Application implements Initializable {
 			playerStats.setText(Player.getStats());
 			clickerButton
 					.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+			grandpaButton.setText(String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
+			farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
 		}));
 
 		// Have the time-line run indefinitely and start it
@@ -196,6 +200,19 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				clickerButton.setText(
 						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+				Clip click = playSound("ButtonClick.wav");
+				if (click != null)
+					click.start();
+			}
+		});
+		
+		grandpaButton.setOnAction(e -> {
+			if (Player.getPretzels() >= Grandpa.getCost()) {
+				new Grandpa();
+
+				updatePretzels();
+				grandpaButton.setText(
+						String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
 				Clip click = playSound("ButtonClick.wav");
 				if (click != null)
 					click.start();
@@ -317,6 +334,11 @@ public class Main extends Application implements Initializable {
 		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
 		Clicker.setMyClickerPPS(Double.parseDouble(s.nextLine()));
 		Clicker.setUpgrades((int) Double.parseDouble(s.nextLine()));
+		Grandpa.setPPS(Double.parseDouble(s.nextLine()));
+		Grandpa.setCost(Double.parseDouble(s.nextLine()));
+		Grandpa.setNumGrandpas((int) Double.parseDouble(s.nextLine()));
+		Grandpa.setMyGrandpaPPS(Double.parseDouble(s.nextLine()));
+		Grandpa.setUpgrades((int) Double.parseDouble(s.nextLine()));
 		Farm.setPPS(Double.parseDouble(s.nextLine()));
 		Farm.setCost(Double.parseDouble(s.nextLine()));
 		Farm.setNumFarms((int) Double.parseDouble(s.nextLine()));
@@ -332,10 +354,11 @@ public class Main extends Application implements Initializable {
 	private void saveGame() {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
-			writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
+			writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
 					Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(), Player.getUpgrades(),
 					Player.getPPS(), Clicker.getPPS(), Clicker.getCost(), Clicker.getNumClickers(),
-					Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(),
+					Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Grandpa.getPPS(), Grandpa.getCost(), Grandpa.getNumGrandpas(),
+					Grandpa.getMyGrandpaPPS(), Grandpa.getUpgrades(), Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(),
 					Farm.getMyFarmPPS(), Farm.getUpgrades()));
 
 			writeSave.close();
@@ -371,7 +394,7 @@ public class Main extends Application implements Initializable {
 	 * focus for the text field that has the PPS and updates with the new PPS
 	 */
 	public void updatePPS() {
-		Player.setPPS(Clicker.getMyClickerPPS() + Farm.getMyFarmPPS());
+		Player.setPPS(Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
 	}
 
