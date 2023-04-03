@@ -2,9 +2,9 @@ import javafx.scene.control.Button;
 
 public class Farm implements Buildable{
 
-	private static double PPS = 0.1;
-	private static double cost = 15.0;
-	private static final double BASE_COST = 15.0;
+	private static double PPS = 8;
+	private static double cost = 1100.0;
+	private static final double BASE_COST = 1100.0;
 	private static int numFarms = 0;
 	private static double myFarmPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Farms%nCost: %,.0f", numFarms, cost));
@@ -14,7 +14,7 @@ public class Farm implements Buildable{
 	public Farm() {
 		buyBuilding();
 	}
-	
+		
 	public Farm(int i) {
 		upgrade();
 	}
@@ -27,7 +27,7 @@ public class Farm implements Buildable{
 		Player.updateBuildings(1);
 
 		Farm.updateMyFarmPPS(Farm.getPPS());
-		Player.updatePPS(Farm.getPPS());
+		Player.updatePPS(PPS);
 
 		Farm.setCost((double) Math.round(BASE_COST * Math.pow(1.15, numFarms)));
 		

@@ -161,7 +161,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="FarmButton" alignment="BOTTOM_LEFT" layoutY="158.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="262.0" text="0 Farms,&#10;Cost: 1,100">
+                        <Button fx:id="farmButton" alignment="BOTTOM_LEFT" layoutY="158.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="262.0" text="0 Farms,&#10;Cost: 1,100">
                            <graphic>
                               <ImageView fitHeight="71.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

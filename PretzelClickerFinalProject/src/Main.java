@@ -51,7 +51,7 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button clickerButton = Clicker.getGraphic();
 	@FXML
-	Button farmButton = Farm.getGraphic();
+	Button farmButton;
 	@FXML
 	ImageView pretzelImage;
 	@FXML
@@ -202,13 +202,13 @@ public class Main extends Application implements Initializable {
 			}
 		});
 		
-		farmButton.setOnAction(e -> { // Buying a clicker
-			if (Player.getPretzels() >= Clicker.getCost()) {
-				new Clicker();
+		farmButton.setOnAction(e -> { // Buying a farm
+			if (Player.getPretzels() >= Farm.getCost()) {
+				new Farm();
 
 				updatePretzels();
-				clickerButton.setText(
-						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+				farmButton.setText(
+						String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
 				Clip click = playSound("ButtonClick.wav");
 				if (click != null)
 					click.start();
@@ -365,7 +365,7 @@ public class Main extends Application implements Initializable {
 	 * focus for the text field that has the PPS and updates with the new PPS
 	 */
 	public void updatePPS() {
-		Player.setPPS(Clicker.getMyClickerPPS());
+		Player.setPPS(Clicker.getMyClickerPPS() + Farm.getMyFarmPPS());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
 	}
 
