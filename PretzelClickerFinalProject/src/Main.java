@@ -59,7 +59,7 @@ public class Main extends Application implements Initializable {
 	Button resetButton;
 	@FXML
 	Button muteButton;
-	@FXML 
+	@FXML
 	Button upgradeClicker1;
 	@FXML
 	VBox vbox;
@@ -69,7 +69,6 @@ public class Main extends Application implements Initializable {
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 
 	Clip music = playSound("BackgroundMusic.wav");
-	
 
 	public static void main(String[] args) {
 		launch(args);
@@ -93,12 +92,12 @@ public class Main extends Application implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		vbox.setBackground(new Background(new BackgroundImage(new Image("background.jpg",445,662,false,true),
-		        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-		          BackgroundSize.DEFAULT)));
-		
+		vbox.setBackground(new Background(
+				new BackgroundImage(new Image("background.jpg", 445, 662, false, true), BackgroundRepeat.REPEAT,
+						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+
 		music.start();
-		
+
 		// Loop the music, only if the sounds are not muted
 		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.35), e -> {
 			if (music != null)
@@ -131,7 +130,7 @@ public class Main extends Application implements Initializable {
 			if (e.isPrimaryButtonDown()) { // Check to see if the click was a left click
 
 				if (!leftWasClicked) { // Make sure only one click is being registered
-					
+
 					Player.updatePretzels(Player.getClickValue());
 					Player.updateTotalPretzels(Player.getClickValue());
 					pretzelImage.setScaleX(pretzelImage.getScaleX() + 0.1);
@@ -146,18 +145,6 @@ public class Main extends Application implements Initializable {
 					// it was the left mouse that was clicked
 					leftWasClicked = true;
 				}
-			}
-		});
-
-		makeToolTip(upgradeClicker1, String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
-		upgradeClicker1.setOnAction(e -> {
-			if(Player.getPretzels() >= Clicker.getUpgradeCost()) {
-				Player.updatePretzels(-Clicker.getUpgradeCost());
-				Clip click = playSound("clickDown.wav");
-				if (click != null)
-					click.start();
-				new Clicker(1);
-				makeToolTip(upgradeClicker1, String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
 			}
 		});
 
@@ -179,6 +166,20 @@ public class Main extends Application implements Initializable {
 				Clip click = playSound("clickDown.wav");
 				if (click != null)
 					click.start();
+			}
+		});
+		
+		makeToolTip(upgradeClicker1,
+				String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
+		upgradeClicker1.setOnAction(e -> {
+			if (Player.getPretzels() >= Clicker.getUpgradeCost()) {
+				Player.updatePretzels(-Clicker.getUpgradeCost());
+				Clip click = playSound("clickDown.wav");
+				if (click != null)
+					click.start();
+				new Clicker(1);
+				makeToolTip(upgradeClicker1,
+						String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
 			}
 		});
 
@@ -208,7 +209,7 @@ public class Main extends Application implements Initializable {
 		resetButton.setOnMouseExited(e -> { // Set it back to default color
 			resetButton.setStyle("-fx-background-color: #d0d0d0;");
 		});
-		
+
 		resetButton.setOnAction(e -> { // Sets stats to BlankSave and saves the game
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
@@ -224,7 +225,8 @@ public class Main extends Application implements Initializable {
 
 	/**
 	 * This method takes in a string that contains the path to a .WAV file and
-	 * converts it to a Clip object that can be played. 
+	 * converts it to a Clip object that can be played.
+	 * 
 	 * @param string
 	 * @return Clip clip
 	 */
@@ -321,9 +323,9 @@ public class Main extends Application implements Initializable {
 	}
 
 	/**
-	 * Method for creating a Tool Tip for a button. This method takes in a button and
-	 * a string you would like to put into the tool tip, and puts the tool tip onto
-	 * the button
+	 * Method for creating a Tool Tip for a button. This method takes in a button
+	 * and a string you would like to put into the tool tip, and puts the tool tip
+	 * onto the button
 	 * 
 	 * @param button
 	 * @param s
@@ -331,6 +333,9 @@ public class Main extends Application implements Initializable {
 	public void makeToolTip(Button button, String s) {
 		final Tooltip toolTip = new Tooltip();
 		toolTip.setText(s);
+		toolTip.setStyle("-fx-text-fill: BLACK;" + "-fx-background-color: #B3B3B3;" + "-fx-font-weight: BOLD;"
+				+ "-fx-border-color: BLACK;" + "-fx-border-size: 2;");
+		toolTip.setShowDelay(Duration.millis(10));
 		button.setTooltip(toolTip);
 	}
 }
