@@ -51,6 +51,8 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button clickerButton = Clicker.getGraphic();
 	@FXML
+	Button FarmButton = Farm.getGraphic();
+	@FXML
 	ImageView pretzelImage;
 	@FXML
 	Text playerStats = new Text(Player.getStats());
@@ -89,7 +91,7 @@ public class Main extends Application implements Initializable {
 		primaryStage.show();
 
 		p.setOnKeyPressed((e) -> {
-			if (e.getCode() == KeyCode.W)
+			if (e.getCode() == KeyCode.W) 
 				p.setOnKeyPressed(f -> {
 					if (f.getCode() == KeyCode.W)
 						p.setOnKeyPressed(g -> {
@@ -124,6 +126,7 @@ public class Main extends Application implements Initializable {
 
 						});
 				});
+			
 		});
 
 	}
