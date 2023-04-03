@@ -161,7 +161,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="124.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Farms,&#10;Cost: 1100">
+                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="124.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Farms,&#10;Cost: 1,100">
                            <graphic>
                               <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -176,7 +176,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="186.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Mines,&#10;Cost: 130000&#10;">
+                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="186.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Mines,&#10;Cost: 130,000&#10;">
                            <graphic>
                               <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -191,7 +191,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="248.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Laboratories,&#10;Cost: 1400000">
+                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="248.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Laboratories,&#10;Cost: 1,400,000">
                            <graphic>
                               <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

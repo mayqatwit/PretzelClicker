@@ -44,7 +44,6 @@ public class Clicker implements Buildable {
 		Player.updatePPS(Clicker.getPPS());
 
 		Clicker.setCost((double) Math.round(BASE_COST * Math.pow(1.15, numClickers)));
-		Clicker.setGraphic(String.format("%d Clickers%nCost: %,.0f", numClickers, cost));
 	}
 
 	@Override

@@ -162,7 +162,7 @@ public class Main extends Application implements Initializable {
 
 				updatePretzels();
 				clickerButton.setText(
-						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+				String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
 				Clip click = playSound("clickDown.wav");
 				if (click != null)
 					click.start();
@@ -337,5 +337,24 @@ public class Main extends Application implements Initializable {
 				+ "-fx-border-color: BLACK;" + "-fx-border-size: 2;");
 		toolTip.setShowDelay(Duration.millis(10));
 		button.setTooltip(toolTip);
+	}
+	
+	private double formatNum(double d) {
+		double formatNum = 0;
+		
+		if (d >= 1000000000000000000.0) {
+			formatNum = d / 1000000000000000000.0;
+		} else if (d >= 1000000000000000.0) {
+			formatNum = d / 1000000000000000.0;
+		} else if (d >= 1000000000000.0) {
+			formatNum = d / 1000000000000.0;
+		} else if (d >= 1000000000.0) {
+			formatNum = d / 1000000000.0;
+		} else if (d >= 1000000.0) {
+			formatNum = d/1000000.0;
+		} else
+			formatNum = d;
+		
+		return formatNum;
 	}
 }
