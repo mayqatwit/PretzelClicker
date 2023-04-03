@@ -193,7 +193,7 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				clickerButton.setText(
 						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
-				Clip click = playSound("clickDown.wav");
+				Clip click = playSound("ButtonClick.wav");
 				if (click != null)
 					click.start();
 			}
@@ -204,7 +204,7 @@ public class Main extends Application implements Initializable {
 		upgradeClicker1.setOnAction(e -> {
 			if (Player.getPretzels() >= Clicker.getUpgradeCost()) {
 				Player.updatePretzels(-Clicker.getUpgradeCost());
-				Clip click = playSound("clickDown.wav");
+				Clip click = playSound("ButtonClick.wav");
 				if (click != null)
 					click.start();
 				new Clicker(1);
@@ -229,7 +229,7 @@ public class Main extends Application implements Initializable {
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			saveGame();
 			saveButton.setText("Saved!");
-			Clip click = playSound("clickDown.wav");
+			Clip click = playSound("ButtonClick.wav");
 			if (click != null)
 				click.start();
 		});
@@ -245,7 +245,7 @@ public class Main extends Application implements Initializable {
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
-				Clip click = playSound("clickDown.wav");
+				Clip click = playSound("ButtonClick.wav");
 				if (click != null)
 					click.start();
 			} catch (FileNotFoundException e1) {
