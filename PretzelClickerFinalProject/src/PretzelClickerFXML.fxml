@@ -61,9 +61,9 @@
    <right>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="182.0" prefWidth="277.0" style="-fx-border-width: 5; -fx-border-color: &quot;A9812B&quot;;" vbarPolicy="NEVER">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="182.0" prefWidth="277.0" style="-fx-border-width: 5; -fx-border-color: BLACK;" vbarPolicy="NEVER">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="260.0" style="-fx-background-color: &quot;2F63D3&quot;;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="206.0" style="-fx-background-color: &quot;2F63D3&quot;;">
                      <children>
                         <TilePane layoutX="-1.0" layoutY="-3.0" prefHeight="205.0" prefWidth="250.0">
                            <children>
@@ -127,13 +127,13 @@
                   <Insets right="-11.0" />
                </VBox.margin>
             </ScrollPane>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="486.0" prefWidth="262.0" style="-fx-border-color: &quot;A9812B&quot;; -fx-border-width: 5;" vbarPolicy="NEVER">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="266.0" style="-fx-background-color: &quot;2F63D3&quot;;">
+            <AnchorPane prefHeight="479.0" prefWidth="441.0">
+               <children>
+                  <AnchorPane layoutX="13.0" minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="259.0" style="-fx-background-color: &quot;2F63D3&quot;;">
                      <children>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="62.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Grandmas,&#10;Cost: 100">
+                        <Button alignment="BOTTOM_LEFT" layoutY="77.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="262.0" text="0 Grandmas,&#10;Cost: 100">
                            <graphic>
-                              <ImageView fitHeight="53.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="73.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Grandpa.png" />
                                  </image>
@@ -146,9 +146,9 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="clickerButton" alignment="BOTTOM_LEFT" layoutX="-2.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="270.0" text="0 Clickers &#10;Cost: 15">
+                        <Button fx:id="clickerButton" alignment="BOTTOM_LEFT" layoutX="-2.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="262.0" text="0 Clickers &#10;Cost: 15">
                            <graphic>
-                              <ImageView fitHeight="59.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="76.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Clicker.png" />
                                  </image>
@@ -161,9 +161,9 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="124.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Farms,&#10;Cost: 1,100">
+                        <Button alignment="BOTTOM_LEFT" layoutY="158.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="262.0" text="0 Farms,&#10;Cost: 1,100">
                            <graphic>
-                              <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="71.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Farm.png" />
                                  </image>
@@ -176,9 +176,9 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="186.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Mines,&#10;Cost: 130,000&#10;">
+                        <Button alignment="BOTTOM_LEFT" layoutY="237.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="262.0" text="0 Mines,&#10;Cost: 130,000&#10;">
                            <graphic>
-                              <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="72.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Mine.png" />
                                  </image>
@@ -191,9 +191,9 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="310.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Laboratories,&#10;Cost: 20,000,000">
+                        <Button alignment="BOTTOM_LEFT" layoutY="398.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="262.0" text="0 Laboratories,&#10;Cost: 20,000,000">
                            <graphic>
-                              <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="72.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Laboratory.png" />
                                  </image>
@@ -206,28 +206,25 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="248.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Factories,&#10;Cost: 1,400,000&#10;">
-                           <graphic>
-                              <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Factory.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                        <Button alignment="BOTTOM_LEFT" layoutY="315.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="262.0" text="0 Factories,&#10;Cost: 1,400,000&#10;">
                            <font>
                               <Font name="Kristen ITC" size="12.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <graphic>
+                              <ImageView fitHeight="78.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Factory.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                   </AnchorPane>
-              </content>
-               <VBox.margin>
-                  <Insets right="-11.0" />
-               </VBox.margin>
-            </ScrollPane>
+               </children>
+            </AnchorPane>
          </children>
          <opaqueInsets>
             <Insets />
@@ -238,11 +235,11 @@
       </VBox>
    </right>
    <center>
-      <AnchorPane prefHeight="691.0" prefWidth="298.0" style="-fx-border-width: 5; -fx-border-color: &quot;A9812B&quot;;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="691.0" prefWidth="298.0" style="-fx-border-width: 0; -fx-border-color: &quot;A9812B&quot;;" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="314.0" style="-fx-background-color: &quot;4669E2&quot;;">
                <children>
-                  <TextFlow layoutY="10.0" prefHeight="67.0" prefWidth="314.0" style="-fx-border-color: BLACK; -fx-border-width: 2;" textAlignment="CENTER">
+                  <TextFlow layoutY="5.0" prefHeight="73.0" prefWidth="314.0" style="-fx-border-color: BLACK; -fx-border-width: 2;" textAlignment="CENTER">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stats:" textAlignment="CENTER" wrappingWidth="234.9367160797119">
                            <font>
