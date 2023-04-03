@@ -37,7 +37,7 @@
                   </VBox>
                   <ImageView fx:id="pretzelImage" fitHeight="270.0" fitWidth="309.0" layoutX="71.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pretzel.png" />
+                        <Image url="@sprites/Pretzel.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -140,7 +140,7 @@
                            <graphic>
                               <ImageView fitHeight="73.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Grandpa.png" />
+                                    <Image url="@sprites/Grandpa.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -155,7 +155,7 @@
                            <graphic>
                               <ImageView fitHeight="76.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Clicker.png" />
+                                    <Image url="@sprites/Clicker.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -170,7 +170,7 @@
                            <graphic>
                               <ImageView fitHeight="71.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Farm.png" />
+                                    <Image url="@sprites/Farm.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -185,7 +185,7 @@
                            <graphic>
                               <ImageView fitHeight="72.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Mine.png" />
+                                    <Image url="@sprites/Mine.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -200,7 +200,7 @@
                            <graphic>
                               <ImageView fitHeight="72.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Laboratory.png" />
+                                    <Image url="@sprites/Laboratory.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -221,7 +221,7 @@
                            <graphic>
                               <ImageView fitHeight="78.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Factory.png" />
+                                    <Image url="@sprites/Factory.png" />
                                  </image>
                               </ImageView>
                            </graphic>

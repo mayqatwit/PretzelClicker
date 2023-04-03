@@ -79,7 +79,7 @@ public class Main extends Application implements Initializable {
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 
-	Clip music = playSound("BackgroundMusic.wav");
+	Clip music = playSound("sounds/BackgroundMusic.wav");
 
 	public static void main(String[] args) {
 		launch(args);
@@ -94,7 +94,7 @@ public class Main extends Application implements Initializable {
 		Scene root = new Scene(p);
 		primaryStage.setScene(root);
 		primaryStage.setTitle("Pretzel Clicker");
-		primaryStage.getIcons().add(new Image("Pretzel.png"));
+		primaryStage.getIcons().add(new Image("sprites/Pretzel.png"));
 		primaryStage.setResizable(false);
 		primaryStage.show();
 
@@ -143,7 +143,7 @@ public class Main extends Application implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		vbox.setBackground(new Background(
-				new BackgroundImage(new Image("background.jpg", 445, 662, false, true), BackgroundRepeat.REPEAT,
+				new BackgroundImage(new Image("sprites/background.jpg", 445, 662, false, true), BackgroundRepeat.REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 
 		music.start();
@@ -186,7 +186,7 @@ public class Main extends Application implements Initializable {
 					pretzelImage.setScaleY(pretzelImage.getScaleY() + 0.1);
 					updatePretzels();
 
-					Clip click = playSound("ClickSound.wav");
+					Clip click = playSound("sounds/ClickSound.wav");
 					if (click != null)
 						click.start();
 
@@ -212,7 +212,7 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				clickerButton.setText(
 						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
-				Clip click = playSound("ButtonClick.wav");
+				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
 			}
@@ -225,7 +225,7 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				grandpaButton.setText(
 						String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
-				Clip click = playSound("ButtonClick.wav");
+				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
 			}
@@ -237,7 +237,7 @@ public class Main extends Application implements Initializable {
 
 				updatePretzels();
 				farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
-				Clip click = playSound("ButtonClick.wav");
+				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
 			}
@@ -249,7 +249,7 @@ public class Main extends Application implements Initializable {
 
 				updatePretzels();
 				mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
-				Clip click = playSound("ButtonClick.wav");
+				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
 			}
@@ -262,7 +262,7 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				factoryButton.setText(
 						String.format("%d Factories%nCost: %,.0f", Factory.getNumFactories(), Factory.getCost()));
-				Clip click = playSound("ButtonClick.wav");
+				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
 			}
@@ -274,7 +274,7 @@ public class Main extends Application implements Initializable {
 
 				updatePretzels();
 				labButton.setText(String.format("%d Labratories%nCost: %,.0f", Lab.getNumLabs(), Lab.getCost()));
-				Clip click = playSound("ButtonClick.wav");
+				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
 			}
@@ -285,7 +285,7 @@ public class Main extends Application implements Initializable {
 		upgradeClicker1.setOnAction(e -> {
 			if (Player.getPretzels() >= Clicker.getUpgradeCost()) {
 				Player.updatePretzels(-Clicker.getUpgradeCost());
-				Clip click = playSound("ButtonClick.wav");
+				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
 				new Clicker(1);
@@ -310,7 +310,7 @@ public class Main extends Application implements Initializable {
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			saveGame();
 			saveButton.setText("Saved!");
-			Clip click = playSound("ButtonClick.wav");
+			Clip click = playSound("sounds/ButtonClick.wav");
 			if (click != null)
 				click.start();
 		});
@@ -326,7 +326,7 @@ public class Main extends Application implements Initializable {
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
-				Clip click = playSound("ButtonClick.wav");
+				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
 			} catch (FileNotFoundException e1) {
