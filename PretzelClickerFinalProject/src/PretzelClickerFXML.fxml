@@ -181,7 +181,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="mineButton" alignment="BOTTOM_LEFT" layoutY="237.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="262.0" text="0 Mines,&#10;Cost: 130,000&#10;">
+                        <Button fx:id="mineButton" alignment="BOTTOM_LEFT" layoutY="237.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="262.0" text="0 Mines,&#10;Cost: 12,000&#10;">
                            <graphic>
                               <ImageView fitHeight="72.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -196,7 +196,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutY="398.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="262.0" text="0 Laboratories,&#10;Cost: 20,000,000">
+                        <Button alignment="BOTTOM_LEFT" layoutY="398.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="262.0" text="0 Laboratories,&#10;Cost: 1,400,000">
                            <graphic>
                               <ImageView fitHeight="72.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -211,7 +211,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutY="315.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="262.0" text="0 Factories,&#10;Cost: 1,400,000&#10;">
+                        <Button alignment="BOTTOM_LEFT" layoutY="315.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="262.0" text="0 Factories,&#10;Cost: 130,000&#10;">
                            <font>
                               <Font name="Kristen ITC" size="12.0" />
                            </font>
