@@ -57,6 +57,8 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button mineButton;
 	@FXML
+	Button factoryButton;
+	@FXML
 	ImageView pretzelImage;
 	@FXML
 	Text playerStats = new Text(Player.getStats());
@@ -159,6 +161,7 @@ public class Main extends Application implements Initializable {
 			grandpaButton
 					.setText(String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
 			farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
+			mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
 		}));
 
 		// Have the time-line run indefinitely and start it
@@ -240,6 +243,19 @@ public class Main extends Application implements Initializable {
 
 				updatePretzels();
 				mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
+				Clip click = playSound("ButtonClick.wav");
+				if (click != null)
+					click.start();
+			}
+		});
+
+		factoryButton.setOnAction(e -> {
+			if (Player.getPretzels() >= Factory.getCost()) {
+				new Factory();
+
+				updatePretzels();
+				factoryButton.setText(
+						String.format("%d Factories%nCost: %,.0f", Factory.getNumFactories(), Factory.getCost()));
 				Clip click = playSound("ButtonClick.wav");
 				if (click != null)
 					click.start();
@@ -363,7 +379,12 @@ public class Main extends Application implements Initializable {
 		Mine.setNumMines((int) Double.parseDouble(s.nextLine()));
 		Mine.setMyMinePPS(Double.parseDouble(s.nextLine()));
 		Mine.setUpgrades((int) Double.parseDouble(s.nextLine()));
-		
+		Factory.setPPS(Double.parseDouble(s.nextLine()));
+		Factory.setCost(Double.parseDouble(s.nextLine()));
+		Factory.setNumFactories((int) Double.parseDouble(s.nextLine()));
+		Factory.setMyFactoriesPPS(Double.parseDouble(s.nextLine()));
+		Factory.setUpgrades((int) Double.parseDouble(s.nextLine()));
+
 	}
 
 	/**
@@ -374,13 +395,14 @@ public class Main extends Application implements Initializable {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
 			writeSave.print(String.format(
-					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
+					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
 					Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
 					Player.getUpgrades(), Player.getPPS(), Clicker.getPPS(), Clicker.getCost(),
 					Clicker.getNumClickers(), Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Grandpa.getPPS(),
 					Grandpa.getCost(), Grandpa.getNumGrandpas(), Grandpa.getMyGrandpaPPS(), Grandpa.getUpgrades(),
-					Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(), Farm.getMyFarmPPS(), Farm.getUpgrades(), 
-					Mine.getPPS(), Mine.getCost(), Mine.getNumMines(), Mine.getMyMinePPS(), Mine.getUpgrades()));
+					Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(), Farm.getMyFarmPPS(), Farm.getUpgrades(),
+					Mine.getPPS(), Mine.getCost(), Mine.getNumMines(), Mine.getMyMinePPS(), Mine.getUpgrades(),
+					Factory.getPPS(), Factory.getCost(), Factory.getNumFactories(), Factory.getMyFactoriesPPS(), Factory.getUpgrades()));
 
 			writeSave.close();
 		} catch (FileNotFoundException e1) {
@@ -415,8 +437,8 @@ public class Main extends Application implements Initializable {
 	 * focus for the text field that has the PPS and updates with the new PPS
 	 */
 	public void updatePPS() {
-		Player.setPPS(
-				Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS() + Mine.getMyMinePPS());
+		Player.setPPS(Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS() + Mine.getMyMinePPS()
+				+ Factory.getMyFactoriesPPS());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
 	}
 
@@ -436,6 +458,5 @@ public class Main extends Application implements Initializable {
 		toolTip.setShowDelay(Duration.millis(10));
 		button.setTooltip(toolTip);
 	}
-
 
 }
