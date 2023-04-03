@@ -24,6 +24,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -74,6 +75,8 @@ public class Main extends Application implements Initializable {
 	Button upgradeClicker1;
 	@FXML
 	VBox vbox;
+	@FXML
+	AnchorPane aPane;
 
 	boolean mute = false;
 
@@ -145,7 +148,11 @@ public class Main extends Application implements Initializable {
 		vbox.setBackground(new Background(
 				new BackgroundImage(new Image("sprites/background.jpg", 445, 662, false, true), BackgroundRepeat.REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+		aPane.setBackground(new Background(
+				new BackgroundImage(new Image("sprites/StatsBackground.png", 310, 670, false, true), BackgroundRepeat.REPEAT,
+						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 
+		
 		music.start();
 		music.loop(Clip.LOOP_CONTINUOUSLY);
 

@@ -240,13 +240,13 @@
       </VBox>
    </right>
    <center>
-      <AnchorPane prefHeight="691.0" prefWidth="298.0" style="-fx-border-width: 0; -fx-border-color: &quot;A9812B&quot;;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="aPane" prefHeight="691.0" prefWidth="298.0" style="-fx-border-width: 0; -fx-border-color: &quot;A9812B&quot;;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="314.0" style="-fx-background-color: &quot;4669E2&quot;;">
+            <AnchorPane layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="314.0">
                <children>
                   <TextFlow layoutY="5.0" prefHeight="73.0" prefWidth="314.0" style="-fx-border-color: BLACK; -fx-border-width: 2;" textAlignment="CENTER">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stats:" textAlignment="CENTER" wrappingWidth="234.9367160797119">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stats:" textAlignment="CENTER" translateY="20.0" wrappingWidth="234.9367160797119">
                            <font>
                               <Font name="Bell MT" size="40.0" />
                            </font>
