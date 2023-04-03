@@ -437,22 +437,5 @@ public class Main extends Application implements Initializable {
 		button.setTooltip(toolTip);
 	}
 
-	private double formatNum(double d) {
-		double formatNum = 0;
 
-		if (d >= 1000000000000000000.0) {
-			formatNum = d / 1000000000000000000.0;
-		} else if (d >= 1000000000000000.0) {
-			formatNum = d / 1000000000000000.0;
-		} else if (d >= 1000000000000.0) {
-			formatNum = d / 1000000000000.0;
-		} else if (d >= 1000000000.0) {
-			formatNum = d / 1000000000.0;
-		} else if (d >= 1000000.0) {
-			formatNum = d / 1000000.0;
-		} else
-			formatNum = d;
-
-		return formatNum;
-	}
 }
