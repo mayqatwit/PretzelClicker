@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1017.0" style="-fx-background-color: &quot;0199d0&quot;;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1017.0" style="-fx-background-color: &quot;0199d0&quot;;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
    <left>
       <VBox fx:id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -37,7 +37,7 @@
             </Text>
             <ImageView fx:id="pretzelImage" fitHeight="270.0" fitWidth="477.0" pickOnBounds="true" preserveRatio="true" translateX="75.0" translateY="110.0">
                <image>
-                  <Image url="@PretzelImage.png" />
+                  <Image url="@Pretzel.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -135,7 +135,7 @@
                            <graphic>
                               <ImageView fitHeight="53.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@PngItem_2271479.png" />
+                                    <Image url="@Grandpa.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -150,7 +150,7 @@
                            <graphic>
                               <ImageView fitHeight="59.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@mouse-cursor-transparent-9.png" />
+                                    <Image url="@Clicker.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -165,7 +165,7 @@
                            <graphic>
                               <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@—Pngtree—cute%20farm%20barn%20clipart_5803152.png" />
+                                    <Image url="@Farm.png" />
                                  </image>
                               </ImageView>
                            </graphic>
