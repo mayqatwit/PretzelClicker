@@ -55,6 +55,8 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button farmButton;
 	@FXML
+	Button mineButton;
+	@FXML
 	ImageView pretzelImage;
 	@FXML
 	Text playerStats = new Text(Player.getStats());
@@ -93,7 +95,7 @@ public class Main extends Application implements Initializable {
 		primaryStage.show();
 
 		p.setOnKeyPressed((e) -> {
-			if (e.getCode() == KeyCode.W) 
+			if (e.getCode() == KeyCode.W)
 				p.setOnKeyPressed(f -> {
 					if (f.getCode() == KeyCode.W)
 						p.setOnKeyPressed(g -> {
@@ -128,7 +130,7 @@ public class Main extends Application implements Initializable {
 
 						});
 				});
-			
+
 		});
 
 	}
@@ -154,7 +156,8 @@ public class Main extends Application implements Initializable {
 			playerStats.setText(Player.getStats());
 			clickerButton
 					.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
-			grandpaButton.setText(String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
+			grandpaButton
+					.setText(String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
 			farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
 		}));
 
@@ -205,7 +208,7 @@ public class Main extends Application implements Initializable {
 					click.start();
 			}
 		});
-		
+
 		grandpaButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Grandpa.getCost()) {
 				new Grandpa();
@@ -218,14 +221,25 @@ public class Main extends Application implements Initializable {
 					click.start();
 			}
 		});
-		
+
 		farmButton.setOnAction(e -> { // Buying a farm
 			if (Player.getPretzels() >= Farm.getCost()) {
 				new Farm();
 
 				updatePretzels();
-				farmButton.setText(
-						String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
+				farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
+				Clip click = playSound("ButtonClick.wav");
+				if (click != null)
+					click.start();
+			}
+		});
+
+		mineButton.setOnAction(e -> {
+			if (Player.getPretzels() >= Mine.getCost()) {
+				new Mine();
+
+				updatePretzels();
+				mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
 				Clip click = playSound("ButtonClick.wav");
 				if (click != null)
 					click.start();
@@ -344,7 +358,12 @@ public class Main extends Application implements Initializable {
 		Farm.setNumFarms((int) Double.parseDouble(s.nextLine()));
 		Farm.setMyFarmPPS(Double.parseDouble(s.nextLine()));
 		Farm.setUpgrades((int) Double.parseDouble(s.nextLine()));
-
+		Mine.setPPS(Double.parseDouble(s.nextLine()));
+		Mine.setCost(Double.parseDouble(s.nextLine()));
+		Mine.setNumMines((int) Double.parseDouble(s.nextLine()));
+		Mine.setMyMinePPS(Double.parseDouble(s.nextLine()));
+		Mine.setUpgrades((int) Double.parseDouble(s.nextLine()));
+		
 	}
 
 	/**
@@ -354,12 +373,14 @@ public class Main extends Application implements Initializable {
 	private void saveGame() {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
-			writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
-					Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(), Player.getUpgrades(),
-					Player.getPPS(), Clicker.getPPS(), Clicker.getCost(), Clicker.getNumClickers(),
-					Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Grandpa.getPPS(), Grandpa.getCost(), Grandpa.getNumGrandpas(),
-					Grandpa.getMyGrandpaPPS(), Grandpa.getUpgrades(), Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(),
-					Farm.getMyFarmPPS(), Farm.getUpgrades()));
+			writeSave.print(String.format(
+					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
+					Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
+					Player.getUpgrades(), Player.getPPS(), Clicker.getPPS(), Clicker.getCost(),
+					Clicker.getNumClickers(), Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Grandpa.getPPS(),
+					Grandpa.getCost(), Grandpa.getNumGrandpas(), Grandpa.getMyGrandpaPPS(), Grandpa.getUpgrades(),
+					Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(), Farm.getMyFarmPPS(), Farm.getUpgrades(), 
+					Mine.getPPS(), Mine.getCost(), Mine.getNumMines(), Mine.getMyMinePPS(), Mine.getUpgrades()));
 
 			writeSave.close();
 		} catch (FileNotFoundException e1) {
@@ -394,7 +415,8 @@ public class Main extends Application implements Initializable {
 	 * focus for the text field that has the PPS and updates with the new PPS
 	 */
 	public void updatePPS() {
-		Player.setPPS(Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS());
+		Player.setPPS(
+				Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS() + Mine.getMyMinePPS());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
 	}
 
