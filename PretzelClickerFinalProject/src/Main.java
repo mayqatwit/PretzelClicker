@@ -59,6 +59,8 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button factoryButton;
 	@FXML
+	Button labButton;
+	@FXML
 	ImageView pretzelImage;
 	@FXML
 	Text playerStats = new Text(Player.getStats());
@@ -162,6 +164,10 @@ public class Main extends Application implements Initializable {
 					.setText(String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
 			farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
 			mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
+			factoryButton
+					.setText(String.format("%d Factories%nCost: %,.0f", Factory.getNumFactories(), Factory.getCost()));
+			labButton.setText(String.format("%d Labs%nCost: %,.0f", Lab.getNumLabs(), Lab.getCost()));
+
 		}));
 
 		// Have the time-line run indefinitely and start it
@@ -256,6 +262,18 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				factoryButton.setText(
 						String.format("%d Factories%nCost: %,.0f", Factory.getNumFactories(), Factory.getCost()));
+				Clip click = playSound("ButtonClick.wav");
+				if (click != null)
+					click.start();
+			}
+		});
+
+		labButton.setOnAction(e -> {
+			if (Player.getPretzels() >= Lab.getCost()) {
+				new Lab();
+
+				updatePretzels();
+				labButton.setText(String.format("%d Labratories%nCost: %,.0f", Lab.getNumLabs(), Lab.getCost()));
 				Clip click = playSound("ButtonClick.wav");
 				if (click != null)
 					click.start();
@@ -384,6 +402,11 @@ public class Main extends Application implements Initializable {
 		Factory.setNumFactories((int) Double.parseDouble(s.nextLine()));
 		Factory.setMyFactoriesPPS(Double.parseDouble(s.nextLine()));
 		Factory.setUpgrades((int) Double.parseDouble(s.nextLine()));
+		Lab.setPPS(Double.parseDouble(s.nextLine()));
+		Lab.setCost(Double.parseDouble(s.nextLine()));
+		Lab.setNumLabs((int) Double.parseDouble(s.nextLine()));
+		Lab.setMyLabPPS(Double.parseDouble(s.nextLine()));
+		Lab.setUpgrades((int) Double.parseDouble(s.nextLine()));
 
 	}
 
@@ -395,14 +418,16 @@ public class Main extends Application implements Initializable {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
 			writeSave.print(String.format(
-					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
+					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
 					Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
 					Player.getUpgrades(), Player.getPPS(), Clicker.getPPS(), Clicker.getCost(),
 					Clicker.getNumClickers(), Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Grandpa.getPPS(),
 					Grandpa.getCost(), Grandpa.getNumGrandpas(), Grandpa.getMyGrandpaPPS(), Grandpa.getUpgrades(),
 					Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(), Farm.getMyFarmPPS(), Farm.getUpgrades(),
 					Mine.getPPS(), Mine.getCost(), Mine.getNumMines(), Mine.getMyMinePPS(), Mine.getUpgrades(),
-					Factory.getPPS(), Factory.getCost(), Factory.getNumFactories(), Factory.getMyFactoriesPPS(), Factory.getUpgrades()));
+					Factory.getPPS(), Factory.getCost(), Factory.getNumFactories(), Factory.getMyFactoriesPPS(),
+					Factory.getUpgrades(), Lab.getPPS(), Lab.getCost(), Lab.getNumLabs(), Lab.getMyLabPPS(),
+					Lab.getUpgrades()));
 
 			writeSave.close();
 		} catch (FileNotFoundException e1) {
@@ -438,7 +463,7 @@ public class Main extends Application implements Initializable {
 	 */
 	public void updatePPS() {
 		Player.setPPS(Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS() + Mine.getMyMinePPS()
-				+ Factory.getMyFactoriesPPS());
+				+ Factory.getMyFactoriesPPS() + Lab.getMyLabPPS());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
 	}
 

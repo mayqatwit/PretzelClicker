@@ -196,7 +196,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutY="398.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="262.0" text="0 Laboratories,&#10;Cost: 1,400,000">
+                        <Button fx:id="labButton" alignment="BOTTOM_LEFT" layoutY="398.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="262.0" text="0 Laboratories,&#10;Cost: 1,400,000">
                            <graphic>
                               <ImageView fitHeight="72.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
