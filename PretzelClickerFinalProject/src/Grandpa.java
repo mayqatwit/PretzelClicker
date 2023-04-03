@@ -14,7 +14,7 @@ public class Grandpa implements Buildable {
 	public Grandpa() {
 		buyBuilding();
 	}
-		
+		//iugliyfukyv,jh
 	public Grandpa(int i) {
 		upgrade();
 	}
