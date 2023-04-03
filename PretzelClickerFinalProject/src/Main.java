@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -86,6 +87,44 @@ public class Main extends Application implements Initializable {
 		primaryStage.getIcons().add(new Image("Pretzel.png"));
 		primaryStage.setResizable(false);
 		primaryStage.show();
+
+		p.setOnKeyPressed((e) -> {
+			if (e.getCode() == KeyCode.W)
+				p.setOnKeyPressed(f -> {
+					if (f.getCode() == KeyCode.W)
+						p.setOnKeyPressed(g -> {
+							if (g.getCode() == KeyCode.S)
+								p.setOnKeyPressed(h -> {
+									if (h.getCode() == KeyCode.S)
+										p.setOnKeyPressed(i -> {
+											if (i.getCode() == KeyCode.A)
+												p.setOnKeyPressed(j -> {
+													if (j.getCode() == KeyCode.D)
+														p.setOnKeyPressed(k -> {
+															if (k.getCode() == KeyCode.A)
+																p.setOnKeyPressed(l -> {
+																	if (l.getCode() == KeyCode.D)
+																		p.setOnKeyPressed(m -> {
+																			if (m.getCode() == KeyCode.B)
+																				p.setOnKeyPressed(n -> {
+																					if (n.getCode() == KeyCode.A) {
+																						Clip egg = playSound(
+																								"easterEgg.wav");
+																						egg.start();
+																					}
+																				});
+																		});
+
+																});
+														});
+												});
+										});
+
+								});
+
+						});
+				});
+		});
 
 	}
 
@@ -153,13 +192,13 @@ public class Main extends Application implements Initializable {
 
 				updatePretzels();
 				clickerButton.setText(
-				String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
 				Clip click = playSound("clickDown.wav");
 				if (click != null)
 					click.start();
 			}
 		});
-		
+
 		makeToolTip(upgradeClicker1,
 				String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
 		upgradeClicker1.setOnAction(e -> {
@@ -222,7 +261,7 @@ public class Main extends Application implements Initializable {
 	 * @param string
 	 * @return Clip clip
 	 */
-	private Clip playSound(String string) {
+	public Clip playSound(String string) {
 		if (!mute) {
 			try {
 
@@ -330,10 +369,10 @@ public class Main extends Application implements Initializable {
 		toolTip.setShowDelay(Duration.millis(10));
 		button.setTooltip(toolTip);
 	}
-	
+
 	private double formatNum(double d) {
 		double formatNum = 0;
-		
+
 		if (d >= 1000000000000000000.0) {
 			formatNum = d / 1000000000000000000.0;
 		} else if (d >= 1000000000000000.0) {
@@ -343,10 +382,10 @@ public class Main extends Application implements Initializable {
 		} else if (d >= 1000000000.0) {
 			formatNum = d / 1000000000.0;
 		} else if (d >= 1000000.0) {
-			formatNum = d/1000000.0;
+			formatNum = d / 1000000.0;
 		} else
 			formatNum = d;
-		
+
 		return formatNum;
 	}
 }
