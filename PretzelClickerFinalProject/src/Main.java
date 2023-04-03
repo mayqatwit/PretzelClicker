@@ -317,6 +317,11 @@ public class Main extends Application implements Initializable {
 		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
 		Clicker.setMyClickerPPS(Double.parseDouble(s.nextLine()));
 		Clicker.setUpgrades((int) Double.parseDouble(s.nextLine()));
+		Farm.setPPS(Double.parseDouble(s.nextLine()));
+		Farm.setCost(Double.parseDouble(s.nextLine()));
+		Farm.setNumFarms((int) Double.parseDouble(s.nextLine()));
+		Farm.setMyFarmPPS(Double.parseDouble(s.nextLine()));
+		Farm.setUpgrades((int) Double.parseDouble(s.nextLine()));
 
 	}
 
@@ -327,10 +332,11 @@ public class Main extends Application implements Initializable {
 	private void saveGame() {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
-			writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
+			writeSave.print(String.format("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", Player.getPretzels(),
 					Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(), Player.getUpgrades(),
 					Player.getPPS(), Clicker.getPPS(), Clicker.getCost(), Clicker.getNumClickers(),
-					Clicker.getMyClickerPPS(), Clicker.getUpgrades()));
+					Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(),
+					Farm.getMyFarmPPS(), Farm.getUpgrades()));
 
 			writeSave.close();
 		} catch (FileNotFoundException e1) {
