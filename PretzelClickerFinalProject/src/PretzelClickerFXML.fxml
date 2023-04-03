@@ -191,11 +191,26 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="248.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Laboratories,&#10;Cost: 1,400,000">
+                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="310.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Laboratories,&#10;Cost: 20,000,000">
                            <graphic>
                               <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Laboratory.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Kristen ITC" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button alignment="BOTTOM_LEFT" layoutX="-2.0" layoutY="248.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="260.0" text="0 Factories,&#10;Cost: 1,400,000&#10;">
+                           <graphic>
+                              <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Factory.png" />
                                  </image>
                               </ImageView>
                            </graphic>
