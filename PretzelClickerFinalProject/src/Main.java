@@ -97,16 +97,7 @@ public class Main extends Application implements Initializable {
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 
 		music.start();
-
-		// Loop the music, only if the sounds are not muted
-		Timeline musicTime = new Timeline(new KeyFrame(Duration.seconds(46.35), e -> {
-			if (music != null)
-				if (!mute)
-					music = playSound("BackgroundMusic.wav");
-			music.start();
-		}));
-		musicTime.setCycleCount(Animation.INDEFINITE);
-		musicTime.play();
+		music.loop(Clip.LOOP_CONTINUOUSLY);
 
 		// Running a time-line to add pretzels every 0.01 seconds
 		// base on the current PPS, using 0.01 seconds to make the pretzels
@@ -188,6 +179,7 @@ public class Main extends Application implements Initializable {
 				mute = false;
 				muteButton.setText("Mute");
 				music.start();
+				music.loop(Clip.LOOP_CONTINUOUSLY);
 			} else {
 				mute = true;
 				muteButton.setText("Unmute");
