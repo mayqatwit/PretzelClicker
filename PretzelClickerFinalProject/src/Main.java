@@ -83,7 +83,7 @@ public class Main extends Application implements Initializable {
 		Scene root = new Scene(p);
 		primaryStage.setScene(root);
 		primaryStage.setTitle("Pretzel Clicker");
-		primaryStage.getIcons().add(new Image("PretzelImage.png"));
+		primaryStage.getIcons().add(new Image("Pretzel.png"));
 		primaryStage.setResizable(false);
 		primaryStage.show();
 
