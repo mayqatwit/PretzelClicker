@@ -119,7 +119,7 @@ public class Main extends Application implements Initializable {
 																				p.setOnKeyPressed(n -> {
 																					if (n.getCode() == KeyCode.A) {
 																						Clip egg = playSound(
-																								"easterEgg.wav");
+																								"sounds/easterEgg.wav");
 																						egg.start();
 																					}
 																				});
