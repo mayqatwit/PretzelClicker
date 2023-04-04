@@ -9,7 +9,7 @@ public class Lab implements Buildable{
 	private static double myLabPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Labs%nCost: %,.0f", numLabs, cost));
 	private static int upgrades = 0;
-	private static int[] upgradeCosts = {100,500,10000,50000};
+	private static double[] upgradeCosts = {14000000,70000000,700000000,70000000000.0};
 	
 	public Lab() {
 		buyBuilding();
@@ -38,7 +38,6 @@ public class Lab implements Buildable{
 		Lab.updateUpgrades(1);
 		Lab.setMyLabPPS(Lab.getMyLabPPS() * 2);
 		Lab.setPPS(Lab.getPPS() * 2);
-		Player.setClickValue(Player.getClickValue() * 2);
 		Player.updateUpgrades(1);
 	}
 	
@@ -102,7 +101,7 @@ public class Lab implements Buildable{
 		upgrades += i;
 	}
 
-	public static int getUpgradeCost() {
+	public static double getUpgradeCost() {
 		return upgradeCosts[upgrades];
 	}
 	

@@ -8,7 +8,7 @@ public class Factory implements Buildable {
 	private static double myFactoriesPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Factories%nCost: %,.0f", numFactories, cost));
 	private static int upgrades = 0;
-	private static int[] upgradeCosts = {100,500,10000,50000};
+	private static double[] upgradeCosts = {1300000,6500000,65000000,65000000000.0};
 	
 	public Factory() {
 		buyBuilding();
@@ -37,7 +37,6 @@ public class Factory implements Buildable {
 		Factory.updateUpgrades(1);
 		Factory.setMyFactoriesPPS(Factory.getMyFactoriesPPS() * 2);
 		Factory.setPPS(Factory.getPPS() * 2);
-		Player.setClickValue(Player.getClickValue() * 2);
 		Player.updateUpgrades(1);
 	}
 	
@@ -101,7 +100,7 @@ public class Factory implements Buildable {
 		upgrades += i;
 	}
 
-	public static int getUpgradeCost() {
+	public static double getUpgradeCost() {
 		return upgradeCosts[upgrades];
 	}
 }

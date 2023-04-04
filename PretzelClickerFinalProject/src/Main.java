@@ -320,6 +320,20 @@ public class Main extends Application implements Initializable {
 				click();
 			}
 		});
+		
+		// Upgrade mines
+		makeToolTip(upgradeMine, String.format("Doubles Mine PPS%nCost: %,.0f", Mine.getUpgradeCost()));
+		upgradeMine.setOnAction(e -> {
+			if (Player.getPretzels() >= Mine.getUpgradeCost()) {
+				Player.updatePretzels(-Mine.getUpgradeCost());
+				click();
+				new Mine(1);
+				if (Mine.getUpgrades() == 4) {
+					disappearAnimation(upgradeMine);
+				} else
+				makeToolTip(upgradeMine, String.format("Doubles Mine PPS%nCost: %,.0f", Mine.getUpgradeCost()));
+			}
+		});
 
 		/*
 		 * Factory buttons
@@ -334,6 +348,20 @@ public class Main extends Application implements Initializable {
 				click();
 			}
 		});
+		
+		// Upgrade factories
+		makeToolTip(upgradeFactory, String.format("Doubles Factory PPS%nCost: %,.0f", Factory.getUpgradeCost()));
+		upgradeFactory.setOnAction(e -> {
+			if (Player.getPretzels() >= Factory.getUpgradeCost()) {
+				Player.updatePretzels(-Factory.getUpgradeCost());
+				click();
+				new Factory(1);
+				if (Factory.getUpgrades() == 4) {
+					disappearAnimation(upgradeFactory);
+				} else
+				makeToolTip(upgradeFactory, String.format("Doubles Factory PPS%nCost: %,.0f", Factory.getUpgradeCost()));
+			}
+		});
 
 		/*
 		 * Lab buttons
@@ -345,6 +373,20 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				labButton.setText(String.format("%d Labratories%nCost: %,.0f", Lab.getNumLabs(), Lab.getCost()));
 				click();
+			}
+		});
+		
+		// Upgrade labs
+		makeToolTip(upgradeLab, String.format("Doubles Labratory PPS%nCost: %,.0f", Lab.getUpgradeCost()));
+		upgradeLab.setOnAction(e -> {
+			if (Player.getPretzels() >= Lab.getUpgradeCost()) {
+				Player.updatePretzels(-Lab.getUpgradeCost());
+				click();
+				new Lab(1);
+				if (Lab.getUpgrades() == 4) {
+					disappearAnimation(upgradeLab);
+				} else
+				makeToolTip(upgradeLab, String.format("Doubles Labratory PPS%nCost: %,.0f", Lab.getUpgradeCost()));
 			}
 		});
 

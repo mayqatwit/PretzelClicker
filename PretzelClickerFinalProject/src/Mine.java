@@ -9,7 +9,7 @@ public class Mine implements Buildable {
 	private static double myMinePPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Mines%nCost: %,.0f", numMines, cost));
 	private static int upgrades = 0;
-	private static int[] upgradeCosts = {100,500,10000,50000};
+	private static double[] upgradeCosts = {120000,600000,6000000,600000000};
 	
 	public Mine() {
 		buyBuilding();
@@ -38,7 +38,6 @@ public class Mine implements Buildable {
 		Mine.updateUpgrades(1);
 		Mine.setMyMinePPS(Mine.getMyMinePPS() * 2);
 		Mine.setPPS(Mine.getPPS() * 2);
-		Player.setClickValue(Player.getClickValue() * 2);
 		Player.updateUpgrades(1);
 	}
 	
@@ -102,7 +101,7 @@ public class Mine implements Buildable {
 		upgrades += i;
 	}
 
-	public static int getUpgradeCost() {
+	public static double getUpgradeCost() {
 		return upgradeCosts[upgrades];
 	}
 	
