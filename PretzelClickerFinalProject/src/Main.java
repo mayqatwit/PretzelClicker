@@ -173,6 +173,12 @@ public class Main extends Application implements Initializable {
 				new Image("sprites/StatsBackground.png", 310, 670, false, true), BackgroundRepeat.REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 		pretzelImage.setImage(new Image(Player.getImage()));
+		if(Player.getImageUpgrades() > 0) {
+			bakedUpgrade.setManaged(false);
+			if(Player.getImageUpgrades() > 1) {
+				chocolateUpgrade.setManaged(false);
+			}
+		}
 
 		music.start();
 		music.loop(Clip.LOOP_CONTINUOUSLY);
