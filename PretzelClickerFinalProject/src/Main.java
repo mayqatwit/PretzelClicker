@@ -240,8 +240,11 @@ public class Main extends Application implements Initializable {
 				Player.updatePretzels(-Clicker.getUpgradeCost());
 				click();
 				new Clicker(1);
-				makeToolTip(upgradeClicker,
-						String.format("Doubles clickers PPS and click value%nCost: %,.0f", Clicker.getUpgradeCost()));
+				if (Clicker.getUpgrades() == 4) {
+					disappearAnimation(upgradeClicker);
+				} else
+					makeToolTip(upgradeClicker,
+							String.format("Doubles clickers PPS and click value%nCost: %,.0f", Clicker.getUpgradeCost()));
 			}
 		});
 
@@ -267,6 +270,9 @@ public class Main extends Application implements Initializable {
 				Player.updatePretzels(-Grandpa.getUpgradeCost());
 				click();
 				new Grandpa(1);
+				if (Grandpa.getUpgrades() == 4) {
+					disappearAnimation(upgradeGrandpa);
+				} else
 				makeToolTip(upgradeGrandpa,
 						String.format("Doubles Grandpa PPS%nCost: %,.0f", Grandpa.getUpgradeCost()));
 			}
@@ -294,6 +300,9 @@ public class Main extends Application implements Initializable {
 				Player.updatePretzels(-Farm.getUpgradeCost());
 				click();
 				new Farm(1);
+				if (Farm.getUpgrades() == 4) {
+					disappearAnimation(upgradeFarm);
+				} else
 				makeToolTip(upgradeFarm, String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
 			}
 		});
