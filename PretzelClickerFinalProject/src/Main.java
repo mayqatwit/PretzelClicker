@@ -145,14 +145,13 @@ public class Main extends Application implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		vbox.setBackground(new Background(
-				new BackgroundImage(new Image("sprites/PretzelBackground.jpg", 445, 662, false, true), BackgroundRepeat.REPEAT,
-						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-		aPane.setBackground(new Background(
-				new BackgroundImage(new Image("sprites/StatsBackground.png", 310, 670, false, true), BackgroundRepeat.REPEAT,
-						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+		vbox.setBackground(new Background(new BackgroundImage(
+				new Image("sprites/PretzelBackground.jpg", 445, 662, false, true), BackgroundRepeat.REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+		aPane.setBackground(new Background(new BackgroundImage(
+				new Image("sprites/StatsBackground.png", 310, 670, false, true), BackgroundRepeat.REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 
-		
 		music.start();
 		music.loop(Clip.LOOP_CONTINUOUSLY);
 
@@ -164,16 +163,8 @@ public class Main extends Application implements Initializable {
 			Player.updateTotalPretzels(Player.getPPS() / 10);
 			updatePretzels();
 			updatePPS();
+			updateButtons();
 			playerStats.setText(Player.getStats());
-			clickerButton
-					.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
-			grandpaButton
-					.setText(String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
-			farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
-			mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
-			factoryButton
-					.setText(String.format("%d Factories%nCost: %,.0f", Factory.getNumFactories(), Factory.getCost()));
-			labButton.setText(String.format("%d Labs%nCost: %,.0f", Lab.getNumLabs(), Lab.getCost()));
 
 		}));
 
@@ -339,6 +330,20 @@ public class Main extends Application implements Initializable {
 			} catch (FileNotFoundException e1) {
 			}
 		});
+
+	}
+	
+	/**
+	 * This method updates all of the text in each of the buttons used
+	 * for buying new buildings
+	 */
+	private void updateButtons() {
+		clickerButton.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+		grandpaButton.setText(String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
+		farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
+		mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
+		factoryButton.setText(String.format("%d Factories%nCost: %,.0f", Factory.getNumFactories(), Factory.getCost()));
+		labButton.setText(String.format("%d Labs%nCost: %,.0f", Lab.getNumLabs(), Lab.getCost()));
 
 	}
 
