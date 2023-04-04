@@ -213,6 +213,9 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		/*
+		 * Clicker buttons
+		 */
 		clickerButton.setOnAction(e -> { // Buying a clicker
 			if (Player.getPretzels() >= Clicker.getCost()) {
 				new Clicker();
@@ -227,7 +230,7 @@ public class Main extends Application implements Initializable {
 		});
 		
 		makeToolTip(upgradeClicker,
-				String.format("Doubles clickers PPS and click value%nCost: %.0f", Clicker.getUpgradeCost()));
+				String.format("Doubles clickers PPS and click value%nCost: %,.0f", Clicker.getUpgradeCost()));
 		upgradeClicker.setOnAction(e -> {
 			if (Player.getPretzels() >= Clicker.getUpgradeCost()) {
 				Player.updatePretzels(-Clicker.getUpgradeCost());
@@ -236,10 +239,13 @@ public class Main extends Application implements Initializable {
 					click.start();
 				new Clicker(1);
 				makeToolTip(upgradeClicker,
-						String.format("Doubles clickers PPS and click value%nCost: %.0f", Clicker.getUpgradeCost()));
+						String.format("Doubles clickers PPS and click value%nCost: %,.0f", Clicker.getUpgradeCost()));
 			}
 		});
 
+		/*
+		 * Grandpa buttons
+		 */
 		grandpaButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Grandpa.getCost()) {
 				new Grandpa();
@@ -254,7 +260,7 @@ public class Main extends Application implements Initializable {
 		});
 		
 		makeToolTip(upgradeGrandpa,
-				String.format("Doubles Grandpa PPS%nCost: %.0f", Grandpa.getUpgradeCost()));
+				String.format("Doubles Grandpa PPS%nCost: %,.0f", Grandpa.getUpgradeCost()));
 		upgradeGrandpa.setOnAction(e -> {
 			if (Player.getPretzels() >= Grandpa.getUpgradeCost()) {
 				Player.updatePretzels(-Grandpa.getUpgradeCost());
@@ -263,10 +269,13 @@ public class Main extends Application implements Initializable {
 					click.start();
 				new Grandpa(1);
 				makeToolTip(upgradeGrandpa,
-						String.format("Doubles Grandpa PPS%nCost: %.0f", Grandpa.getUpgradeCost()));
+						String.format("Doubles Grandpa PPS%nCost: %,.0f", Grandpa.getUpgradeCost()));
 			}
 		});
 
+		/*
+		 * Farm buttons
+		 */
 		farmButton.setOnAction(e -> { // Buying a farm
 			if (Player.getPretzels() >= Farm.getCost()) {
 				new Farm();
@@ -278,7 +287,24 @@ public class Main extends Application implements Initializable {
 					click.start();
 			}
 		});
+		
+		makeToolTip(upgradeFarm,
+				String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
+		upgradeFarm.setOnAction(e -> {
+			if (Player.getPretzels() >= Farm.getUpgradeCost()) {
+				Player.updatePretzels(-Farm.getUpgradeCost());
+				Clip click = playSound("sounds/ButtonClick.wav");
+				if (click != null)
+					click.start();
+				new Farm(1);
+				makeToolTip(upgradeFarm,
+						String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
+			}
+		});
 
+		/*
+		 * Mine buttons
+		 */
 		mineButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Mine.getCost()) {
 				new Mine();
@@ -291,6 +317,9 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		/*
+		 * Factory buttons
+		 */
 		factoryButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Factory.getCost()) {
 				new Factory();
@@ -304,6 +333,9 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		/*
+		 * Lab buttons
+		 */
 		labButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Lab.getCost()) {
 				new Lab();
@@ -316,6 +348,9 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		/*
+		 * Game functionality buttons
+		 */
 		muteButton.setOnAction(e -> {
 			if (mute) {
 				mute = false;

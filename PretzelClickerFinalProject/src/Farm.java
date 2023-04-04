@@ -38,7 +38,6 @@ public class Farm implements Buildable{
 		Farm.updateUpgrades(1);
 		Farm.setMyFarmPPS(Farm.getMyFarmPPS() * 2);
 		Farm.setPPS(Farm.getPPS() * 2);
-		Player.setClickValue(Player.getClickValue() * 2);
 		Player.updateUpgrades(1);
 	}
 	
