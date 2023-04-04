@@ -88,15 +88,15 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Mines">
+                              <Button fx:id="upgradeMine" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Mines">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Factories&#10;">
+                              <Button fx:id="upgradeFactory" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade &#10;Factories&#10;">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Labratories&#10;">
+                              <Button fx:id="upgradeLab" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Upgrade&#10;Labratories&#10;">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
