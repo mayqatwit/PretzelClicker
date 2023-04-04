@@ -13,6 +13,9 @@ public class Player {
 	private static int buildings = 0;
 	private static int upgrades = 0;
 	private static double PPS = 0;
+	private static String[] images = {"sprites/Pretzel.png", "sprites/ChocolatePretzel.png"};
+	private static double[] imageCosts = {100000, 5000000};
+	private static int imageUpgrades = 0;
 
 	/**
 	 * 
@@ -168,6 +171,26 @@ public class Player {
 						+ "PPS: %,.1f%nClick Value: %.0f%nBuildings: %d%nUpgrades: %d%n",
 				Player.getPretzels(), Player.getTotalPretzels(), Player.getPPS(), Player.getClickValue(),
 				Player.getBuildings(), Player.getUpgrades());
+	}
+	
+	public static String getImage() {
+		return images[imageUpgrades];
+	}
+	
+	public static int getImageUpgrades() {
+		return imageUpgrades;
+	}
+	
+	public static void setImageUpgrades(int i) {
+		imageUpgrades = i;
+	}
+	
+	public static void updateImageUpgrades(int i) {
+		imageUpgrades += i;
+	}
+	
+	public static double getImageCost() {
+		return imageCosts[imageUpgrades];
 	}
 
 }

@@ -88,6 +88,8 @@ public class Main extends Application implements Initializable {
 	Button upgradeFactory;
 	@FXML
 	Button upgradeLab;
+	@FXML
+	Button chocolateUpgrade;
 
 	boolean mute = false;
 
@@ -168,6 +170,7 @@ public class Main extends Application implements Initializable {
 		aPane.setBackground(new Background(new BackgroundImage(
 				new Image("sprites/StatsBackground.png", 310, 670, false, true), BackgroundRepeat.REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+		pretzelImage.setImage(new Image(Player.getImage()));
 
 		music.start();
 		music.loop(Clip.LOOP_CONTINUOUSLY);
@@ -182,7 +185,6 @@ public class Main extends Application implements Initializable {
 			updatePPS();
 			updateButtons();
 			playerStats.setText(Player.getStats());
-
 		}));
 
 		// Have the time-line run indefinitely and start it
@@ -389,6 +391,18 @@ public class Main extends Application implements Initializable {
 				makeToolTip(upgradeLab, String.format("Doubles Labratory PPS%nCost: %,.0f", Lab.getUpgradeCost()));
 			}
 		});
+		
+		/*
+		 * General Upgrades
+		 */
+		
+		chocolateUpgrade.setOnAction(e ->{
+			if (Player.getPretzels() >= Player.getImageCost()) {
+				Player.updatePretzels(-Player.getImageCost());
+				pretzelImage.setImage(new Image("sprites/ChocolatePretzel.png"));
+				Player.updateImageUpgrades(1);
+			}
+		});
 
 		/*
 		 * Game functionality buttons
@@ -423,7 +437,10 @@ public class Main extends Application implements Initializable {
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
+				pretzelImage.setImage(new Image(Player.getImage()));
+
 				click();
+				
 			} catch (FileNotFoundException e1) {
 			}
 		});
@@ -496,6 +513,7 @@ public class Main extends Application implements Initializable {
 		Player.setBuildings((int) Double.parseDouble(s.nextLine()));
 		Player.setUpgrades((int) Double.parseDouble(s.nextLine()));
 		Player.setPPS(Double.parseDouble(s.nextLine()));
+		Player.setImageUpgrades((int) Double.parseDouble(s.nextLine()));
 		Clicker.setPPS(Double.parseDouble(s.nextLine()));
 		Clicker.setCost(Double.parseDouble(s.nextLine()));
 		Clicker.setNumClickers((int) Double.parseDouble(s.nextLine()));
@@ -526,7 +544,6 @@ public class Main extends Application implements Initializable {
 		Lab.setNumLabs((int) Double.parseDouble(s.nextLine()));
 		Lab.setMyLabPPS(Double.parseDouble(s.nextLine()));
 		Lab.setUpgrades((int) Double.parseDouble(s.nextLine()));
-
 	}
 
 	/**
@@ -537,9 +554,9 @@ public class Main extends Application implements Initializable {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
 			writeSave.print(String.format(
-					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
+					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
 					Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
-					Player.getUpgrades(), Player.getPPS(), Clicker.getPPS(), Clicker.getCost(),
+					Player.getUpgrades(), Player.getPPS(), Player.getImageUpgrades(), Clicker.getPPS(), Clicker.getCost(),
 					Clicker.getNumClickers(), Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Grandpa.getPPS(),
 					Grandpa.getCost(), Grandpa.getNumGrandpas(), Grandpa.getMyGrandpaPPS(), Grandpa.getUpgrades(),
 					Farm.getPPS(), Farm.getCost(), Farm.getNumFarms(), Farm.getMyFarmPPS(), Farm.getUpgrades(),
