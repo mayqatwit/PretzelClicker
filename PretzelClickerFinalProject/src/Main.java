@@ -122,7 +122,7 @@ public class Main extends Application implements Initializable {
 																				p.setOnKeyPressed(n -> {
 																					if (n.getCode() == KeyCode.A) {
 																						Clip egg = playSound(
-																								"sounds/easterEgg.wav");
+																								"sounds/EasterEgg.wav");
 																						egg.start();
 																					}
 																				});
@@ -146,7 +146,7 @@ public class Main extends Application implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		vbox.setBackground(new Background(
-				new BackgroundImage(new Image("sprites/background.jpg", 445, 662, false, true), BackgroundRepeat.REPEAT,
+				new BackgroundImage(new Image("sprites/PretzelBackground.jpg", 445, 662, false, true), BackgroundRepeat.REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 		aPane.setBackground(new Background(
 				new BackgroundImage(new Image("sprites/StatsBackground.png", 310, 670, false, true), BackgroundRepeat.REPEAT,
