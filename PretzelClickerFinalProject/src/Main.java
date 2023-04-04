@@ -399,8 +399,10 @@ public class Main extends Application implements Initializable {
 		chocolateUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost()) {
 				Player.updatePretzels(-Player.getImageCost());
-				pretzelImage.setImage(new Image("sprites/ChocolatePretzel.png"));
+				Player.updateMultiplier(0.05);
 				Player.updateImageUpgrades(1);
+				pretzelImage.setImage(new Image(Player.getImage()));
+
 			}
 		});
 
@@ -598,8 +600,8 @@ public class Main extends Application implements Initializable {
 	 * focus for the text field that has the PPS and updates with the new PPS
 	 */
 	public void updatePPS() {
-		Player.setPPS(Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS() + Mine.getMyMinePPS()
-				+ Factory.getMyFactoriesPPS() + Lab.getMyLabPPS());
+		Player.setPPS((Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS() + Mine.getMyMinePPS()
+				+ Factory.getMyFactoriesPPS() + Lab.getMyLabPPS()) * Player.getMultiplier());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
 	}
 

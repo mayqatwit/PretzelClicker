@@ -16,6 +16,7 @@ public class Player {
 	private static String[] images = {"sprites/Pretzel.png", "sprites/ChocolatePretzel.png"};
 	private static double[] imageCosts = {100000, 5000000};
 	private static int imageUpgrades = 0;
+	private static double multiplier = 1.0;
 
 	/**
 	 * 
@@ -191,6 +192,18 @@ public class Player {
 	
 	public static double getImageCost() {
 		return imageCosts[imageUpgrades];
+	}
+
+	public static double getMultiplier() {
+		return multiplier;
+	}
+
+	public static void setMultiplier(double d) {
+		multiplier = d;
+	}
+	
+	public static void updateMultiplier(double d) {
+		multiplier += d;
 	}
 
 }
