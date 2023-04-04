@@ -62,7 +62,7 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button labButton;
 	@FXML
-	ImageView pretzelImage;
+	ImageView pretzelImage = new ImageView(new Image("sprites/Pretzel.png"));
 	@FXML
 	Text playerStats = new Text(Player.getStats());
 	@FXML
@@ -81,6 +81,8 @@ public class Main extends Application implements Initializable {
 	boolean mute = false;
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
+
+	public boolean eggImage = false;
 
 	Clip music = playSound("sounds/BackgroundMusic.wav");
 
@@ -121,9 +123,13 @@ public class Main extends Application implements Initializable {
 																			if (m.getCode() == KeyCode.B)
 																				p.setOnKeyPressed(n -> {
 																					if (n.getCode() == KeyCode.A) {
+																						eggImage = true;
 																						Clip egg = playSound(
 																								"sounds/EasterEgg.wav");
 																						egg.start();
+																						pretzelImage.setImage(new Image(
+																								"sprites/EasterEgg.png"));
+
 																					}
 																				});
 																		});
@@ -332,10 +338,10 @@ public class Main extends Application implements Initializable {
 		});
 
 	}
-	
+
 	/**
-	 * This method updates all of the text in each of the buttons used
-	 * for buying new buildings
+	 * This method updates all of the text in each of the buttons used for buying
+	 * new buildings
 	 */
 	private void updateButtons() {
 		clickerButton.setText(String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
