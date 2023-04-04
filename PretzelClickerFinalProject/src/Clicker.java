@@ -116,6 +116,10 @@ public class Clicker implements Buildable {
 	}
 
 	public static double getUpgradeCost() {
+		try {
 		return upgradeCosts[upgrades];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
 	}
 }

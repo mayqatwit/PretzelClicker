@@ -136,16 +136,8 @@ public class Main extends Application implements Initializable {
 		pretzelImage.setImage(new Image(Player.getImage()));
 		
 		// Getting rid of pretzel upgrades if they have been purchased
-		if(Player.getImageUpgrades() > 0) { 
-			bakedUpgrade.setManaged(false);
-			if(Player.getImageUpgrades() > 1) {
-				chocolateUpgrade.setManaged(false);
-				if(Player.getImageUpgrades() > 2) {
-					marshmallowUpgrade.setManaged(false);
-				}
-			}
-		}
-
+		checkManaged();
+		
 		music.start();
 		music.loop(Clip.LOOP_CONTINUOUSLY);
 
@@ -470,9 +462,8 @@ public class Main extends Application implements Initializable {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
 				pretzelImage.setImage(new Image(Player.getImage()));
-
 				click();
-				
+				System.exit(0);
 			} catch (FileNotFoundException e1) {
 			}
 		});
@@ -520,6 +511,38 @@ public class Main extends Application implements Initializable {
 
 		});
 
+		
+	}
+
+	private void checkManaged() {
+		if(Player.getImageUpgrades() > 0) { 
+			bakedUpgrade.setManaged(false);
+			if(Player.getImageUpgrades() > 1) {
+				chocolateUpgrade.setManaged(false);
+				if(Player.getImageUpgrades() > 2) {
+					marshmallowUpgrade.setManaged(false);
+					if(Player.getImageUpgrades() > 3) {
+						goldUpgrade.setManaged(false);
+						if(Player.getImageUpgrades() > 4) {
+							mobiusUpgrade.setManaged(false);
+						}
+					}
+				}
+			}
+		}
+
+		if (Clicker.getUpgradeCost() == 0)
+			upgradeClicker.setManaged(false);
+		if (Grandpa.getUpgradeCost() == 0)
+			upgradeGrandpa.setManaged(false);
+		if (Farm.getUpgradeCost() == 0)
+			upgradeFarm.setManaged(false);
+		if (Mine.getUpgradeCost() == 0)
+			upgradeMine.setManaged(false);
+		if (Factory.getUpgradeCost() == 0)
+			upgradeFactory.setManaged(false);
+		if (Lab.getUpgradeCost() == 0)
+			upgradeLab.setManaged(false);
 		
 	}
 
