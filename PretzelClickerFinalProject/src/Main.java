@@ -72,7 +72,11 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button muteButton;
 	@FXML
-	Button upgradeClicker1;
+	Button upgradeClicker;
+	@FXML
+	Button upgradeGrandpa;
+	@FXML
+	Button upgradeFarm;
 	@FXML
 	VBox vbox;
 	@FXML
@@ -221,6 +225,20 @@ public class Main extends Application implements Initializable {
 					click.start();
 			}
 		});
+		
+		makeToolTip(upgradeClicker,
+				String.format("Doubles clickers PPS and click value%nCost: %.0f", Clicker.getUpgradeCost()));
+		upgradeClicker.setOnAction(e -> {
+			if (Player.getPretzels() >= Clicker.getUpgradeCost()) {
+				Player.updatePretzels(-Clicker.getUpgradeCost());
+				Clip click = playSound("sounds/ButtonClick.wav");
+				if (click != null)
+					click.start();
+				new Clicker(1);
+				makeToolTip(upgradeClicker,
+						String.format("Doubles clickers PPS and click value%nCost: %.0f", Clicker.getUpgradeCost()));
+			}
+		});
 
 		grandpaButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Grandpa.getCost()) {
@@ -232,6 +250,20 @@ public class Main extends Application implements Initializable {
 				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
+			}
+		});
+		
+		makeToolTip(upgradeGrandpa,
+				String.format("Doubles Grandpa PPS%nCost: %.0f", Grandpa.getUpgradeCost()));
+		upgradeGrandpa.setOnAction(e -> {
+			if (Player.getPretzels() >= Grandpa.getUpgradeCost()) {
+				Player.updatePretzels(-Grandpa.getUpgradeCost());
+				Clip click = playSound("sounds/ButtonClick.wav");
+				if (click != null)
+					click.start();
+				new Grandpa(1);
+				makeToolTip(upgradeGrandpa,
+						String.format("Doubles Grandpa PPS%nCost: %.0f", Grandpa.getUpgradeCost()));
 			}
 		});
 
@@ -281,20 +313,6 @@ public class Main extends Application implements Initializable {
 				Clip click = playSound("sounds/ButtonClick.wav");
 				if (click != null)
 					click.start();
-			}
-		});
-
-		makeToolTip(upgradeClicker1,
-				String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
-		upgradeClicker1.setOnAction(e -> {
-			if (Player.getPretzels() >= Clicker.getUpgradeCost()) {
-				Player.updatePretzels(-Clicker.getUpgradeCost());
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
-				new Clicker(1);
-				makeToolTip(upgradeClicker1,
-						String.format("Doubles clickers PPS and click value%nCost: %d", Clicker.getUpgradeCost()));
 			}
 		});
 

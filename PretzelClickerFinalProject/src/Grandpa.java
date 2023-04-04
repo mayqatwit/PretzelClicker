@@ -9,7 +9,7 @@ public class Grandpa implements Buildable {
 	private static double myGrandpaPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Grandpas%nCost: %,.0f", numGrandpas, cost));
 	private static int upgrades = 0;
-	private static int[] upgradeCosts = {100,500,10000,50000};
+	private static double[] upgradeCosts = {1000,5000,50000,5000000};
 	
 	public Grandpa() {
 		buyBuilding();
@@ -38,7 +38,6 @@ public class Grandpa implements Buildable {
 		Grandpa.updateUpgrades(1);
 		Grandpa.setMyGrandpaPPS(Grandpa.getMyGrandpaPPS() * 2);
 		Grandpa.setPPS(Grandpa.getPPS() * 2);
-		Player.setClickValue(Player.getClickValue() * 2);
 		Player.updateUpgrades(1);
 	}
 	
@@ -102,7 +101,7 @@ public class Grandpa implements Buildable {
 		upgrades += i;
 	}
 
-	public static int getUpgradeCost() {
+	public static double getUpgradeCost() {
 		return upgradeCosts[upgrades];
 	}
 

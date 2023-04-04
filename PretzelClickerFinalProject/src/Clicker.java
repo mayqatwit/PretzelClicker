@@ -115,7 +115,7 @@ public class Clicker implements Buildable {
 		upgrades += i;
 	}
 
-	public static int getUpgradeCost() {
+	public static double getUpgradeCost() {
 		return upgradeCosts[upgrades];
 	}
 }
