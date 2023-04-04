@@ -11,6 +11,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -220,7 +221,7 @@ public class Main extends Application implements Initializable {
 		 * Clicker buttons
 		 */
 		// Buying a clicker
-		clickerButton.setOnAction(e -> { 
+		clickerButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Clicker.getCost()) {
 				new Clicker();
 
@@ -230,7 +231,7 @@ public class Main extends Application implements Initializable {
 				click();
 			}
 		});
-		
+
 		// Upgrade clickers
 		makeToolTip(upgradeClicker,
 				String.format("Doubles clickers PPS and click value%nCost: %,.0f", Clicker.getUpgradeCost()));
@@ -258,10 +259,9 @@ public class Main extends Application implements Initializable {
 				click();
 			}
 		});
-		
+
 		// Upgrade grandpas
-		makeToolTip(upgradeGrandpa,
-				String.format("Doubles Grandpa PPS%nCost: %,.0f", Grandpa.getUpgradeCost()));
+		makeToolTip(upgradeGrandpa, String.format("Doubles Grandpa PPS%nCost: %,.0f", Grandpa.getUpgradeCost()));
 		upgradeGrandpa.setOnAction(e -> {
 			if (Player.getPretzels() >= Grandpa.getUpgradeCost()) {
 				Player.updatePretzels(-Grandpa.getUpgradeCost());
@@ -275,9 +275,9 @@ public class Main extends Application implements Initializable {
 		/*
 		 * Farm buttons
 		 */
-		
+
 		// Buying a farm
-		farmButton.setOnAction(e -> { 
+		farmButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Farm.getCost()) {
 				new Farm();
 
@@ -286,17 +286,15 @@ public class Main extends Application implements Initializable {
 				click();
 			}
 		});
-		
+
 		// Upgrade farms
-		makeToolTip(upgradeFarm,
-				String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
-		upgradeFarm.setOnAction(e -> { 
+		makeToolTip(upgradeFarm, String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
+		upgradeFarm.setOnAction(e -> {
 			if (Player.getPretzels() >= Farm.getUpgradeCost()) {
 				Player.updatePretzels(-Farm.getUpgradeCost());
 				click();
 				new Farm(1);
-				makeToolTip(upgradeFarm,
-						String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
+				makeToolTip(upgradeFarm, String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
 			}
 		});
 
@@ -388,7 +386,7 @@ public class Main extends Application implements Initializable {
 		Clip click = playSound("sounds/ButtonClick.wav");
 		if (click != null)
 			click.start();
-		
+
 	}
 
 	/**
@@ -554,4 +552,20 @@ public class Main extends Application implements Initializable {
 		button.setTooltip(toolTip);
 	}
 
+	/**
+	 * Method for making a button disappear this method takes in a Button object and
+	 * uses the FadeTransition class in JavaFX to make the button disappear
+	 * 
+	 * @param button
+	 */
+	public void disappearAnimation(Button button) {
+		// Animation to make the button disappear
+		FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), button);
+		fadeTransition.setToValue(0);
+		fadeTransition.play();
+		// Get rid of the button once the animation is over
+		fadeTransition.setOnFinished(event -> {
+			button.setManaged(false);
+		});
+	}
 }
