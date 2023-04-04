@@ -173,7 +173,9 @@ public class Main extends Application implements Initializable {
 				new Image("sprites/StatsBackground.png", 310, 670, false, true), BackgroundRepeat.REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 		pretzelImage.setImage(new Image(Player.getImage()));
-		if(Player.getImageUpgrades() > 0) {
+		
+		// Getting rid of pretzel upgrades if they have been purchased
+		if(Player.getImageUpgrades() > 0) { 
 			bakedUpgrade.setManaged(false);
 			if(Player.getImageUpgrades() > 1) {
 				chocolateUpgrade.setManaged(false);
@@ -210,7 +212,9 @@ public class Main extends Application implements Initializable {
 					pretzelImage.setScaleX(pretzelImage.getScaleX() + 0.1);
 					pretzelImage.setScaleY(pretzelImage.getScaleY() + 0.1);
 					updatePretzels();
-					click();
+					Clip click = playSound("sounds/ClickSound.wav");
+					if (click != null)
+						click.start();
 
 					// Used for when you release the mouse, tells the method that
 					// it was the left mouse that was clicked
@@ -611,6 +615,7 @@ public class Main extends Application implements Initializable {
 			pretzelText.setText(String.format("Pretzels: %,.2f %nBillion", Player.getPretzels() / 1000000000.0));
 		} else
 			pretzelText.setText(String.format("Pretzels: %,.0f", Player.getPretzels()));
+		pretzelText.setStyle("-fx-text-fill: #949494;");
 	}
 
 	/**
@@ -621,6 +626,7 @@ public class Main extends Application implements Initializable {
 		Player.setPPS((Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS() + Mine.getMyMinePPS()
 				+ Factory.getMyFactoriesPPS() + Lab.getMyLabPPS()) * Player.getMultiplier());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
+		PPSText.setStyle("-fx-text-fill: #949494;");
 	}
 
 	/**

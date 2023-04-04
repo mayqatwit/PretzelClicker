@@ -23,12 +23,12 @@
                <children>
                   <VBox layoutY="46.0" prefHeight="154.0" prefWidth="451.0">
                      <children>
-                        <Text fx:id="pretzelText" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Pretzels: 0" textAlignment="CENTER" wrappingWidth="450.0">
+                        <Text fx:id="pretzelText" fill="WHITE" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Pretzels: 0" textAlignment="CENTER" wrappingWidth="450.0">
                            <font>
                               <Font name="Kristen ITC" size="34.0" />
                            </font>
                         </Text>
-                        <Text fx:id="PPSText" strokeType="OUTSIDE" strokeWidth="0.0" text="PPS: 0.0" textAlignment="CENTER" wrappingWidth="450.64333415031433">
+                        <Text fx:id="PPSText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PPS: 0.0" textAlignment="CENTER" wrappingWidth="450.64333415031433">
                            <font>
                               <Font name="Kristen ITC" size="26.0" />
                            </font>
@@ -108,11 +108,11 @@
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
-                              <Button fx:id="chocolateUpgrade" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Chocolate&#10;Pretzel">
+                              <Button fx:id="chocolateUpgrade" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Chocolate&#10;Drizzle">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="7ev3n">
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Marshmallow&#10;Drizzle&#10;">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
@@ -246,7 +246,7 @@
                <children>
                   <TextFlow layoutY="5.0" prefHeight="73.0" prefWidth="314.0" style="-fx-border-color: BLACK; -fx-border-width: 2;" textAlignment="CENTER">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stats:" textAlignment="CENTER" translateY="20.0" wrappingWidth="234.9367160797119">
+                        <Text fill="#949494" strokeType="OUTSIDE" strokeWidth="0.0" text="Stats:" textAlignment="CENTER" translateY="20.0" wrappingWidth="234.9367160797119">
                            <font>
                               <Font name="Bell MT" size="40.0" />
                            </font>
@@ -255,7 +255,7 @@
                   </TextFlow>
                   <TextFlow layoutY="76.0" prefHeight="596.0" prefWidth="314.0" style="-fx-border-color: BLACK; -fx-border-width: 2;">
                      <children>
-                        <Text fx:id="playerStats" strokeType="OUTSIDE" strokeWidth="0.0" text="Pretzel(s) in bank: 0&#10;Total pretzels baked: 0&#10;CPS: 0.0&#10;Buildings: 0&#10;Upgrades: 0&#10;&#10;" textAlignment="CENTER" translateX="5.0" translateY="5.0" wrappingWidth="165.213623046875">
+                        <Text fx:id="playerStats" fill="#949494" strokeType="OUTSIDE" strokeWidth="0.0" text="Pretzel(s) in bank: 0&#10;Total pretzels baked: 0&#10;CPS: 0.0&#10;Buildings: 0&#10;Upgrades: 0&#10;&#10;" textAlignment="CENTER" translateX="5.0" translateY="5.0" wrappingWidth="165.213623046875">
                            <font>
                               <Font name="Bell MT" size="16.5" />
                            </font>
