@@ -46,11 +46,25 @@ import javafx.util.Duration;
 public class Main extends Application implements Initializable {
 
 	@FXML
+	Button saveButton; // Game functionality
+	@FXML
+	ImageView pretzelImage;
+	@FXML
+	Button resetButton;
+	@FXML
+	Button muteButton;
+	@FXML
+	VBox vbox;
+	@FXML
+	AnchorPane aPane;
+	@FXML
 	Text pretzelText = new Text(String.format("Pretzels: ,%f", Player.getPretzels()));
 	@FXML
 	Text PPSText;
 	@FXML
-	Button clickerButton = Clicker.getGraphic();
+	Text playerStats;
+	@FXML
+	Button clickerButton; // Building buttons
 	@FXML
 	Button grandpaButton;
 	@FXML
@@ -62,25 +76,17 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button labButton;
 	@FXML
-	ImageView pretzelImage = new ImageView(new Image("sprites/Pretzel.png"));
-	@FXML
-	Text playerStats = new Text(Player.getStats());
-	@FXML
-	Button saveButton;
-	@FXML
-	Button resetButton;
-	@FXML
-	Button muteButton;
-	@FXML
-	Button upgradeClicker;
+	Button upgradeClicker; // Upgrade buttons
 	@FXML
 	Button upgradeGrandpa;
 	@FXML
 	Button upgradeFarm;
 	@FXML
-	VBox vbox;
+	Button upgradeMine;
 	@FXML
-	AnchorPane aPane;
+	Button upgradeFactory;
+	@FXML
+	Button upgradeLab;
 
 	boolean mute = false;
 
@@ -193,10 +199,7 @@ public class Main extends Application implements Initializable {
 					pretzelImage.setScaleX(pretzelImage.getScaleX() + 0.1);
 					pretzelImage.setScaleY(pretzelImage.getScaleY() + 0.1);
 					updatePretzels();
-
-					Clip click = playSound("sounds/ClickSound.wav");
-					if (click != null)
-						click.start();
+					click();
 
 					// Used for when you release the mouse, tells the method that
 					// it was the left mouse that was clicked
@@ -216,27 +219,25 @@ public class Main extends Application implements Initializable {
 		/*
 		 * Clicker buttons
 		 */
-		clickerButton.setOnAction(e -> { // Buying a clicker
+		// Buying a clicker
+		clickerButton.setOnAction(e -> { 
 			if (Player.getPretzels() >= Clicker.getCost()) {
 				new Clicker();
 
 				updatePretzels();
 				clickerButton.setText(
 						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 			}
 		});
 		
+		// Upgrade clickers
 		makeToolTip(upgradeClicker,
 				String.format("Doubles clickers PPS and click value%nCost: %,.0f", Clicker.getUpgradeCost()));
 		upgradeClicker.setOnAction(e -> {
 			if (Player.getPretzels() >= Clicker.getUpgradeCost()) {
 				Player.updatePretzels(-Clicker.getUpgradeCost());
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 				new Clicker(1);
 				makeToolTip(upgradeClicker,
 						String.format("Doubles clickers PPS and click value%nCost: %,.0f", Clicker.getUpgradeCost()));
@@ -246,6 +247,7 @@ public class Main extends Application implements Initializable {
 		/*
 		 * Grandpa buttons
 		 */
+		// Buying a grandpa
 		grandpaButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Grandpa.getCost()) {
 				new Grandpa();
@@ -253,20 +255,17 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				grandpaButton.setText(
 						String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 			}
 		});
 		
+		// Upgrade grandpas
 		makeToolTip(upgradeGrandpa,
 				String.format("Doubles Grandpa PPS%nCost: %,.0f", Grandpa.getUpgradeCost()));
 		upgradeGrandpa.setOnAction(e -> {
 			if (Player.getPretzels() >= Grandpa.getUpgradeCost()) {
 				Player.updatePretzels(-Grandpa.getUpgradeCost());
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 				new Grandpa(1);
 				makeToolTip(upgradeGrandpa,
 						String.format("Doubles Grandpa PPS%nCost: %,.0f", Grandpa.getUpgradeCost()));
@@ -276,26 +275,25 @@ public class Main extends Application implements Initializable {
 		/*
 		 * Farm buttons
 		 */
-		farmButton.setOnAction(e -> { // Buying a farm
+		
+		// Buying a farm
+		farmButton.setOnAction(e -> { 
 			if (Player.getPretzels() >= Farm.getCost()) {
 				new Farm();
 
 				updatePretzels();
 				farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 			}
 		});
 		
+		// Upgrade farms
 		makeToolTip(upgradeFarm,
 				String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
-		upgradeFarm.setOnAction(e -> {
+		upgradeFarm.setOnAction(e -> { 
 			if (Player.getPretzels() >= Farm.getUpgradeCost()) {
 				Player.updatePretzels(-Farm.getUpgradeCost());
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 				new Farm(1);
 				makeToolTip(upgradeFarm,
 						String.format("Doubles Farm PPS%nCost: %,.0f", Farm.getUpgradeCost()));
@@ -305,15 +303,14 @@ public class Main extends Application implements Initializable {
 		/*
 		 * Mine buttons
 		 */
+		// Buying a mine
 		mineButton.setOnAction(e -> {
 			if (Player.getPretzels() >= Mine.getCost()) {
 				new Mine();
 
 				updatePretzels();
 				mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 			}
 		});
 
@@ -327,9 +324,7 @@ public class Main extends Application implements Initializable {
 				updatePretzels();
 				factoryButton.setText(
 						String.format("%d Factories%nCost: %,.0f", Factory.getNumFactories(), Factory.getCost()));
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 			}
 		});
 
@@ -342,9 +337,7 @@ public class Main extends Application implements Initializable {
 
 				updatePretzels();
 				labButton.setText(String.format("%d Labratories%nCost: %,.0f", Lab.getNumLabs(), Lab.getCost()));
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 			}
 		});
 
@@ -367,9 +360,7 @@ public class Main extends Application implements Initializable {
 		saveButton.setOnAction(e -> { // This is used to save stats to a save file
 			saveGame();
 			saveButton.setText("Saved!");
-			Clip click = playSound("sounds/ButtonClick.wav");
-			if (click != null)
-				click.start();
+			click();
 		});
 
 		resetButton.setOnMouseEntered(e -> { // Make the background red if the mouse hovers over
@@ -383,13 +374,21 @@ public class Main extends Application implements Initializable {
 			try {
 				loadSave(new Scanner(new File("BlankSave")));
 				saveGame();
-				Clip click = playSound("sounds/ButtonClick.wav");
-				if (click != null)
-					click.start();
+				click();
 			} catch (FileNotFoundException e1) {
 			}
 		});
 
+	}
+
+	/**
+	 * This method plays a click sound as long as the game is not muted
+	 */
+	private void click() {
+		Clip click = playSound("sounds/ButtonClick.wav");
+		if (click != null)
+			click.start();
+		
 	}
 
 	/**
