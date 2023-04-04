@@ -92,6 +92,8 @@ public class Main extends Application implements Initializable {
 	Button bakedUpgrade;
 	@FXML
 	Button chocolateUpgrade;
+	@FXML
+	Button marshmallowUpgrade;
 
 	boolean mute = false;
 
@@ -425,6 +427,16 @@ public class Main extends Application implements Initializable {
 				Player.updateImageUpgrades(1);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(chocolateUpgrade);
+			}
+		});
+		
+		marshmallowUpgrade.setOnAction(e ->{
+			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 2) {
+				Player.updatePretzels(-Player.getImageCost());
+				Player.updateMultiplier(0.05);
+				Player.updateImageUpgrades(1);
+				pretzelImage.setImage(new Image(Player.getImage()));
+				disappearAnimation(marshmallowUpgrade);
 			}
 		});
 
