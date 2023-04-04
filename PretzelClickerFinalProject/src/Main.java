@@ -99,8 +99,6 @@ public class Main extends Application implements Initializable {
 
 	boolean leftWasClicked = false; // This is used to only left click pretzel once
 
-	public boolean eggImage = false;
-
 	Clip music = playSound("sounds/BackgroundMusic.wav");
 
 	public static void main(String[] args) {
@@ -119,49 +117,6 @@ public class Main extends Application implements Initializable {
 		primaryStage.getIcons().add(new Image("sprites/Pretzel.png"));
 		primaryStage.setResizable(false);
 		primaryStage.show();
-
-		p.setOnKeyPressed((e) -> {
-			if (e.getCode() == KeyCode.W)
-				p.setOnKeyPressed(f -> {
-					if (f.getCode() == KeyCode.W)
-						p.setOnKeyPressed(g -> {
-							if (g.getCode() == KeyCode.S)
-								p.setOnKeyPressed(h -> {
-									if (h.getCode() == KeyCode.S)
-										p.setOnKeyPressed(i -> {
-											if (i.getCode() == KeyCode.A)
-												p.setOnKeyPressed(j -> {
-													if (j.getCode() == KeyCode.D)
-														p.setOnKeyPressed(k -> {
-															if (k.getCode() == KeyCode.A)
-																p.setOnKeyPressed(l -> {
-																	if (l.getCode() == KeyCode.D)
-																		p.setOnKeyPressed(m -> {
-																			if (m.getCode() == KeyCode.B)
-																				p.setOnKeyPressed(n -> {
-																					if (n.getCode() == KeyCode.A) {
-																						eggImage = true;
-																						Clip egg = playSound(
-																								"sounds/EasterEgg.wav");
-																						egg.start();
-																						pretzelImage.setImage(new Image(
-																								"sprites/EasterEgg.png"));
-
-																					}
-																				});
-																		});
-
-																});
-														});
-												});
-										});
-
-								});
-
-						});
-				});
-
-		});
 
 	}
 
@@ -410,6 +365,7 @@ public class Main extends Application implements Initializable {
 		 * General Upgrades
 		 */
 		
+		makeToolTip(bakedUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
 		bakedUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost()) {
 				Player.updatePretzels(-Player.getImageCost());
@@ -417,9 +373,12 @@ public class Main extends Application implements Initializable {
 				Player.updateImageUpgrades(1);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(bakedUpgrade);
+				makeToolTip(chocolateUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
+
 			}
 		});
 		
+		makeToolTip(chocolateUpgrade, String.format("Baked pretzel upgrade%nRequired!"));
 		chocolateUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 1) {
 				Player.updatePretzels(-Player.getImageCost());
@@ -427,9 +386,12 @@ public class Main extends Application implements Initializable {
 				Player.updateImageUpgrades(1);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(chocolateUpgrade);
+				makeToolTip(marshmallowUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
+
 			}
 		});
 		
+		makeToolTip(marshmallowUpgrade, String.format("Chocolate drizzle upgrade%nRequired!"));
 		marshmallowUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 2) {
 				Player.updatePretzels(-Player.getImageCost());
@@ -439,6 +401,7 @@ public class Main extends Application implements Initializable {
 				disappearAnimation(marshmallowUpgrade);
 			}
 		});
+
 
 		/*
 		 * Game functionality buttons
@@ -481,6 +444,51 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		vbox.setOnKeyPressed((e) -> {
+			if (e.getCode() == KeyCode.W)
+				vbox.setOnKeyPressed(f -> {
+					if (f.getCode() == KeyCode.W)
+						vbox.setOnKeyPressed(g -> {
+							if (g.getCode() == KeyCode.S)
+								vbox.setOnKeyPressed(h -> {
+									if (h.getCode() == KeyCode.S)
+										vbox.setOnKeyPressed(i -> {
+											if (i.getCode() == KeyCode.A)
+												vbox.setOnKeyPressed(j -> {
+													if (j.getCode() == KeyCode.D)
+														vbox.setOnKeyPressed(k -> {
+															if (k.getCode() == KeyCode.A)
+																vbox.setOnKeyPressed(l -> {
+																	if (l.getCode() == KeyCode.D)
+																		vbox.setOnKeyPressed(m -> {
+																			if (m.getCode() == KeyCode.B)
+																				vbox.setOnKeyPressed(n -> {
+																					if (n.getCode() == KeyCode.A) {
+																						System.out
+																								.println("HELLO");
+																						Clip egg = playSound(
+																								"sounds/EasterEgg.wav");
+																						egg.start();
+																						pretzelImage.setImage(new Image(
+																								"sprites/EasterEgg.png"));
+
+																					}
+																				});
+																		});
+
+																});
+														});
+												});
+										});
+
+								});
+
+						});
+				});
+
+		});
+
+		
 	}
 
 	/**
