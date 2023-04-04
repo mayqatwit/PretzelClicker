@@ -402,7 +402,7 @@ public class Main extends Application implements Initializable {
 				Player.updateMultiplier(0.05);
 				Player.updateImageUpgrades(1);
 				pretzelImage.setImage(new Image(Player.getImage()));
-
+				disappearAnimation(chocolateUpgrade);
 			}
 		});
 
