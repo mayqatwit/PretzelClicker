@@ -94,6 +94,10 @@ public class Main extends Application implements Initializable {
 	Button chocolateUpgrade;
 	@FXML
 	Button marshmallowUpgrade;
+	@FXML
+	Button goldUpgrade;
+	@FXML
+	Button mobiusUpgrade;
 
 	boolean mute = false;
 
@@ -136,6 +140,9 @@ public class Main extends Application implements Initializable {
 			bakedUpgrade.setManaged(false);
 			if(Player.getImageUpgrades() > 1) {
 				chocolateUpgrade.setManaged(false);
+				if(Player.getImageUpgrades() > 2) {
+					marshmallowUpgrade.setManaged(false);
+				}
 			}
 		}
 
@@ -158,7 +165,7 @@ public class Main extends Application implements Initializable {
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
 
-		pretzelImage.setOnMousePressed((e) -> { // Clicking the cookie
+		pretzelImage.setOnMousePressed((e) -> { // Clicking the pretzel
 
 			if (e.isPrimaryButtonDown()) { // Check to see if the click was a left click
 
@@ -180,7 +187,7 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
-		pretzelImage.setOnMouseReleased((e) -> { // Releasing click on the cookie
+		pretzelImage.setOnMouseReleased((e) -> { // Releasing click on the pretzel
 			if (leftWasClicked) { // Check to see if it was the left mouse that was released
 				pretzelImage.setScaleX(pretzelImage.getScaleX() - 0.1);
 				pretzelImage.setScaleY(pretzelImage.getScaleY() - 0.1);
@@ -399,6 +406,32 @@ public class Main extends Application implements Initializable {
 				Player.updateImageUpgrades(1);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(marshmallowUpgrade);
+				makeToolTip(goldUpgrade, String.format("Increase your PPS by 10%s %nCost: %,.0f", "%", Player.getImageCost()));
+
+			}
+		});
+		
+		makeToolTip(goldUpgrade, String.format("Marshmallow drizzle upgrade%nRequired!"));
+		goldUpgrade.setOnAction(e ->{
+			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 3) {
+				Player.updatePretzels(-Player.getImageCost());
+				Player.updateMultiplier(0.1);
+				Player.updateImageUpgrades(1);
+				pretzelImage.setImage(new Image(Player.getImage()));
+				disappearAnimation(goldUpgrade);
+				makeToolTip(mobiusUpgrade, String.format("Increase your PPS by 10%s %nCost: %,.0f", "%", Player.getImageCost()));
+
+			}
+		});
+		
+		makeToolTip(mobiusUpgrade, String.format("Gold pretzel upgrade%nRequired!"));
+		mobiusUpgrade.setOnAction(e ->{
+			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 4) {
+				Player.updatePretzels(-Player.getImageCost());
+				Player.updateMultiplier(0.1);
+				Player.updateImageUpgrades(1);
+				pretzelImage.setImage(new Image(Player.getImage()));
+				disappearAnimation(mobiusUpgrade);
 			}
 		});
 
@@ -444,6 +477,7 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		// Easter egg :)
 		vbox.setOnKeyPressed((e) -> {
 			if (e.getCode() == KeyCode.W)
 				vbox.setOnKeyPressed(f -> {
@@ -464,8 +498,6 @@ public class Main extends Application implements Initializable {
 																			if (m.getCode() == KeyCode.B)
 																				vbox.setOnKeyPressed(n -> {
 																					if (n.getCode() == KeyCode.A) {
-																						System.out
-																								.println("HELLO");
 																						Clip egg = playSound(
 																								"sounds/EasterEgg.wav");
 																						egg.start();

@@ -119,11 +119,11 @@
                                  <font>
                                     <Font size="11.0" />
                                  </font></Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Plop">
+                              <Button fx:id="goldUpgrade" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Gold&#10;Pretzel">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Bears Beets">
+                              <Button fx:id="mobiusUpgrade" alignment="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-border-color: BLACK;" text="Mobius &#10;Pretzel">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
@@ -249,7 +249,7 @@
                <children>
                   <TextFlow layoutY="5.0" prefHeight="73.0" prefWidth="314.0" style="-fx-border-color: BLACK; -fx-border-width: 2;" textAlignment="CENTER">
                      <children>
-                        <Text fill="#949494" strokeType="OUTSIDE" strokeWidth="0.0" text="Stats:" textAlignment="CENTER" translateY="20.0" wrappingWidth="234.9367160797119">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Stats:" textAlignment="CENTER" translateY="20.0" wrappingWidth="234.9367160797119">
                            <font>
                               <Font name="Bell MT" size="40.0" />
                            </font>
@@ -258,7 +258,7 @@
                   </TextFlow>
                   <TextFlow layoutY="76.0" prefHeight="596.0" prefWidth="314.0" style="-fx-border-color: BLACK; -fx-border-width: 2;">
                      <children>
-                        <Text fx:id="playerStats" fill="#949494" strokeType="OUTSIDE" strokeWidth="0.0" text="Pretzel(s) in bank: 0&#10;Total pretzels baked: 0&#10;CPS: 0.0&#10;Buildings: 0&#10;Upgrades: 0&#10;&#10;" textAlignment="CENTER" translateX="5.0" translateY="5.0" wrappingWidth="165.213623046875">
+                        <Text fx:id="playerStats" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pretzel(s) in bank: 0&#10;Total pretzels baked: 0&#10;CPS: 0.0&#10;Buildings: 0&#10;Upgrades: 0&#10;&#10;" textAlignment="CENTER" translateX="5.0" translateY="5.0" wrappingWidth="165.213623046875">
                            <font>
                               <Font name="Bell MT" size="16.5" />
                            </font>
