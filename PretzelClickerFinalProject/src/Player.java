@@ -13,7 +13,7 @@ public class Player {
 	private static int buildings = 0;
 	private static int upgrades = 0;
 	private static double PPS = 0;
-	private static String[] images = {"sprites/Pretzel.png", "sprites/BakedPretzel.png", "sprites/ChocolatePretzel.png", "sprites/MarshmallowPretzel.png", "sprites/GoldPretzel.png", "sprites/MobiusPretzel.png"};
+	private static String[] images = {"sprites/Pretzel.png", "sprites/BakedPretzel.png", "sprites/ChocolatePretzel.png", "sprites/MarshmallowPretzel.png", "sprites/GoldPretzel.png", "sprites/BibliclyAccuratePretzel.png"};
 	private static double[] imageCosts = {100000, 5000000, 150000000, 20000000000.0, 1000000000000.0};
 	private static int imageUpgrades = 0;
 	private static double multiplier = 1.0;
