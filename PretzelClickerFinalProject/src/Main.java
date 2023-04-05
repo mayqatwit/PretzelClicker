@@ -473,6 +473,7 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		
 		// Easter egg :)
 		vbox.setOnKeyPressed((e) -> {
 			if (e.getCode() == KeyCode.W)
