@@ -17,7 +17,14 @@ public class Player {
 	private static double[] imageCosts = {100000, 5000000, 150000000, 20000000000.0, 1000000000000.0};
 	private static int imageUpgrades = 0;
 	private static double multiplier = 1.0;
+	private static double clickCost = 20000;
 
+	public static void upgrade(double d) {
+		Player.updatePretzels(-Player.getImageCost());
+		Player.updateMultiplier(d);
+		Player.updateImageUpgrades(1);
+	}
+	
 	/**
 	 * 
 	 * @return pretzels
@@ -208,6 +215,14 @@ public class Player {
 	
 	public static void updateMultiplier(double d) {
 		multiplier += d;
+	}
+
+	public static double getClickCost() {
+		return clickCost;
+	}
+
+	public static void setClickCost(double d) {
+		clickCost = d;
 	}
 
 }

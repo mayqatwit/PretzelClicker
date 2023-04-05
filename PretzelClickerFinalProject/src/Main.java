@@ -89,6 +89,8 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button upgradeLab;
 	@FXML
+	Button upgradeClick;
+	@FXML
 	Button bakedUpgrade;
 	@FXML
 	Button chocolateUpgrade;
@@ -364,6 +366,16 @@ public class Main extends Application implements Initializable {
 		 * General Upgrades
 		 */
 		
+		makeToolTip(upgradeClick, String.format("Double your click value%nCost: %,.0f", Player.getClickCost()));
+		upgradeClick.setOnAction(e ->{
+			if(Player.getPretzels() >= Player.getClickCost()) {
+				Player.updatePretzels(-Player.getClickCost());
+				Player.updateClickValue(Player.getClickValue());
+				Player.setClickCost(2*Player.getClickCost());
+				makeToolTip(upgradeClick, String.format("Double your click value%nCost: %,.0f", Player.getClickCost()));
+			}
+		});
+		
 		makeToolTip(bakedUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
 		bakedUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost()) {
@@ -380,9 +392,7 @@ public class Main extends Application implements Initializable {
 		makeToolTip(chocolateUpgrade, String.format("Baked pretzel upgrade%nRequired!"));
 		chocolateUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 1) {
-				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.05);
-				Player.updateImageUpgrades(1);
+				Player.upgrade(0.05);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(chocolateUpgrade);
 				makeToolTip(marshmallowUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
@@ -393,9 +403,7 @@ public class Main extends Application implements Initializable {
 		makeToolTip(marshmallowUpgrade, String.format("Chocolate drizzle upgrade%nRequired!"));
 		marshmallowUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 2) {
-				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.05);
-				Player.updateImageUpgrades(1);
+				Player.upgrade(0.05);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(marshmallowUpgrade);
 				makeToolTip(goldUpgrade, String.format("Increase your PPS by 10%s %nCost: %,.0f", "%", Player.getImageCost()));
@@ -406,9 +414,7 @@ public class Main extends Application implements Initializable {
 		makeToolTip(goldUpgrade, String.format("Marshmallow drizzle upgrade%nRequired!"));
 		goldUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 3) {
-				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.1);
-				Player.updateImageUpgrades(1);
+				Player.upgrade(0.1);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(goldUpgrade);
 				makeToolTip(bibleUpgrade, String.format("Increase your PPS by 25%s %nCost: %,.0f", "%", Player.getImageCost()));
@@ -419,9 +425,7 @@ public class Main extends Application implements Initializable {
 		makeToolTip(bibleUpgrade, String.format("Gold pretzel upgrade%nRequired!"));
 		bibleUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 4) {
-				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.25);
-				Player.updateImageUpgrades(1);
+				Player.upgrade(0.25);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(bibleUpgrade);
 			}
