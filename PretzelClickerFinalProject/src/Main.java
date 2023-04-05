@@ -97,7 +97,7 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button goldUpgrade;
 	@FXML
-	Button mobiusUpgrade;
+	Button bibleUpgrade;
 
 	boolean mute = false;
 
@@ -411,19 +411,19 @@ public class Main extends Application implements Initializable {
 				Player.updateImageUpgrades(1);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(goldUpgrade);
-				makeToolTip(mobiusUpgrade, String.format("Increase your PPS by 10%s %nCost: %,.0f", "%", Player.getImageCost()));
+				makeToolTip(bibleUpgrade, String.format("Increase your PPS by 25%s %nCost: %,.0f", "%", Player.getImageCost()));
 
 			}
 		});
 		
-		makeToolTip(mobiusUpgrade, String.format("Gold pretzel upgrade%nRequired!"));
-		mobiusUpgrade.setOnAction(e ->{
+		makeToolTip(bibleUpgrade, String.format("Gold pretzel upgrade%nRequired!"));
+		bibleUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 4) {
 				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.1);
+				Player.updateMultiplier(0.25);
 				Player.updateImageUpgrades(1);
 				pretzelImage.setImage(new Image(Player.getImage()));
-				disappearAnimation(mobiusUpgrade);
+				disappearAnimation(bibleUpgrade);
 			}
 		});
 
@@ -524,7 +524,7 @@ public class Main extends Application implements Initializable {
 					if(Player.getImageUpgrades() > 3) {
 						goldUpgrade.setManaged(false);
 						if(Player.getImageUpgrades() > 4) {
-							mobiusUpgrade.setManaged(false);
+							bibleUpgrade.setManaged(false);
 						}
 					}
 				}
