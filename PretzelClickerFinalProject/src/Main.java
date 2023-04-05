@@ -137,9 +137,6 @@ public class Main extends Application implements Initializable {
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 		pretzelImage.setImage(new Image(Player.getImage()));
 		
-		// Getting rid of pretzel upgrades if they have been purchased
-		checkManaged();
-		
 		music.start();
 		music.loop(Clip.LOOP_CONTINUOUSLY);
 
@@ -372,6 +369,7 @@ public class Main extends Application implements Initializable {
 				Player.updatePretzels(-Player.getClickCost());
 				Player.updateClickValue(Player.getClickValue());
 				Player.setClickCost(2*Player.getClickCost());
+				Player.updateUpgrades(1);
 				makeToolTip(upgradeClick, String.format("Double your click value%nCost: %,.0f", Player.getClickCost()));
 			}
 		});
@@ -428,6 +426,9 @@ public class Main extends Application implements Initializable {
 				Player.upgrade(0.25);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(bibleUpgrade);
+				music.stop();
+				music = playSound("sounds/FinalMusic.wav");
+				music.start();
 			}
 		});
 
@@ -515,20 +516,28 @@ public class Main extends Application implements Initializable {
 
 		});
 
-		
+		// Getting rid of pretzel upgrades if they have been purchased
+		checkManaged();
 	}
 
 	private void checkManaged() {
 		if(Player.getImageUpgrades() > 0) { 
 			bakedUpgrade.setManaged(false);
+			makeToolTip(chocolateUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
 			if(Player.getImageUpgrades() > 1) {
 				chocolateUpgrade.setManaged(false);
+				makeToolTip(marshmallowUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
 				if(Player.getImageUpgrades() > 2) {
 					marshmallowUpgrade.setManaged(false);
+					makeToolTip(goldUpgrade, String.format("Increase your PPS by 10%s %nCost: %,.0f", "%", Player.getImageCost()));
 					if(Player.getImageUpgrades() > 3) {
 						goldUpgrade.setManaged(false);
+						makeToolTip(bibleUpgrade, String.format("Increase your PPS by 25%s %nCost: %,.0f", "%", Player.getImageCost()));
 						if(Player.getImageUpgrades() > 4) {
 							bibleUpgrade.setManaged(false);
+							music.stop();
+							music = playSound("sounds/FinalMusic.wav");
+							music.start();
 						}
 					}
 				}
