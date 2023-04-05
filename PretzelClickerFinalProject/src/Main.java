@@ -89,6 +89,8 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button upgradeLab;
 	@FXML
+	Button upgradeClick;
+	@FXML
 	Button bakedUpgrade;
 	@FXML
 	Button chocolateUpgrade;
@@ -97,7 +99,7 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button goldUpgrade;
 	@FXML
-	Button mobiusUpgrade;
+	Button bibleUpgrade;
 
 	boolean mute = false;
 
@@ -134,9 +136,6 @@ public class Main extends Application implements Initializable {
 				new Image("sprites/StatsBackground.png", 310, 670, false, true), BackgroundRepeat.REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
 		pretzelImage.setImage(new Image(Player.getImage()));
-		
-		// Getting rid of pretzel upgrades if they have been purchased
-		checkManaged();
 		
 		music.start();
 		music.loop(Clip.LOOP_CONTINUOUSLY);
@@ -364,6 +363,17 @@ public class Main extends Application implements Initializable {
 		 * General Upgrades
 		 */
 		
+		makeToolTip(upgradeClick, String.format("Double your click value%nCost: %,.0f", Player.getClickCost()));
+		upgradeClick.setOnAction(e ->{
+			if(Player.getPretzels() >= Player.getClickCost()) {
+				Player.updatePretzels(-Player.getClickCost());
+				Player.updateClickValue(Player.getClickValue());
+				Player.setClickCost(2*Player.getClickCost());
+				Player.updateUpgrades(1);
+				makeToolTip(upgradeClick, String.format("Double your click value%nCost: %,.0f", Player.getClickCost()));
+			}
+		});
+		
 		makeToolTip(bakedUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
 		bakedUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost()) {
@@ -380,9 +390,7 @@ public class Main extends Application implements Initializable {
 		makeToolTip(chocolateUpgrade, String.format("Baked pretzel upgrade%nRequired!"));
 		chocolateUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 1) {
-				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.05);
-				Player.updateImageUpgrades(1);
+				Player.upgrade(0.05);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(chocolateUpgrade);
 				makeToolTip(marshmallowUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
@@ -393,9 +401,7 @@ public class Main extends Application implements Initializable {
 		makeToolTip(marshmallowUpgrade, String.format("Chocolate drizzle upgrade%nRequired!"));
 		marshmallowUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 2) {
-				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.05);
-				Player.updateImageUpgrades(1);
+				Player.upgrade(0.05);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(marshmallowUpgrade);
 				makeToolTip(goldUpgrade, String.format("Increase your PPS by 10%s %nCost: %,.0f", "%", Player.getImageCost()));
@@ -406,24 +412,23 @@ public class Main extends Application implements Initializable {
 		makeToolTip(goldUpgrade, String.format("Marshmallow drizzle upgrade%nRequired!"));
 		goldUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 3) {
-				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.1);
-				Player.updateImageUpgrades(1);
+				Player.upgrade(0.1);
 				pretzelImage.setImage(new Image(Player.getImage()));
 				disappearAnimation(goldUpgrade);
-				makeToolTip(mobiusUpgrade, String.format("Increase your PPS by 10%s %nCost: %,.0f", "%", Player.getImageCost()));
+				makeToolTip(bibleUpgrade, String.format("Increase your PPS by 25%s %nCost: %,.0f", "%", Player.getImageCost()));
 
 			}
 		});
 		
-		makeToolTip(mobiusUpgrade, String.format("Gold pretzel upgrade%nRequired!"));
-		mobiusUpgrade.setOnAction(e ->{
+		makeToolTip(bibleUpgrade, String.format("Gold pretzel upgrade%nRequired!"));
+		bibleUpgrade.setOnAction(e ->{
 			if (Player.getPretzels() >= Player.getImageCost() && Player.getImageUpgrades() == 4) {
-				Player.updatePretzels(-Player.getImageCost());
-				Player.updateMultiplier(0.1);
-				Player.updateImageUpgrades(1);
+				Player.upgrade(0.25);
 				pretzelImage.setImage(new Image(Player.getImage()));
-				disappearAnimation(mobiusUpgrade);
+				disappearAnimation(bibleUpgrade);
+				music.stop();
+				music = playSound("sounds/FinalMusic.wav");
+				music.start();
 			}
 		});
 
@@ -468,6 +473,7 @@ public class Main extends Application implements Initializable {
 			}
 		});
 
+		
 		// Easter egg :)
 		vbox.setOnKeyPressed((e) -> {
 			if (e.getCode() == KeyCode.W)
@@ -511,20 +517,28 @@ public class Main extends Application implements Initializable {
 
 		});
 
-		
+		// Getting rid of pretzel upgrades if they have been purchased
+		checkManaged();
 	}
 
 	private void checkManaged() {
 		if(Player.getImageUpgrades() > 0) { 
 			bakedUpgrade.setManaged(false);
+			makeToolTip(chocolateUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
 			if(Player.getImageUpgrades() > 1) {
 				chocolateUpgrade.setManaged(false);
+				makeToolTip(marshmallowUpgrade, String.format("Increase your PPS by 5%s %nCost: %,.0f", "%", Player.getImageCost()));
 				if(Player.getImageUpgrades() > 2) {
 					marshmallowUpgrade.setManaged(false);
+					makeToolTip(goldUpgrade, String.format("Increase your PPS by 10%s %nCost: %,.0f", "%", Player.getImageCost()));
 					if(Player.getImageUpgrades() > 3) {
 						goldUpgrade.setManaged(false);
+						makeToolTip(bibleUpgrade, String.format("Increase your PPS by 25%s %nCost: %,.0f", "%", Player.getImageCost()));
 						if(Player.getImageUpgrades() > 4) {
-							mobiusUpgrade.setManaged(false);
+							bibleUpgrade.setManaged(false);
+							music.stop();
+							music = playSound("sounds/FinalMusic.wav");
+							music.start();
 						}
 					}
 				}
@@ -606,6 +620,7 @@ public class Main extends Application implements Initializable {
 	 * @param Scanner s
 	 */
 	private void loadSave(Scanner s) {
+		Player.setClickCost(Double.parseDouble(s.nextLine()));
 		Player.setPretzels(Double.parseDouble(s.nextLine()));
 		Player.setTotalPretzels(Double.parseDouble(s.nextLine()));
 		Player.setClickValue(Double.parseDouble(s.nextLine()));
@@ -653,8 +668,8 @@ public class Main extends Application implements Initializable {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
 			writeSave.print(String.format(
-					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
-					Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
+					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
+					Player.getClickCost(), Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
 					Player.getUpgrades(), Player.getPPS(), Player.getImageUpgrades(), Clicker.getPPS(), Clicker.getCost(),
 					Clicker.getNumClickers(), Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Grandpa.getPPS(),
 					Grandpa.getCost(), Grandpa.getNumGrandpas(), Grandpa.getMyGrandpaPPS(), Grandpa.getUpgrades(),
