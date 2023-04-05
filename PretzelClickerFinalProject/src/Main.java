@@ -620,6 +620,7 @@ public class Main extends Application implements Initializable {
 	 * @param Scanner s
 	 */
 	private void loadSave(Scanner s) {
+		Player.setClickCost(Double.parseDouble(s.nextLine()));
 		Player.setPretzels(Double.parseDouble(s.nextLine()));
 		Player.setTotalPretzels(Double.parseDouble(s.nextLine()));
 		Player.setClickValue(Double.parseDouble(s.nextLine()));
@@ -667,8 +668,8 @@ public class Main extends Application implements Initializable {
 		try {
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
 			writeSave.print(String.format(
-					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
-					Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
+					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
+					Player.getClickCost(), Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
 					Player.getUpgrades(), Player.getPPS(), Player.getImageUpgrades(), Clicker.getPPS(), Clicker.getCost(),
 					Clicker.getNumClickers(), Clicker.getMyClickerPPS(), Clicker.getUpgrades(), Grandpa.getPPS(),
 					Grandpa.getCost(), Grandpa.getNumGrandpas(), Grandpa.getMyGrandpaPPS(), Grandpa.getUpgrades(),
