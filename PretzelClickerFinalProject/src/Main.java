@@ -101,9 +101,9 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Button bibleUpgrade;
 
-	boolean mute = false;
+	private boolean mute = false;
 
-	boolean leftWasClicked = false; // This is used to only left click pretzel once
+	private boolean leftWasClicked = false; // This is used to only left click pretzel once
 
 	Clip music = playSound("sounds/BackgroundMusic.wav");
 
