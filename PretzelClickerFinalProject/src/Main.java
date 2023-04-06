@@ -591,7 +591,7 @@ public class Main extends Application implements Initializable {
 	 * @param string
 	 * @return Clip clip
 	 */
-	public Clip playSound(String string) {
+	private Clip playSound(String string) {
 		if (!mute) {
 			try {
 
@@ -692,7 +692,7 @@ public class Main extends Application implements Initializable {
 	 * number of pretzels will be shortened to just xxx.xx format followed by the
 	 * magnitude of the pretzels (example: 32.79 Trillion).
 	 */
-	public void updatePretzels() {
+	private void updatePretzels() {
 		if (Player.getPretzels() >= 1000000000000000000.0) {
 			pretzelText.setText(
 					String.format("Pretzels: %,.2f %nQuintillion", Player.getPretzels() / 1000000000000000000.0));
@@ -712,7 +712,7 @@ public class Main extends Application implements Initializable {
 	 * Method for updating the text field for the PPS. This method requests the
 	 * focus for the text field that has the PPS and updates with the new PPS
 	 */
-	public void updatePPS() {
+	private void updatePPS() {
 		Player.setPPS((Clicker.getMyClickerPPS() + Grandpa.getMyGrandpaPPS() + Farm.getMyFarmPPS() + Mine.getMyMinePPS()
 				+ Factory.getMyFactoriesPPS() + Lab.getMyLabPPS()) * Player.getMultiplier());
 		PPSText.setText(String.format("PPS: %,.1f", Player.getPPS()));
@@ -727,7 +727,7 @@ public class Main extends Application implements Initializable {
 	 * @param button
 	 * @param s
 	 */
-	public void makeToolTip(Button button, String s) {
+	private void makeToolTip(Button button, String s) {
 		final Tooltip toolTip = new Tooltip();
 		toolTip.setText(s);
 		toolTip.setStyle("-fx-text-fill: BLACK;" + "-fx-background-color: #B3B3B3;" + "-fx-font-weight: BOLD;"
@@ -742,7 +742,7 @@ public class Main extends Application implements Initializable {
 	 * 
 	 * @param button
 	 */
-	public void disappearAnimation(Button button) {
+	private void disappearAnimation(Button button) {
 		// Animation to make the button disappear
 		FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), button);
 		fadeTransition.setToValue(0);
