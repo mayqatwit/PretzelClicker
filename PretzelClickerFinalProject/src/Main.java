@@ -195,8 +195,7 @@ public class Main extends Application implements Initializable {
 				new Clicker();
 
 				updatePretzels();
-				clickerButton.setText(
-						String.format("%d Clickers%nCost: %,.0f", Clicker.getNumClickers(), Clicker.getCost()));
+				updateButtons();
 				click();
 			}
 		});
@@ -226,8 +225,7 @@ public class Main extends Application implements Initializable {
 				new Grandpa();
 
 				updatePretzels();
-				grandpaButton.setText(
-						String.format("%d Grandpas%nCost: %,.0f", Grandpa.getNumGrandpas(), Grandpa.getCost()));
+				updateButtons();
 				click();
 			}
 		});
@@ -257,7 +255,7 @@ public class Main extends Application implements Initializable {
 				new Farm();
 
 				updatePretzels();
-				farmButton.setText(String.format("%d Farms%nCost: %,.0f", Farm.getNumFarms(), Farm.getCost()));
+				updateButtons();
 				click();
 			}
 		});
@@ -285,7 +283,7 @@ public class Main extends Application implements Initializable {
 				new Mine();
 
 				updatePretzels();
-				mineButton.setText(String.format("%d Mines%nCost: %,.0f", Mine.getNumMines(), Mine.getCost()));
+				updateButtons();
 				click();
 			}
 		});
@@ -312,8 +310,7 @@ public class Main extends Application implements Initializable {
 				new Factory();
 
 				updatePretzels();
-				factoryButton.setText(
-						String.format("%d Factories%nCost: %,.0f", Factory.getNumFactories(), Factory.getCost()));
+				updateButtons();
 				click();
 			}
 		});
@@ -340,7 +337,7 @@ public class Main extends Application implements Initializable {
 				new Lab();
 
 				updatePretzels();
-				labButton.setText(String.format("%d Labratories%nCost: %,.0f", Lab.getNumLabs(), Lab.getCost()));
+				updateButtons();
 				click();
 			}
 		});
