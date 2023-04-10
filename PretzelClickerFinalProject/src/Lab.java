@@ -9,7 +9,7 @@ public class Lab implements Buildable{
 	private static double myLabPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Labs%nCost: %,.0f", numLabs, cost));
 	private static int upgrades = 0;
-	private static double[] upgradeCosts = {14000000,70000000,700000000,70000000000.0};
+	private static double[] upgradeCosts = {14000000,70000000,700000000,7000000000.0};
 	
 	public Lab() {
 		buyBuilding();

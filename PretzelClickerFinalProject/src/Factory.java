@@ -8,7 +8,7 @@ public class Factory implements Buildable {
 	private static double myFactoriesPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Factories%nCost: %,.0f", numFactories, cost));
 	private static int upgrades = 0;
-	private static double[] upgradeCosts = {1300000,6500000,65000000,65000000000.0};
+	private static double[] upgradeCosts = {1300000,6500000,65000000,650000000.0};
 	
 	public Factory() {
 		buyBuilding();

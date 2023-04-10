@@ -9,7 +9,7 @@ public class Farm implements Buildable{
 	private static double myFarmPPS = 0.0;
 	private static Button graphic = new Button(String.format("%d Farms%nCost: %,.0f", numFarms, cost));
 	private static int upgrades = 0;
-	private static double[] upgradeCosts = {11000,55000,55000000,55000000000.0};
+	private static double[] upgradeCosts = {11000,55000,55000000,550000000.0};
 	
 	public Farm() {
 		buyBuilding();
