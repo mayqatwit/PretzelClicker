@@ -272,7 +272,7 @@
                               </Text>
                            </children>
                         </TextFlow>
-                        <Text fx:id="playerStats1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Getting Started: Bake 1 pretzel&#10;Nice: Bake 69 pretzels&#10;&#10;Konami Holly: Get the easter egg&#10;&#10;Biblically Accurate Pretzel: Get the last pretzel upgrade" textAlignment="CENTER" translateX="5.0" translateY="30.0" wrappingWidth="165.213623046875">
+                        <Text fx:id="playerAchievements" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Getting Started: Bake 1 pretzel&#10;Nice: Bake 69 pretzels&#10;&#10;Konami Holly: Get the easter egg&#10;&#10;Biblically Accurate Pretzel: Get the last pretzel upgrade" textAlignment="CENTER" translateX="5.0" translateY="30.0" wrappingWidth="165.213623046875">
                            <font>
                               <Font name="Bell MT" size="16.5" />
                            </font>

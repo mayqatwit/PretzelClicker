@@ -65,6 +65,8 @@ public class Main extends Application implements Initializable {
 	@FXML
 	Text playerStats;
 	@FXML
+	Text playerAchievements;
+	@FXML
 	Button clickerButton; // Building buttons
 	@FXML
 	Button grandpaButton;
@@ -150,6 +152,7 @@ public class Main extends Application implements Initializable {
 			updatePPS();
 			updateButtons();
 			playerStats.setText(Player.getStats());
+			playerAchievements.setText(String.format("%s%n%n%s", Achievement.getList(), Achievement.getUnfinishedList()));
 		}));
 
 		// Have the time-line run indefinitely and start it

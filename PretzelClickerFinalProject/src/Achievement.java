@@ -14,18 +14,29 @@ public abstract class Achievement {
 		achievementList.add(this);
 	}
 	
-	//checks that achievement is 
+	//checks that achievement is completed
 	public abstract boolean condition();
 	
 	public void complete() {
 		completedAchievements.add(this);
+		achievementList.remove(this);
 	}
 	
 	//returns full list of completed achievements
-	public static String completeList() {
+	public static String getList() {
 		String out = "";
 		
 		for(Achievement a : completedAchievements) {
+			out = String.format("%s%s%n", out, a);
+		}
+		return out;
+	}
+	
+	//returns full list of uncompleted achievements
+	public static String getUnfinishedList() {
+		String out = "";
+		
+		for(Achievement a : achievementList) {
 			out = String.format("%s%s%n", out, a);
 		}
 		return out;
