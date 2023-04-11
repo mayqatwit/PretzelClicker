@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1017.0" style="-fx-background-color: &quot;0199d0&quot;;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1017.0" style="-fx-background-color: &quot;0199d0&quot;;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
    <left>
       <VBox fx:id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -259,6 +259,20 @@
                   <TextFlow layoutY="76.0" prefHeight="596.0" prefWidth="314.0" style="-fx-border-color: BLACK; -fx-border-width: 2;">
                      <children>
                         <Text fx:id="playerStats" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pretzel(s) in bank: 0&#10;Total pretzels baked: 0&#10;CPS: 0.0&#10;Buildings: 0&#10;Upgrades: 0&#10;&#10;" textAlignment="CENTER" translateX="5.0" translateY="5.0" wrappingWidth="165.213623046875">
+                           <font>
+                              <Font name="Bell MT" size="16.5" />
+                           </font>
+                        </Text>
+                        <TextFlow prefHeight="73.0" prefWidth="308.0" style="-fx-border-color: BLACK; -fx-border-width: 2;" textAlignment="CENTER" translateY="25.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Achievements:" textAlignment="CENTER" translateY="20.0" wrappingWidth="234.9367160797119">
+                                 <font>
+                                    <Font name="Bell MT" size="40.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </TextFlow>
+                        <Text fx:id="playerStats1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Getting Started: Bake 1 pretzel&#10;Nice: Bake 69 pretzels&#10;&#10;Konami Holly: Get the easter egg&#10;&#10;Biblically Accurate Pretzel: Get the last pretzel upgrade" textAlignment="CENTER" translateX="5.0" translateY="30.0" wrappingWidth="165.213623046875">
                            <font>
                               <Font name="Bell MT" size="16.5" />
                            </font>
