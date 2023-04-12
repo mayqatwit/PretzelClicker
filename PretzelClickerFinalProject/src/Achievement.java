@@ -1,21 +1,37 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Achievement {
 	
 	private String name;
+	private String nameShort;
 	private String conditionText;
 	
 	public static ArrayList<Achievement> achievementList = new ArrayList<Achievement>(0);
 	public static ArrayList<Achievement> completedAchievements = new ArrayList<Achievement>(0);
 	
 	//flag achievement booleans
+	private static boolean gotStart = false;
 	private static boolean gotBiblicallyAccurate = false;
 	private static boolean gotWeezer = false;
+	private static boolean gotNice = false;
+	private static boolean gotBuild = false;
+	private static boolean gotPPS = false;
+	private static boolean gotClick = false;
 	private static boolean gotSave = false;
+	private static boolean gotUpgrade = false;
 	
 	public Achievement(String name, String conditionText) {
 		this.name = name;
 		this.conditionText = conditionText;
+	}
+	
+	public String getName() {
+		return nameShort;
+	}
+	
+	public void setName(String in) {
+		nameShort = in;
 	}
 	
 	//checks that achievement is completed
@@ -58,6 +74,24 @@ public abstract class Achievement {
 		case "Save":
 			gotSave = true;
 			break;
+		case "Start":
+			gotStart = true;
+			break;
+		case "Nice":
+			gotNice = true;
+			break;
+		case "Build":
+			gotBuild = true;
+			break;
+		case "PPS":
+			gotPPS = true;
+			break;
+		case "Click":
+			gotClick = true;
+			break;
+		case "Upgrade":
+			gotUpgrade = true;
+			break;
 		}
 	}
 	public static boolean getFlag(String flag) {
@@ -71,6 +105,25 @@ public abstract class Achievement {
 			
 		case "Save":
 			return gotSave;
+			
+		case "Start":
+			return gotStart;
+			
+		case "Nice":
+			return gotNice;
+			
+		case "Build":
+			return gotBuild;
+			
+		case "PPS":
+			return gotPPS;
+			
+		case "Click":
+			return gotClick;
+			
+		case "Upgrade":
+			return gotUpgrade;
+			
 		}
 		
 		//if anything doesnt work, return false
@@ -100,6 +153,51 @@ public abstract class Achievement {
 			out = String.format("%s%s%n", out, a);
 		}
 		return out;
+	}
+	
+	public static String print() {
+		String out = "";
+		for(Achievement a : completedAchievements) {
+			out += String.format("%s%n", a.nameShort);
+		}		
+		return out;
+	}
+	
+	public static void loadSave(Scanner s) {
+		while(s.hasNext()) {
+			String in = s.nextLine();
+			
+			switch(in) {
+			
+			case "Start":
+				achieveFlag("Start");
+				break;
+			case "Bible":
+				achieveFlag("Bible");
+				break;
+			case "Weezer":
+				achieveFlag("Weezer");
+				break;
+			case "Nice":
+				achieveFlag("Nice");
+				break;
+			case "Build":
+				achieveFlag("Build");
+				break;
+			case "PPS":
+				achieveFlag("PPS");
+				break;
+			case "Click":
+				achieveFlag("Click");
+				break;
+			case "Save":
+				achieveFlag("Save");
+				break;
+			case "Upgrade":
+				achieveFlag("Upgrade");
+				break;
+			}
+		}
 	}
 	
 	@Override

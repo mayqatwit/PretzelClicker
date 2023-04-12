@@ -673,6 +673,7 @@ public class Main extends Application implements Initializable {
 	 */
 	private void saveGame() {
 		try {
+			Achievement.achieveFlag("Save");
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
 			writeSave.print(String.format(
 					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
@@ -685,9 +686,9 @@ public class Main extends Application implements Initializable {
 					Factory.getPPS(), Factory.getCost(), Factory.getNumFactories(), Factory.getMyFactoriesPPS(),
 					Factory.getUpgrades(), Lab.getPPS(), Lab.getCost(), Lab.getNumLabs(), Lab.getMyLabPPS(),
 					Lab.getUpgrades()));
+			writeSave.print(Achievement.print());
 
 			writeSave.close();
-			Achievement.achieveFlag("Save");
 		} catch (FileNotFoundException e1) {
 		}
 
