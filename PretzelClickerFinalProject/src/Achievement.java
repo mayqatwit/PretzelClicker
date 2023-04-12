@@ -8,6 +8,9 @@ public abstract class Achievement {
 	public static ArrayList<Achievement> achievementList = new ArrayList<Achievement>(0);
 	public static ArrayList<Achievement> completedAchievements = new ArrayList<Achievement>(0);
 	
+	private static boolean gotBiblicallyAccurate = false;
+	private static boolean gotWeezer = false;
+	
 	public Achievement(String name, String conditionText) {
 		this.name = name;
 		this.conditionText = conditionText;
@@ -20,6 +23,8 @@ public abstract class Achievement {
 	//adds achievements
 	public static void loadAchievements() {
 		achievementList.add(new ACHstart("Getting Started", "Bake 1 pretzel"));
+		achievementList.add(new ACHbibliclyAccurate("Biblically Accurate Pretzel", "Get the final pretzel upgrade"));
+		achievementList.add(new ACHweezer("Weezer's Pretzels", "Input the Konami code easter egg"));
 	}
 	
 	//loop through each uncompleted achievement, removing them once they are completed
@@ -30,6 +35,34 @@ public abstract class Achievement {
 				achievementList.get(i).complete();
 			}
 		}
+	}
+	
+	//achievements that activate when specific things happen call this
+	public static void achieveFlag(String flag) {
+		switch(flag) {
+		
+		case "Weezer":
+			gotWeezer = true;
+			break;
+		case "Bible":
+			gotBiblicallyAccurate = true;
+			break;
+			
+		}
+	}
+	public static boolean getFlag(String flag) {
+		switch(flag) {
+		
+		case "Weezer":
+			return gotWeezer;
+		
+		case "Bible":
+			return gotBiblicallyAccurate;
+			
+		}
+		
+		//if anything doesnt work, return false
+		return false;
 	}
 	
 	public void complete() {

@@ -434,6 +434,7 @@ public class Main extends Application implements Initializable {
 				music.stop();
 				music = playSound("sounds/FinalMusic.wav");
 				music.start();
+				Achievement.achieveFlag("Bible");
 			}
 		});
 
@@ -505,6 +506,7 @@ public class Main extends Application implements Initializable {
 																						egg.start();
 																						pretzelImage.setImage(new Image(
 																								"sprites/EasterEgg.png"));
+																						Achievement.achieveFlag("Weezer");
 
 																					}
 																				});
