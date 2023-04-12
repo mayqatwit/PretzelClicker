@@ -1,14 +1,13 @@
 
-public class ACHstart extends Achievement {
+public class ACHpps extends Achievement{
 
-	public ACHstart(String name, String conditionText) {
+	public ACHpps(String name, String conditionText) {
 		super(name, conditionText);
-		
 	}
 
 	@Override
 	public boolean condition() {
-		if(Player.getPretzels() >= 1) {
+		if(Player.getPPS() >= 100) {
 			return true;
 		} else {
 			return false;

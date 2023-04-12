@@ -25,6 +25,9 @@ public abstract class Achievement {
 		achievementList.add(new ACHstart("Getting Started", "Bake 1 pretzel"));
 		achievementList.add(new ACHbibliclyAccurate("Biblically Accurate Pretzel", "Get the final pretzel upgrade"));
 		achievementList.add(new ACHweezer("Weezer's Pretzels", "Input the Konami code easter egg"));
+		achievementList.add(new ACHnice("Nice", "Get exactly 69 pretzels"));
+		achievementList.add(new ACHbuild("Do It For Me", "Buy a building"));
+		achievementList.add(new ACHpps("Now We're Cooking", "Reach 100 Pretzels Per Second"));
 	}
 	
 	//loop through each uncompleted achievement, removing them once they are completed
