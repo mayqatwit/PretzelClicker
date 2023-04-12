@@ -665,6 +665,8 @@ public class Main extends Application implements Initializable {
 		Lab.setNumLabs((int) Double.parseDouble(s.nextLine()));
 		Lab.setMyLabPPS(Double.parseDouble(s.nextLine()));
 		Lab.setUpgrades((int) Double.parseDouble(s.nextLine()));
+		
+		Achievement.loadSave(s);
 	}
 
 	/**
