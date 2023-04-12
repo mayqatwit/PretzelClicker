@@ -200,6 +200,11 @@ public abstract class Achievement {
 		}
 	}
 	
+	
+	public static void resetSave() {
+		completedAchievements = new ArrayList<Achievement>(0);
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("%s: %s%n", name, conditionText);
