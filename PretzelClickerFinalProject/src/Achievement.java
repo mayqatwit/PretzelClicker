@@ -8,6 +8,7 @@ public abstract class Achievement {
 	public static ArrayList<Achievement> achievementList = new ArrayList<Achievement>(0);
 	public static ArrayList<Achievement> completedAchievements = new ArrayList<Achievement>(0);
 	
+	//flag achievement booleans
 	private static boolean gotBiblicallyAccurate = false;
 	private static boolean gotWeezer = false;
 	private static boolean gotSave = false;
@@ -67,6 +68,7 @@ public abstract class Achievement {
 		
 		case "Bible":
 			return gotBiblicallyAccurate;
+			
 		case "Save":
 			return gotSave;
 		}
