@@ -11,11 +11,26 @@ public abstract class Achievement {
 	public Achievement(String name, String conditionText) {
 		this.name = name;
 		this.conditionText = conditionText;
-		achievementList.add(this);
+		//achievementList.add(this);
 	}
 	
 	//checks that achievement is completed
 	public abstract boolean condition();
+	
+	//adds achievements
+	public static void loadAchievements() {
+		achievementList.add(new ACHstart("Getting Started", "Bake 1 pretzel"));
+	}
+	
+	//loop through each uncompleted achievement, removing them once they are completed
+	public static void checkCompletion() {
+
+		for(int i = achievementList.size()-1; i >= 0; i--) {
+			if(achievementList.get(i).condition()) {
+				achievementList.get(i).complete();
+			}
+		}
+	}
 	
 	public void complete() {
 		completedAchievements.add(this);

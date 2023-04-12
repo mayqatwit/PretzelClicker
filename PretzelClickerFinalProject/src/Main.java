@@ -141,6 +141,9 @@ public class Main extends Application implements Initializable {
 		
 		music.start();
 		music.loop(Clip.LOOP_CONTINUOUSLY);
+		
+		//set up achievements
+		Achievement.loadAchievements();
 
 		// Running a time-line to add pretzels every 0.01 seconds
 		// base on the current PPS, using 0.01 seconds to make the pretzels
@@ -152,7 +155,9 @@ public class Main extends Application implements Initializable {
 			updatePPS();
 			updateButtons();
 			playerStats.setText(Player.getStats());
-			playerAchievements.setText(String.format("%s%n%n%s", Achievement.getList(), Achievement.getUnfinishedList()));
+			//playerAchievements.setText(String.format("%s%n%n%s", Achievement.getList(), Achievement.getUnfinishedList()));
+			playerAchievements.setText(Achievement.getList());
+			Achievement.checkCompletion();
 		}));
 
 		// Have the time-line run indefinitely and start it
