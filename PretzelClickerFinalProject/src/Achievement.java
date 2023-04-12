@@ -10,11 +10,11 @@ public abstract class Achievement {
 	
 	private static boolean gotBiblicallyAccurate = false;
 	private static boolean gotWeezer = false;
+	private static boolean gotSave = false;
 	
 	public Achievement(String name, String conditionText) {
 		this.name = name;
 		this.conditionText = conditionText;
-		//achievementList.add(this);
 	}
 	
 	//checks that achievement is completed
@@ -28,6 +28,10 @@ public abstract class Achievement {
 		achievementList.add(new ACHnice("Nice", "Get exactly 69 pretzels"));
 		achievementList.add(new ACHbuild("Do It For Me", "Buy a building"));
 		achievementList.add(new ACHpps("Now We're Cooking", "Reach 100 Pretzels Per Second"));
+		achievementList.add(new ACHclick("Big Clicks", "Upgrade click value to 1024"));
+		achievementList.add(new ACHsave("Better Safe Than Sorry", "Save your progress"));
+		achievementList.add(new ACHupgrade("Lets Make This Faster", "Buy an upgrade"));
+		//achievementList.add(new ACH("", "")); //if i decide to add a 10th
 	}
 	
 	//loop through each uncompleted achievement, removing them once they are completed
@@ -50,7 +54,9 @@ public abstract class Achievement {
 		case "Bible":
 			gotBiblicallyAccurate = true;
 			break;
-			
+		case "Save":
+			gotSave = true;
+			break;
 		}
 	}
 	public static boolean getFlag(String flag) {
@@ -61,7 +67,8 @@ public abstract class Achievement {
 		
 		case "Bible":
 			return gotBiblicallyAccurate;
-			
+		case "Save":
+			return gotSave;
 		}
 		
 		//if anything doesnt work, return false
@@ -95,6 +102,6 @@ public abstract class Achievement {
 	
 	@Override
 	public String toString() {
-		return String.format("%s: %s", name, conditionText);
+		return String.format("%s: %s%n", name, conditionText);
 	}
 }

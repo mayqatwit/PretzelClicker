@@ -687,6 +687,7 @@ public class Main extends Application implements Initializable {
 					Lab.getUpgrades()));
 
 			writeSave.close();
+			Achievement.achieveFlag("Save");
 		} catch (FileNotFoundException e1) {
 		}
 
