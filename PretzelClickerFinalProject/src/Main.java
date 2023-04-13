@@ -376,6 +376,7 @@ public class Main extends Application implements Initializable {
 				Player.setClickCost(2*Player.getClickCost());
 				Player.updateUpgrades(1);
 				makeToolTip(upgradeClick, String.format("Double your click value%nCost: %,.0f", Player.getClickCost()));
+				click();
 			}
 		});
 		
