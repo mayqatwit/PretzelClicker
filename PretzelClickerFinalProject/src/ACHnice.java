@@ -8,7 +8,7 @@ public class ACHnice extends Achievement {
 
 	@Override
 	public boolean condition() {
-		if(Player.getPretzels() == 69 || getFlag(getName())) {
+		if(Math.floor(Player.getPretzels()) == 69 || getFlag(getName())) {
 			return true;
 		} else {
 			return false;
