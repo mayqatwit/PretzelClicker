@@ -679,6 +679,7 @@ public class Main extends Application implements Initializable {
 		try {
 			Achievement.achieveFlag("Save");
 			PrintWriter writeSave = new PrintWriter(new File("Save"));
+			Achievement.checkCompletion();
 			writeSave.print(String.format(
 					"%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n",
 					Player.getClickCost(), Player.getPretzels(), Player.getTotalPretzels(), Player.getClickValue(), Player.getBuildings(),
